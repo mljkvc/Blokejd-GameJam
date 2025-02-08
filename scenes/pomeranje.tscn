@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://cuowk8m0mqgi3"]
+
+[ext_resource type="Script" path="res://scripts/moving.gd" id="1_wqsxo"]
+[ext_resource type="Texture2D" uid="uid://dwxur6ib2ihq3" path="res://sprites/image_2025-01-26_085152262-removebg-preview.png" id="2_cmhi7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yjvaf"]
+size = Vector2(123, 113)
+
+[node name="kvadrat" type="Node2D"]
+position = Vector2(-1, -2)
+script = ExtResource("1_wqsxo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(343, 208)
+scale = Vector2(0.449264, 0.443627)
+texture = ExtResource("2_cmhi7")
+
+[node name="Area2D" type="Area2D" parent="Sprite2D"]
+position = Vector2(2.22586, 51.8454)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+position = Vector2(2.02656e-05, -7.62939e-06)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_yjvaf")
+debug_color = Color(0.972549, 0.105882, 0.32549, 1)
