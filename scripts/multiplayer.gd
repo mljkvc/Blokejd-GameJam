@@ -31,8 +31,6 @@ var pieces_availible = {}
 
 func _ready():
 	_initialize_board()
-	start_server()
-	start_discovery()
 	reload_pieces()
 	
 
@@ -184,7 +182,7 @@ func make_move(player_id, x, y, piece_data, lied):
 	if player1_pos == player2_pos:
 		if player_id == 1:
 			player1_score += 1
-			player2_score -+ 1
+			player2_score -= 1
 			player2_pos = Vector2(7, 4)
 		else:
 			player2_score += 1

@@ -133,7 +133,7 @@ func highlight_available_tiles() -> void:
 			if tile is Tile:
 				tile.highlight_this_square_for_movement()
 				tile.tile_is_available_for_movement = true
-				
+	
 				
 func tile_name_to_matrix_representation(tile_name: String) -> Vector2:
 	var parts = tile_name.split("_")
