@@ -7,6 +7,8 @@ var current_turn = 1 # 1 is for player 1 and 2 is for player 2
 var player1_pos = Vector2(0, 5)
 var player2_pos = Vector2(7, 4)
 
+var turn_count = 0
+
 var player1_prev_pos = player1_pos
 var player2_prev_pos = player2_pos
 
@@ -57,6 +59,9 @@ func make_move(player_id, x, y, piece_data, lied):
 	if multiplayer.get_remote_sender_id() != player_id:
 		return
 		
+		
+	turn_count += 1
+	
 	var prev_pos = player1_pos if player_id == 1 else player2_pos
 	var pos = Vector2(x, y)
 	
