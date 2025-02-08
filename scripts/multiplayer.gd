@@ -10,6 +10,9 @@ var player2_pos = Vector2(7, 4)
 var player1_prev_pos = player1_pos
 var player2_prev_pos = player2_pos
 
+var player1_eaten_in_last = false
+var player2_eaten_in_last = false
+
 var player1_score = 0
 var player2_score = 0
 
@@ -50,7 +53,7 @@ func sync_game_state(new_board, turn):
 	current_turn = turn
 
 @rpc("any_peer")
-func make_move(player_id, x, y, is_honest):
+func make_move(player_id, x, y, piece_data, lied):
 	if multiplayer.get_remote_sender_id() != player_id:
 		return
 		
@@ -58,22 +61,30 @@ func make_move(player_id, x, y, is_honest):
 	var pos = Vector2(x, y)
 	
 	if player_id == 1:
+		board[player1_pos[0]][player1_pos[1]] = 0
 		player1_prev_pos = prev_pos
 		player1_pos = pos
+		player1_lied = lied
+		if player1_eaten_in_last:
+			player1_eaten_in_last = false
 	else:
+		board[player2_pos[0]][player2_pos[1]] = 0
 		player2_prev_pos = prev_pos
 		player2_pos = pos
+		player2_lied = lied
+		if player2_eaten_in_last:
+			player2_eaten_in_last = false
 	
+	board[x][y] = piece_data
 	# checking for the treasure conquest
 	
 	if pos == treasure_pos:
-		if is_honest:
-			if player_id == 1:
-				player1_score += 1
-			else:
-				player2_score += 1
+		if player_id == 1:
+			player1_score += 1
+		else:
+			player2_score += 1
 				
-			treasure_pos = Vector2(randi() % 8, randi() % 8)
+		treasure_pos = Vector2(randi() % 8, randi() % 8)
 	
 	# checking for capturing of the enemy
 	
@@ -101,9 +112,17 @@ func challenge_move(player_id):
 
 	if opponent_lied:
 		if opponent_id == 1:
-				player1_pos = player1_prev_pos
-				player1_score -= 1
+			if player2_eaten_in_last:
+				player2_score += 1
+				player2_eaten_in_last = false
+				player2_pos = player2_prev_pos
+			player1_pos = player1_prev_pos
+			player1_score -= 1
 		else:
+			if player1_eaten_in_last:
+				player1_score += 1
+				player1_eaten_in_last = false
+				player1_pos = player1_prev_pos
 			player2_pos = player2_prev_pos
 			player2_score -= 1
 	else:
