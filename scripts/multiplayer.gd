@@ -23,8 +23,13 @@ var player2_lied = false
 
 var treasure_pos = Vector2(randi() % 8, randi() % 8)
 
+var discovery_socket = PacketPeerUDP.new()
+var discovery_port = 9999
+
 func _ready():
 	_initialize_board()
+	start_discovery()
+	
 
 func _initialize_board():
 	board = []
@@ -35,22 +40,70 @@ func _initialize_board():
 	board[player1_pos[0]][player1_pos[1]] = -1
 	board[player2_pos[0]][player2_pos[1]] = 1
 
-
+## ----------------SERVER HOSTING---------------- ##
 func start_server():
 	peer.create_server(8080, 2)
 	multiplayer.peer = peer
 	multiplayer.peer_connected.connect(_on_client_connected)
 	print("server started")
 	
+	#broadcasting :3
+	if discovery_socket.listen(discovery_port) == OK:
+		discovery_socket.set_broadcast_enabled(true)
+		print("Discovery broadcasting started")
+		
+	var timer = Timer.new()
+	add_child(timer)
+	timer.wait_time = 1.0
+	timer.autostart = true
+	timer.timeout.connect("_broadcast_server_info")
+	
+func _broadcast_server_info():
+	var local_ips = []
+	for ip in IP.get_local_addresses():
+		if ip.begins_with("192.168."):
+			local_ips.append(ip)
+			
+	if local_ips.size() > 0:
+		var server_ip = local_ips[0] 
+		var message = str(server_ip) + ":8080"
+		discovery_socket.set_dest_address("255.255.255.255", discovery_port)
+		discovery_socket.put_packet(message.to_utf8_buffer())
+		print("Broadcasting server: ", message)
+	
 func _on_client_connected(id):
 	print("player joined with id: ", id)
 	rpc_id(id, "sync_game_state", board, current_turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last)
 	
-func join_server(ip_address):
-	peer.create_client(ip_address, 8080)
-	multiplayer.multiplayer_peer = peer
+##-----------------------------CLIENT-JOINING----------------------------------##
+	
+func start_discovery():
+	if discovery_socket.listen(discovery_port) == OK:
+		print("Client listening on port: ", discovery_port)
+		
+	var timer = Timer.new()
+	add_child(timer)
+	timer.wait_time = 1.0
+	timer.autostart = true
+	timer.timeout.connect("_check_for_server")
+	
+func _check_for_server():
+	if discovery_socket.get_available_packet_count() > 0:
+		var packet = discovery_socket.get_packet()
+		var message = packet.get_string_from_utf8()
+		var ip = message.split(":")[0]
+		var port = message.split(":")[1].to_int()
+		
+		print("Discovered server at: ", ip, ":", port)
+		join_server(ip, port)
+
+func join_server(ip_address, port):
+	peer.create_client(ip_address, port)
+	multiplayer.peer = peer
 	print("connected to the server ip: ", ip_address)
 		
+##---------------------------- GAME LOGIC ------------------------------##		
+
 @rpc("authority")
 func sync_game_state(new_board, turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last):
 	board = new_board
