@@ -18,6 +18,7 @@ func show_pieces_choice() -> void:
 	
 func _on_piece_chosen(piece_name: String) -> void:
 	print("Your piece is: ", piece_name)
+	 
 	your_piece = piece_name
 	highlight_available_tiles()
 
