@@ -72,7 +72,13 @@ func highlight_available_tiles() -> void:
 	var available_tiles_array: Array = []
 	var coord: Vector2 = tile_name_to_matrix_representation(your_current_tile)
 	if your_piece == "pawn":
-		pass #pijuni zajebaniji nego sto deluju 
+		your_king.piece.texture = load("res://sprites/chess_pieces/beli_piun.png")
+		var new_coords = []
+		new_coords.append(coord + Vector2(0,your_king.your_color))
+		new_coords.append(coord + Vector2(1,your_king.your_color))
+		new_coords.append(coord + Vector2(-1,your_king.your_color))
+		available_tiles_array = new_coords.filter(is_valid).map(matrix_representation_to_tile_name)
+		
 	
 	if your_piece == "bishop":
 		your_king.piece.texture = load("res://sprites/chess_pieces/beli_lovac.png")
