@@ -13,6 +13,9 @@ var player2_prev_pos = player2_pos
 var player1_score = 0
 var player2_score = 0
 
+var player1_lied = false
+var player2_lied = false
+
 var treasure_pos = Vector2(randi() % 8, randi() % 8)
 
 func _ready():
@@ -40,15 +43,6 @@ func join_server(ip_address):
 	peer.create_client(ip_address, 8080)
 	multiplayer.multiplayer_peer = peer
 	print("connected to the server ip: ", ip_address)
-	
-@rpc("any_peer")
-func make_move(player_id, x, y, piece_data):
-	if multiplayer.get_remote_sender_id() != player_id:
-		return
-	board[x][y] = piece_data
-	current_turn = 3 - current_turn
-	
-	rpc("sync_game_state", board, current_turn)
 		
 @rpc("authority")
 func sync_game_state(new_board, turn):
@@ -56,7 +50,7 @@ func sync_game_state(new_board, turn):
 	current_turn = turn
 
 @rpc("any_peer")
-func make_move(player_id, x, y, piece_data, is_honest):
+func make_move(player_id, x, y, is_honest):
 	if multiplayer.get_remote_sender_id() != player_id:
 		return
 		
@@ -96,3 +90,26 @@ func make_move(player_id, x, y, piece_data, is_honest):
 	current_turn = 3 - current_turn
 	rpc("sync_game_state", board, player1_pos, player2_pos, current_turn, player1_score, player2_score, treasure_pos)
 		
+		
+@rpc("any_peer")
+func challenge_move(player_id):
+	if multiplayer.get_remote_sender_id() != player_id:
+		return
+
+	var opponent_id = 3 - player_id
+	var opponent_lied = player1_lied if opponent_id == 1 else player2_lied
+
+	if opponent_lied:
+		if opponent_id == 1:
+				player1_pos = player1_prev_pos
+				player1_score -= 1
+		else:
+			player2_pos = player2_prev_pos
+			player2_score -= 1
+	else:
+		if player_id == 1:
+			player1_score -= 1
+		else:
+			player2_score -= 1
+	
+	rpc("sync_game_state", board, player1_pos, player2_pos, current_turn, player1_score, player2_score, treasure_pos)
