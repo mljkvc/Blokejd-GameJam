@@ -15,13 +15,13 @@ func _process(delta: float) -> void:
 
 
 func _on_pawn_pressed() -> void:
-	pass # Replace with function body.
+	emit_signal("piece_chosen", "pawn")
 
 func _on_bishop_pressed() -> void:
-	pass # Replace with function body.
+	emit_signal("piece_chosen", "bishop")
 
 func _on_knight_pressed() -> void:
-	pass # Replace with function body.
+	emit_signal("piece_chosen", "knight")
 	
 
 func _on_rook_pressed() -> void:
@@ -29,4 +29,4 @@ func _on_rook_pressed() -> void:
 
 
 func _on_queen_pressed() -> void:
-	pass # Replace with function body.
+	emit_signal("piece_chosen", "queen")

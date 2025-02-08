@@ -4,8 +4,9 @@ var choose_a_piece_node = null
 
 var your_piece: String = "king"
 
-var your_current_tile: String = ""
+var your_current_tile: String = "d_1" #format a_1 ->(7,0)
 
+@onready var Board = $Board
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	show_pieces_choice()
@@ -22,24 +23,66 @@ func _on_piece_chosen(piece_name: String) -> void:
 	your_piece = piece_name
 	highlight_available_tiles()
 
+func is_valid(position: Vector2) -> bool:
+	if position.x < 0 or position.y < 0:
+		return false
+	if position.x > 7 or position.y > 7:
+		return false
+	return true
 
 func highlight_available_tiles() -> void:
 	var available_tiles_array: Array = []
+	var coord: Vector2 = tile_name_to_matrix_representation(your_current_tile)
 	if your_piece == "pawn":
-		pass
+		pass #pijuni zajebaniji nego sto deluju 
 	
 	if your_piece == "bishop":
-		pass
-	
+		var new_coords = []
+		for i in range(1,4):
+			new_coords.append(coord + Vector2(i,i))
+			new_coords.append(coord + Vector2(-i,i))
+			new_coords.append(coord + Vector2(i,-i))
+			new_coords.append(coord + Vector2(-i,-i))
+		available_tiles_array = new_coords.filter(is_valid).map(matrix_representation_to_tile_name)
+			
 	if your_piece == "knight":
-		pass
+		var new_coords = []		
+		new_coords.append(coord + Vector2(1,2))
+		new_coords.append(coord + Vector2(1,-2))
+		new_coords.append(coord + Vector2(-1,2))
+		new_coords.append(coord + Vector2(-1,-2))
+		new_coords.append(coord + Vector2(2,1))
+		new_coords.append(coord + Vector2(2,-1))
+		new_coords.append(coord + Vector2(-2,1))
+		new_coords.append(coord + Vector2(-2,-1))
+		available_tiles_array = new_coords.filter(is_valid).map(matrix_representation_to_tile_name)
+
 		
 	if your_piece == "rook":
-		pass
+		var new_coords = []
+		for i in range(1,4):
+			new_coords.append(coord + Vector2(0,i))
+			new_coords.append(coord + Vector2(0,-i))
+			new_coords.append(coord + Vector2(i,0))
+			new_coords.append(coord + Vector2(-i,0))
+		available_tiles_array = new_coords.filter(is_valid).map(matrix_representation_to_tile_name)
 	
 	if your_piece == "queen":
-		pass
-		
+		var new_coords = []
+		for i in range(1,5):
+			new_coords.append(coord + Vector2(i,i))
+			new_coords.append(coord + Vector2(-i,i))
+			new_coords.append(coord + Vector2(i,-i))
+			new_coords.append(coord + Vector2(-i,-i))
+			new_coords.append(coord + Vector2(0,i))
+			new_coords.append(coord + Vector2(0,-i))
+			new_coords.append(coord + Vector2(i,0))
+			new_coords.append(coord + Vector2(-i,0))
+		available_tiles_array = new_coords.filter(is_valid).map(matrix_representation_to_tile_name)
+	for tile in Board.get_children():
+		if tile.name in available_tiles_array:
+			if tile is Tile:
+				tile.highlight_available_squares()
 
 func tile_name_to_matrix_representation(tile_name: String) -> Vector2:
 	var parts = tile_name.split("_")
@@ -55,7 +98,8 @@ func tile_name_to_matrix_representation(tile_name: String) -> Vector2:
 	return Vector2(column_index, row_number)
 
 func matrix_representation_to_tile_name(matrix_representation: Vector2) -> String:
-	var column_letter = char('a'.unicode_at(0) + matrix_representation.x)
+	var column_letter = char('a'.unicode_at(0) + int(matrix_representation.x))
+	
 	var row_number = matrix_representation.y + 1
 	
 	return column_letter + "_" + str(row_number)

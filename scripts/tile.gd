@@ -1,4 +1,4 @@
-extends Node2D
+class_name Tile extends Node2D
 
 @onready var square: ColorRect = $Square
 
