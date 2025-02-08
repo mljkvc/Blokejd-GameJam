@@ -13,7 +13,6 @@ func _process(delta: float) -> void:
 
 
 
-
 func _on_pawn_pressed() -> void:
 	emit_signal("piece_chosen", "pawn")
 

@@ -1,21 +1,56 @@
 class_name Main_scene extends Node2D
 
-var choose_a_piece_node = null
+@onready var choose_a_piece_node = $ChooseAPiece 
+@onready var call_out_opponent_node = $CallOutOpponent
+@onready var Board = $Board
+@onready var your_king = $You
 
 var your_piece: String = "king"
 
 var your_current_tile: String = "d_1" #format a_1 ->(7,0)
 
-@onready var Board = $Board
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	show_pieces_choice()
+	
+	your_king.position = Board.get_node(your_current_tile).global_position
+	
+	for tile in Board.get_children():
+		if tile is Tile:
+			tile.connect("piece_moved", Callable(self, "_on_piece_moved"))
 
+
+func _on_piece_moved(new_tile_name: String) -> void:
+	print("Tile moved: " + new_tile_name)
+	your_current_tile = new_tile_name
+	var new_tile = Board.get_node(new_tile_name)
+	your_king.position = new_tile.global_position
+	
+	#unhighlight all squares
+	for tile in Board.get_children():
+			if tile is Tile:
+				tile.unhighlight_this_square()
+				tile.tile_is_available_for_movement = false
+	
+	
 func show_pieces_choice() -> void:
+	choose_a_piece_node.hide()
 	choose_a_piece_node = $ChooseAPiece  # Zameni putanju ako je drugačija
 	choose_a_piece_node.connect("piece_chosen", Callable(self, "_on_piece_chosen"))
-	
+	call_out_opponent_node = $CallOutOpponent
+	call_out_opponent_node.connect("ok_button_pressed", Callable(self, "_on_ok_button_pressed"))
+	call_out_opponent_node.connect("scam_button_pressed", Callable(self, "_on_scam_button_pressed"))
 
+func _on_ok_button_pressed() -> void:
+	print('ok')
+	call_out_opponent_node.hide()
+	choose_a_piece_node.show()
+
+
+func _on_scam_button_pressed() -> void:
+	print('scam')
+	call_out_opponent_node.hide()
+	choose_a_piece_node.show()
 	
 func _on_piece_chosen(piece_name: String) -> void:
 	print("Your piece is: ", piece_name)
@@ -79,11 +114,14 @@ func highlight_available_tiles() -> void:
 			new_coords.append(coord + Vector2(i,0))
 			new_coords.append(coord + Vector2(-i,0))
 		available_tiles_array = new_coords.filter(is_valid).map(matrix_representation_to_tile_name)
+		
 	for tile in Board.get_children():
 		if tile.name in available_tiles_array:
 			if tile is Tile:
-				tile.highlight_available_squares()
-
+				tile.highlight_this_square_for_movement()
+				tile.tile_is_available_for_movement = true
+				
+				
 func tile_name_to_matrix_representation(tile_name: String) -> Vector2:
 	var parts = tile_name.split("_")
 	if parts.size() != 2:

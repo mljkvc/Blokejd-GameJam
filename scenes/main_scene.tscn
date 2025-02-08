@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://m17xntjxotlh"]
+[gd_scene load_steps=6 format=3 uid="uid://m17xntjxotlh"]
 
 [ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_8d7f1"]
 [ext_resource type="PackedScene" uid="uid://cffjfd7urab5o" path="res://scenes/board.tscn" id="1_haual"]
 [ext_resource type="PackedScene" uid="uid://thuuh0y4v73r" path="res://scenes/you.tscn" id="2_s0reo"]
 [ext_resource type="PackedScene" uid="uid://drfkvmmmwnkal" path="res://scenes/choose_a_piece.tscn" id="3_il03a"]
+[ext_resource type="PackedScene" uid="uid://deydnuyehn113" path="res://scenes/call_out_opponent.tscn" id="5_qfv4n"]
 
 [node name="MainScene" type="Node2D"]
 script = ExtResource("1_8d7f1")
@@ -12,7 +13,11 @@ script = ExtResource("1_8d7f1")
 position = Vector2(62, 215)
 
 [node name="You" parent="." instance=ExtResource("2_s0reo")]
-position = Vector2(214, 565)
+position = Vector2(213, 564)
 
 [node name="ChooseAPiece" parent="." instance=ExtResource("3_il03a")]
+visible = false
 position = Vector2(5, 609)
+
+[node name="CallOutOpponent" parent="." instance=ExtResource("5_qfv4n")]
+position = Vector2(2, 603)
