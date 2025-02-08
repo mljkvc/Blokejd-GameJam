@@ -44,7 +44,7 @@ func start_server():
 	
 func _on_client_connected(id):
 	print("player joined with id: ", id)
-	rpc_id(id, "sync_game_state",board ,current_turn)
+	rpc_id(id, "sync_game_state", board, current_turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last)
 	
 func join_server(ip_address):
 	peer.create_client(ip_address, 8080)
@@ -52,15 +52,25 @@ func join_server(ip_address):
 	print("connected to the server ip: ", ip_address)
 		
 @rpc("authority")
-func sync_game_state(new_board, turn):
+func sync_game_state(new_board, turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last):
 	board = new_board
 	current_turn = turn
+	self.player1_pos = player1_pos
+	self.player2_pos = player2_pos
+	self.player1_score = player1_score
+	self.player2_score = player2_score
+	self.treasure_pos = treasure_pos
+	self.player1_lied = player1_lied
+	self.player2_lied = player2_lied
+	self.player1_prev_pos = player1_prev_pos
+	self.player2_prev_pos = player2_prev_pos
+	self.player1_eaten_in_last = player1_eaten_in_last
+	self.player2_eaten_in_last = player2_eaten_in_last
 
 @rpc("any_peer")
 func make_move(player_id, x, y, piece_data, lied):
 	if multiplayer.get_remote_sender_id() != player_id:
 		return
-		
 		
 	turn_count += 1
 	
@@ -97,6 +107,8 @@ func make_move(player_id, x, y, piece_data, lied):
 	
 	# checking for capturing of the enemy
 	
+	# TODO eating on starter position 
+	
 	if player1_pos == player2_pos:
 		if player_id == 1:
 			player1_score += 1
@@ -108,7 +120,7 @@ func make_move(player_id, x, y, piece_data, lied):
 			player1_pos = Vector2(0, 5)
 	
 	current_turn = 3 - current_turn
-	rpc("sync_game_state", board, player1_pos, player2_pos, current_turn, player1_score, player2_score, treasure_pos)
+	rpc("sync_game_state", board, current_turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last)
 		
 		
 @rpc("any_peer")
@@ -142,4 +154,4 @@ func challenge_move(player_id):
 		else:
 			player2_score -= 1
 	
-	rpc("sync_game_state", board, player1_pos, player2_pos, current_turn, player1_score, player2_score, treasure_pos)
+	rpc("sync_game_state", board, current_turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last)
