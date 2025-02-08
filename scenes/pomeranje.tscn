@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cuowk8m0mqgi3"]
+[gd_scene load_steps=4 format=3 uid="uid://c48qtvitvsxfu"]
 
 [ext_resource type="Script" path="res://scripts/moving.gd" id="1_wqsxo"]
 [ext_resource type="Texture2D" uid="uid://dwxur6ib2ihq3" path="res://sprites/image_2025-01-26_085152262-removebg-preview.png" id="2_cmhi7"]

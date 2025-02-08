@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://clpcg58qakxdc"]
+
+[ext_resource type="Script" path="res://scripts/tile.gd" id="1_2x7oc"]
+
+[node name="Tile" type="Node2D"]
+script = ExtResource("1_2x7oc")
+
+[node name="Square" type="ColorRect" parent="."]
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+color = Color(1, 1, 1, 0.345098)
+
+[connection signal="mouse_entered" from="Square" to="." method="_on_square_mouse_entered"]
+[connection signal="mouse_exited" from="Square" to="." method="_on_square_mouse_exited"]
