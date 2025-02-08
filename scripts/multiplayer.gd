@@ -1,6 +1,7 @@
 extends Node
 
 var peer = ENetMultiplayerPeer.new()
+
 var board = []
 var current_turn = 1 # 1 is for player 1 and 2 is for player 2
 
@@ -30,6 +31,7 @@ var pieces_availible = {}
 
 func _ready():
 	_initialize_board()
+	start_server()
 	start_discovery()
 	reload_pieces()
 	
@@ -50,21 +52,23 @@ func _initialize_board():
 
 ## ----------------SERVER HOSTING---------------- ##
 func start_server():
-	peer.create_server(8080, 2)
-	multiplayer.peer = peer
+	var error = peer.create_server(8080, 2)
+	if error != OK:
+		print("Failed to start server: ", error)
+		return
+	multiplayer.multiplayer_peer = peer
 	multiplayer.peer_connected.connect(_on_client_connected)
-	print("server started")
+	print("server started on port 8080")
 	
 	#broadcasting :3
-	if discovery_socket.listen(discovery_port) == OK:
-		discovery_socket.set_broadcast_enabled(true)
-		print("Discovery broadcasting started")
+	discovery_socket = PacketPeerUDP.new()
+	discovery_socket.set_dest_address("255.255.255.255", discovery_port)
 		
 	var timer = Timer.new()
 	add_child(timer)
 	timer.wait_time = 1.0
 	timer.autostart = true
-	timer.timeout.connect("_broadcast_server_info")
+	timer.timeout.connect(_broadcast_server_info)
 	
 func _broadcast_server_info():
 	var local_ips = []
@@ -86,14 +90,18 @@ func _on_client_connected(id):
 ##-----------------------------CLIENT-JOINING----------------------------------##
 	
 func start_discovery():
-	if discovery_socket.listen(discovery_port) == OK:
-		print("Client listening on port: ", discovery_port)
+	var error = discovery_socket.bind(discovery_port)
+	if error != OK:
+		print("Failed to listen on discovery port: ", error)
+		return
 		
+	print("Client listening for servers broadcasts on port: ", discovery_port) 
+	
 	var timer = Timer.new()
 	add_child(timer)
 	timer.wait_time = 1.0
 	timer.autostart = true
-	timer.timeout.connect("_check_for_server")
+	timer.timeout.connect(_check_for_server)
 	
 func _check_for_server():
 	if discovery_socket.get_available_packet_count() > 0:
@@ -106,8 +114,11 @@ func _check_for_server():
 		join_server(ip, port)
 
 func join_server(ip_address, port):
-	peer.create_client(ip_address, port)
-	multiplayer.peer = peer
+	var error = peer.create_client(ip_address, port)
+	if error != OK:
+		print("Failed to connect to server", error)
+		return
+	multiplayer.multiplayer_peer = peer
 	print("connected to the server ip: ", ip_address)
 		
 ##---------------------------- GAME LOGIC ------------------------------##		
