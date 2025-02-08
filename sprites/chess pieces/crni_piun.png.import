@@ -2,7 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
+<<<<<<< HEAD
 uid="uid://barlytpkehw38"
+=======
+uid="uid://neavjn76bhhi"
+>>>>>>> 44d6b5c4c81015c303d114859c4938a4fcc045ae
 path="res://.godot/imported/crni_piun.png-d514c4075b88ee6472fc0332a889ef2c.ctex"
 metadata={
 "vram_texture": false
