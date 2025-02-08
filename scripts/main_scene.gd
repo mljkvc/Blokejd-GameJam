@@ -26,12 +26,14 @@ func _on_piece_moved(new_tile_name: String) -> void:
 	var new_tile = Board.get_node(new_tile_name)
 	your_king.position = new_tile.global_position
 	
-	#unhighlight all squares
+	unhighlight_all_squares()
+
+func unhighlight_all_squares() -> void:
 	for tile in Board.get_children():
-			if tile is Tile:
-				tile.unhighlight_this_square()
-				tile.tile_is_available_for_movement = false
-	
+		if tile is Tile:
+			tile.unhighlight_this_square()
+			tile.tile_is_available_for_movement = false
+
 	
 func show_pieces_choice() -> void:
 	choose_a_piece_node.hide()
@@ -53,8 +55,9 @@ func _on_scam_button_pressed() -> void:
 	choose_a_piece_node.show()
 	
 func _on_piece_chosen(piece_name: String) -> void:
-	print("Your piece is: ", piece_name)
-	 
+	if your_piece != "king":
+		unhighlight_all_squares()
+
 	your_piece = piece_name
 	highlight_available_tiles()
 

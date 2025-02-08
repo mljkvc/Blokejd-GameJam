@@ -1,23 +1,31 @@
-[gd_scene load_steps=2 format=3 uid="uid://deydnuyehn113"]
+[gd_scene load_steps=4 format=3 uid="uid://deydnuyehn113"]
 
 [ext_resource type="Script" path="res://scripts/call_out_opponent.gd" id="1_smh0o"]
+[ext_resource type="Texture2D" uid="uid://dw336easipb54" path="res://sprites/game_scene/green_button.png" id="2_vsb4h"]
+[ext_resource type="Texture2D" uid="uid://q1mfd4mpepcq" path="res://sprites/game_scene/red_button.png" id="3_6wsb0"]
 
 [node name="CallOutOpponent" type="Node2D"]
 script = ExtResource("1_smh0o")
 
 [node name="ok" type="Button" parent="."]
-offset_left = 45.0
-offset_top = 38.0
-offset_right = 227.0
-offset_bottom = 114.0
-text = "OK"
+offset_left = 10.0
+offset_top = 37.0
+offset_right = 557.0
+offset_bottom = 361.0
+scale = Vector2(0.42, 0.42)
+icon = ExtResource("2_vsb4h")
+flat = true
 
 [node name="scam" type="Button" parent="."]
-offset_left = 252.0
+offset_left = 233.0
 offset_top = 38.0
-offset_right = 434.0
-offset_bottom = 114.0
-text = "SCAM!"
+offset_right = 784.0
+offset_bottom = 362.0
+scale = Vector2(0.42, 0.42)
+text = "
+"
+icon = ExtResource("3_6wsb0")
+flat = true
 
 [connection signal="pressed" from="ok" to="." method="_on_ok_pressed"]
 [connection signal="pressed" from="scam" to="." method="_on_scam_pressed"]
