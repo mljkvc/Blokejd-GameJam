@@ -32,6 +32,8 @@ func _initialize_board():
 		board.append([])
 		for j in range(8):
 			board[i].append(0)
+	board[player1_pos[0]][player1_pos[1]] = -1
+	board[player2_pos[0]][player2_pos[1]] = 1
 
 
 func start_server():
