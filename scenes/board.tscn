@@ -1,0 +1,199 @@
+[gd_scene load_steps=4 format=3 uid="uid://cffjfd7urab5o"]
+
+[ext_resource type="Script" path="res://scripts/board.gd" id="1_enk6x"]
+[ext_resource type="PackedScene" uid="uid://dfejgkxncmso5" path="res://scenes/white_tile.tscn" id="1_r21r0"]
+[ext_resource type="PackedScene" uid="uid://syfdbmrl1bkx" path="res://scenes/black_tile.tscn" id="2_bc4xd"]
+
+[node name="Board" type="Node2D"]
+script = ExtResource("1_enk6x")
+
+[node name="tile_a_2" parent="." instance=ExtResource("1_r21r0")]
+position = Vector2(0, 300)
+
+[node name="tile_a_4" parent="." instance=ExtResource("1_r21r0")]
+position = Vector2(0, 200)
+
+[node name="tile_a_6" parent="." instance=ExtResource("1_r21r0")]
+position = Vector2(0, 100)
+
+[node name="tile_a_8" parent="." instance=ExtResource("1_r21r0")]
+
+[node name="tile_b_1" parent="." instance=ExtResource("1_r21r0")]
+position = Vector2(50, 350)
+
+[node name="tile_b_3" parent="." instance=ExtResource("1_r21r0")]
+position = Vector2(50, 250)
+
+[node name="tile_b_5" parent="." instance=ExtResource("1_r21r0")]
+position = Vector2(50, 150)
+
+[node name="tile_b_7" parent="." instance=ExtResource("1_r21r0")]
+position = Vector2(50, 50)
+
+[node name="tile_c_2" parent="." instance=ExtResource("1_r21r0")]
+position = Vector2(100, 300)
+
+[node name="tile_c_4" parent="." instance=ExtResource("1_r21r0")]
+position = Vector2(100, 200)
+
+[node name="tile_c_6" parent="." instance=ExtResource("1_r21r0")]
+position = Vector2(100, 100)
+
+[node name="tile_c_8" parent="." instance=ExtResource("1_r21r0")]
+position = Vector2(100, 0)
+
+[node name="tile_d_1" parent="." instance=ExtResource("1_r21r0")]
+position = Vector2(150, 350)
+
+[node name="tile_d_3" parent="." instance=ExtResource("1_r21r0")]
+position = Vector2(150, 250)
+
+[node name="tile_d_5" parent="." instance=ExtResource("1_r21r0")]
+position = Vector2(150, 150)
+
+[node name="tile_d_7" parent="." instance=ExtResource("1_r21r0")]
+position = Vector2(150, 50)
+
+[node name="tile_e_2" parent="." instance=ExtResource("1_r21r0")]
+position = Vector2(200, 300)
+
+[node name="tile_e_4" parent="." instance=ExtResource("1_r21r0")]
+position = Vector2(200, 200)
+
+[node name="tile_e_6" parent="." instance=ExtResource("1_r21r0")]
+position = Vector2(200, 100)
+
+[node name="tile_e_8" parent="." instance=ExtResource("1_r21r0")]
+position = Vector2(200, 0)
+
+[node name="tile_f_1" parent="." instance=ExtResource("1_r21r0")]
+position = Vector2(250, 350)
+
+[node name="tile_f_3" parent="." instance=ExtResource("1_r21r0")]
+position = Vector2(250, 250)
+
+[node name="tile_f_5" parent="." instance=ExtResource("1_r21r0")]
+position = Vector2(250, 150)
+
+[node name="tile_f_7" parent="." instance=ExtResource("1_r21r0")]
+position = Vector2(250, 50)
+
+[node name="tile_g_2" parent="." instance=ExtResource("1_r21r0")]
+position = Vector2(300, 300)
+
+[node name="tile_g_4" parent="." instance=ExtResource("1_r21r0")]
+position = Vector2(300, 200)
+
+[node name="tile_g_6" parent="." instance=ExtResource("1_r21r0")]
+position = Vector2(300, 100)
+
+[node name="tile_g_8" parent="." instance=ExtResource("1_r21r0")]
+position = Vector2(300, 0)
+
+[node name="tile_h_1" parent="." instance=ExtResource("1_r21r0")]
+position = Vector2(350, 350)
+
+[node name="tile_h_3" parent="." instance=ExtResource("1_r21r0")]
+position = Vector2(350, 250)
+
+[node name="tile_h_5" parent="." instance=ExtResource("1_r21r0")]
+position = Vector2(350, 150)
+
+[node name="tile_h_7" parent="." instance=ExtResource("1_r21r0")]
+position = Vector2(350, 50)
+
+[node name="tile_a_1" parent="." instance=ExtResource("2_bc4xd")]
+position = Vector2(0, 350)
+
+[node name="tile_a_3" parent="." instance=ExtResource("2_bc4xd")]
+position = Vector2(0, 250)
+
+[node name="tile_a_5" parent="." instance=ExtResource("2_bc4xd")]
+position = Vector2(0, 150)
+
+[node name="tile_a_7" parent="." instance=ExtResource("2_bc4xd")]
+position = Vector2(0, 50)
+
+[node name="tile_b_2" parent="." instance=ExtResource("2_bc4xd")]
+position = Vector2(50, 300)
+
+[node name="tile_b_4" parent="." instance=ExtResource("2_bc4xd")]
+position = Vector2(50, 200)
+
+[node name="tile_b_6" parent="." instance=ExtResource("2_bc4xd")]
+position = Vector2(50, 100)
+
+[node name="tile_b_8" parent="." instance=ExtResource("2_bc4xd")]
+position = Vector2(50, 0)
+
+[node name="tile_c_1" parent="." instance=ExtResource("2_bc4xd")]
+position = Vector2(100, 350)
+
+[node name="tile_c_3" parent="." instance=ExtResource("2_bc4xd")]
+position = Vector2(100, 250)
+
+[node name="tile_c_5" parent="." instance=ExtResource("2_bc4xd")]
+position = Vector2(100, 150)
+
+[node name="tile_c_7" parent="." instance=ExtResource("2_bc4xd")]
+position = Vector2(100, 50)
+
+[node name="tile_d_2" parent="." instance=ExtResource("2_bc4xd")]
+position = Vector2(150, 300)
+
+[node name="tile_d_4" parent="." instance=ExtResource("2_bc4xd")]
+position = Vector2(150, 200)
+
+[node name="tile_d_6" parent="." instance=ExtResource("2_bc4xd")]
+position = Vector2(150, 100)
+
+[node name="tile_d_8" parent="." instance=ExtResource("2_bc4xd")]
+position = Vector2(150, 0)
+
+[node name="tile_e_1" parent="." instance=ExtResource("2_bc4xd")]
+position = Vector2(200, 350)
+
+[node name="tile_e_3" parent="." instance=ExtResource("2_bc4xd")]
+position = Vector2(200, 250)
+
+[node name="tile_e_5" parent="." instance=ExtResource("2_bc4xd")]
+position = Vector2(200, 150)
+
+[node name="tile_e_7" parent="." instance=ExtResource("2_bc4xd")]
+position = Vector2(200, 50)
+
+[node name="tile_f_2" parent="." instance=ExtResource("2_bc4xd")]
+position = Vector2(250, 300)
+
+[node name="tile_f_4" parent="." instance=ExtResource("2_bc4xd")]
+position = Vector2(250, 200)
+
+[node name="tile_f_6" parent="." instance=ExtResource("2_bc4xd")]
+position = Vector2(250, 100)
+
+[node name="tile_f_8" parent="." instance=ExtResource("2_bc4xd")]
+position = Vector2(250, 0)
+
+[node name="tile_g_1" parent="." instance=ExtResource("2_bc4xd")]
+position = Vector2(300, 350)
+
+[node name="tile_g_3" parent="." instance=ExtResource("2_bc4xd")]
+position = Vector2(300, 250)
+
+[node name="tile_g_5" parent="." instance=ExtResource("2_bc4xd")]
+position = Vector2(300, 150)
+
+[node name="tile_g_7" parent="." instance=ExtResource("2_bc4xd")]
+position = Vector2(300, 50)
+
+[node name="tile_h_2" parent="." instance=ExtResource("2_bc4xd")]
+position = Vector2(350, 300)
+
+[node name="tile_h_4" parent="." instance=ExtResource("2_bc4xd")]
+position = Vector2(350, 200)
+
+[node name="tile_h_6" parent="." instance=ExtResource("2_bc4xd")]
+position = Vector2(350, 100)
+
+[node name="tile_h_8" parent="." instance=ExtResource("2_bc4xd")]
+position = Vector2(350, 0)
