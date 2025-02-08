@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://drfkvmmmwnkal"]
+[gd_scene load_steps=7 format=3 uid="uid://drfkvmmmwnkal"]
 
 [ext_resource type="Script" path="res://scripts/choose_a_piece.gd" id="1_2x5qj"]
+[ext_resource type="Texture2D" uid="uid://ckr3p71q2pwas" path="res://sprites/chess_pieces/beli_lovac.png" id="2_kyp74"]
+[ext_resource type="Texture2D" uid="uid://bpwnqhee23cxh" path="res://sprites/chess_pieces/beli_piun.png" id="2_sg66y"]
+[ext_resource type="Texture2D" uid="uid://bjqnj283oc0h2" path="res://sprites/chess_pieces/beli_konj.png" id="3_8dby0"]
+[ext_resource type="Texture2D" uid="uid://bv4anbglj81k7" path="res://sprites/chess_pieces/bela_kraljica.png" id="4_vkil4"]
+[ext_resource type="Texture2D" uid="uid://c71mnblam1gvf" path="res://sprites/chess_pieces/beli_top.png" id="5_itagh"]
 
 [node name="ChooseAPiece" type="Node2D"]
 script = ExtResource("1_2x5qj")
@@ -10,35 +15,45 @@ offset_left = 49.0
 offset_top = 35.0
 offset_right = 91.0
 offset_bottom = 107.0
-text = "p"
+scale = Vector2(0.14, 0.14)
+icon = ExtResource("2_sg66y")
+flat = true
 
 [node name="bishop" type="Button" parent="."]
 offset_left = 121.0
 offset_top = 33.0
 offset_right = 163.0
 offset_bottom = 105.0
-text = "b"
+scale = Vector2(0.14, 0.14)
+icon = ExtResource("2_kyp74")
+flat = true
 
 [node name="knight" type="Button" parent="."]
 offset_left = 187.0
 offset_top = 30.0
 offset_right = 229.0
 offset_bottom = 102.0
-text = "k"
+scale = Vector2(0.14, 0.14)
+icon = ExtResource("3_8dby0")
+flat = true
 
 [node name="rook" type="Button" parent="."]
 offset_left = 263.0
 offset_top = 32.0
 offset_right = 305.0
 offset_bottom = 104.0
-text = "r"
+scale = Vector2(0.14, 0.14)
+icon = ExtResource("5_itagh")
+flat = true
 
 [node name="queen" type="Button" parent="."]
 offset_left = 340.0
 offset_top = 32.0
 offset_right = 382.0
 offset_bottom = 104.0
-text = "q"
+scale = Vector2(0.14, 0.14)
+icon = ExtResource("4_vkil4")
+flat = true
 
 [connection signal="pressed" from="pawn" to="." method="_on_pawn_pressed"]
 [connection signal="pressed" from="bishop" to="." method="_on_bishop_pressed"]
