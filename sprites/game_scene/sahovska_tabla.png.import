@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1r4owx0tm4v4"
-path="res://.godot/imported/crni_kralj.png-22e35343107bff0f7998c69b95c83abe.ctex"
+uid="uid://b6l50jwjx23q4"
+path="res://.godot/imported/sahovska_tabla.png-0955bf096f57d753e4479fff96e55be7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/chess pieces/crni_kralj.png"
-dest_files=["res://.godot/imported/crni_kralj.png-22e35343107bff0f7998c69b95c83abe.ctex"]
+source_file="res://sprites/game_scene/sahovska_tabla.png"
+dest_files=["res://.godot/imported/sahovska_tabla.png-0955bf096f57d753e4479fff96e55be7.ctex"]
 
 [params]
 

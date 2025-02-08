@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cdhw0a2uxmfne"
-path="res://.godot/imported/crni_konj.png-8ef97607ec0a3cfd59c7a7358ac0222f.ctex"
+uid="uid://c82rb1xwkn7wr"
+path="res://.godot/imported/crni_lovac.png-c7c7481501c2f1fa97a9edfea3a42e2e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/chess pieces/crni_konj.png"
-dest_files=["res://.godot/imported/crni_konj.png-8ef97607ec0a3cfd59c7a7358ac0222f.ctex"]
+source_file="res://sprites/chess_pieces/crni_lovac.png"
+dest_files=["res://.godot/imported/crni_lovac.png-c7c7481501c2f1fa97a9edfea3a42e2e.ctex"]
 
 [params]
 

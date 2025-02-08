@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4kpy6wqpyamu"
-path="res://.godot/imported/beli_kralj.png-79da913cb04971cba14c8e7a4ec7fcca.ctex"
+uid="uid://mnx7fj3wk3cg"
+path="res://.godot/imported/crni_top.png-2ecc7f12cbf81e1f56642653a932fd4f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/chess pieces/beli_kralj.png"
-dest_files=["res://.godot/imported/beli_kralj.png-79da913cb04971cba14c8e7a4ec7fcca.ctex"]
+source_file="res://sprites/chess_pieces/crni_top.png"
+dest_files=["res://.godot/imported/crni_top.png-2ecc7f12cbf81e1f56642653a932fd4f.ctex"]
 
 [params]
 

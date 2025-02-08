@@ -72,6 +72,7 @@ func highlight_available_tiles() -> void:
 		pass #pijuni zajebaniji nego sto deluju 
 	
 	if your_piece == "bishop":
+		your_king.piece.texture = load("res://sprites/chess_pieces/beli_lovac.png")
 		var new_coords = []
 		for i in range(1,4):
 			new_coords.append(coord + Vector2(i,i))
@@ -81,7 +82,8 @@ func highlight_available_tiles() -> void:
 		available_tiles_array = new_coords.filter(is_valid).map(matrix_representation_to_tile_name)
 			
 	if your_piece == "knight":
-		var new_coords = []		
+		your_king.piece.texture = load("res://sprites/chess_pieces/beli_konj.png")
+		var new_coords = []
 		new_coords.append(coord + Vector2(1,2))
 		new_coords.append(coord + Vector2(1,-2))
 		new_coords.append(coord + Vector2(-1,2))
@@ -94,6 +96,7 @@ func highlight_available_tiles() -> void:
 
 		
 	if your_piece == "rook":
+		your_king.piece.texture = load("res://sprites/chess_pieces/beli_top.png")
 		var new_coords = []
 		for i in range(1,4):
 			new_coords.append(coord + Vector2(0,i))
@@ -103,6 +106,7 @@ func highlight_available_tiles() -> void:
 		available_tiles_array = new_coords.filter(is_valid).map(matrix_representation_to_tile_name)
 	
 	if your_piece == "queen":
+		your_king.piece.texture = load("res://sprites/chess_pieces/bela_kraljica.png")
 		var new_coords = []
 		for i in range(1,5):
 			new_coords.append(coord + Vector2(i,i))

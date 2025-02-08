@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c3jieqixlx1wg"
-path="res://.godot/imported/crna_kraljica.png-297565b0102fa908844ba4268820f5fd.ctex"
+uid="uid://bjqnj283oc0h2"
+path="res://.godot/imported/beli_konj.png-1ca5d7dddd59af31af1a7bd917585a71.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/chess pieces/crna_kraljica.png"
-dest_files=["res://.godot/imported/crna_kraljica.png-297565b0102fa908844ba4268820f5fd.ctex"]
+source_file="res://sprites/chess_pieces/beli_konj.png"
+dest_files=["res://.godot/imported/beli_konj.png-1ca5d7dddd59af31af1a7bd917585a71.ctex"]
 
 [params]
 

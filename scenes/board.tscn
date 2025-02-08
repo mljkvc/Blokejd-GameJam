@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/board.gd" id="1_enk6x"]
 [ext_resource type="PackedScene" uid="uid://clpcg58qakxdc" path="res://scenes/tile.tscn" id="2_rim0p"]
-[ext_resource type="Texture2D" uid="uid://b6l50jwjx23q4" path="res://sprites/game scene/sahovska_tabla.png" id="5_hjj25"]
+[ext_resource type="Texture2D" uid="uid://b6l50jwjx23q4" path="res://sprites/game_scene/sahovska_tabla.png" id="5_hjj25"]
 
 [node name="Board" type="Node2D"]
 script = ExtResource("1_enk6x")

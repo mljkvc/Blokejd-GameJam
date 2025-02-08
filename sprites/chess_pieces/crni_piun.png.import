@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mnx7fj3wk3cg"
-path="res://.godot/imported/crni_top.png-951c66abef1baf17d751bb5228a5b4fa.ctex"
+uid="uid://ctdfhkcvky6li"
+path="res://.godot/imported/crni_piun.png-e10c51325a06666d233368d9cba50364.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/chess pieces/crni_top.png"
-dest_files=["res://.godot/imported/crni_top.png-951c66abef1baf17d751bb5228a5b4fa.ctex"]
+source_file="res://sprites/chess_pieces/crni_piun.png"
+dest_files=["res://.godot/imported/crni_piun.png-e10c51325a06666d233368d9cba50364.ctex"]
 
 [params]
 
