@@ -26,10 +26,18 @@ var treasure_pos = Vector2(randi() % 8, randi() % 8)
 var discovery_socket = PacketPeerUDP.new()
 var discovery_port = 9999
 
+var pieces_availible = {}
+
 func _ready():
 	_initialize_board()
 	start_discovery()
+	reload_pieces()
 	
+
+func reload_pieces():
+	pieces_availible.clear()
+	# q - queen, k - knight, r - rook, b - bishop, p - pawn
+	pieces_availible = {"q" : 1, "k" : 2, "r" : 2, "b" : 2, "p": 8}
 
 func _initialize_board():
 	board = []
