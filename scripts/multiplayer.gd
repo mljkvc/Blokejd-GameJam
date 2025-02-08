@@ -72,15 +72,17 @@ func make_move(player_id, x, y, piece_data, lied):
 		player1_prev_pos = prev_pos
 		player1_pos = pos
 		player1_lied = lied
-		if player1_eaten_in_last:
-			player1_eaten_in_last = false
+		# resetting flags
+		player1_eaten_in_last = false
+		player2_lied = false
 	else:
 		board[player2_pos[0]][player2_pos[1]] = 0
 		player2_prev_pos = prev_pos
 		player2_pos = pos
 		player2_lied = lied
-		if player2_eaten_in_last:
-			player2_eaten_in_last = false
+		# resetting flags
+		player2_eaten_in_last = false
+		player1_lied = false
 	
 	board[x][y] = piece_data
 	# checking for the treasure conquest
@@ -125,6 +127,7 @@ func challenge_move(player_id):
 				player2_pos = player2_prev_pos
 			player1_pos = player1_prev_pos
 			player1_score -= 1
+			player1_lied = false
 		else:
 			if player1_eaten_in_last:
 				player1_score += 1
@@ -132,6 +135,7 @@ func challenge_move(player_id):
 				player1_pos = player1_prev_pos
 			player2_pos = player2_prev_pos
 			player2_score -= 1
+			player2_lied = false
 	else:
 		if player_id == 1:
 			player1_score -= 1
