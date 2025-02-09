@@ -210,7 +210,6 @@ func make_move(player_id, pos, piece_data : String, lied):
 	
 @rpc("any_peer")
 func challenge_move(player_id):
-	
 	print(player_id)
 	var opponent_id = 0
 	if player_id > 1 :
@@ -219,6 +218,12 @@ func challenge_move(player_id):
 		opponent_id = 2
 	
 	player_id = 1 if opponent_id == 2 else 1
+	
+	print(":LAAAAAAAAAAAAAAZEEEE")
+	print(player1_lied)
+	print(player_id)
+	print(player2_lied)
+	print(":LAAAAAAAAAAAAAAZEEEE")
 	
 	# TODO HARDCODED FIX TODO 
 	var opponent_lied = player1_lied if opponent_id == 2 else player2_lied
