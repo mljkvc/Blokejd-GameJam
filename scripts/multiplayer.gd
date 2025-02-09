@@ -106,6 +106,8 @@ func make_move(player_id, pos, piece_data : String, lied):
 		player2_eaten_in_last = false
 		player1_lied = false
 	
+	rpc("sync_game_state", current_turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last)
+
 	var multiplier = 1
 	# Kin  pawn  Knight  Bishop  Rook Queen
 	# 1     2      3       4       5      6
@@ -116,6 +118,9 @@ func make_move(player_id, pos, piece_data : String, lied):
 		else:
 			player2_score += 1
 		treasure_pos = chess_positions[randi() % 64]
+
+	rpc("sync_game_state", current_turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last)
+
 
 	if player1_pos == player2_pos:
 		if player_id == 1:
