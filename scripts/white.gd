@@ -1,8 +1,4 @@
-<<<<<<<< Updated upstream:scripts/white.gd
 class_name White extends Node2D
-========
-class_name Black extends Node2D
->>>>>>>> Stashed changes:scripts/black.gd
 #crni kralj = +1 beli krelj = -1
 var your_tile_name = "d_1"
 var your_position: Vector2 = Vector2(7,4)

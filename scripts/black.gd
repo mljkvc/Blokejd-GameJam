@@ -1,20 +1,9 @@
-<<<<<<< Updated upstream
 class_name Black extends Node2D
 #crni kralj = +1 beli krelj = -1
 var your_tile_name = "d_1"
 var your_position: Vector2 = Vector2(7,4)
-var your_current_piece: int = 1 #-1 za crne 1 za bele (crnci < belci jer rasizam)[SALA MALA]
-=======
-<<<<<<<< Updated upstream:scripts/white.gd
-class_name White extends Node2D
-========
-class_name Black extends Node2D
->>>>>>>> Stashed changes:scripts/black.gd
-#crni kralj = +1 beli krelj = -1
-var your_tile_name = "d_1"
-var your_position: Vector2 = Vector2(7,4)
-var your_color: int = 1 #-1 za crne 1 za bele (crnci < belci jer rasizam)[SALA MALA]
->>>>>>> Stashed changes
+var your_color: int = -1 #-1 za crne 1 za bele (crnci < belci jer rasizam)[SALA MALA]
+
 @onready var piece: Sprite2D = $piece
 
 # Called when the node enters the scene tree for the first time.
