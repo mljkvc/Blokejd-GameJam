@@ -177,9 +177,9 @@ func highlight_available_tiles() -> void:
 			your_king.piece.texture = load("res://sprites/chess_pieces/crni_piun.png")
 			var sign = -1
 		var new_coords = []
-		new_coords.append(coord + Vector2(0,your_king.your_current_piece))
-		new_coords.append(coord + Vector2(1,your_king.your_current_piece))
-		new_coords.append(coord + Vector2(-1,your_king.your_current_piece))
+		new_coords.append(coord + Vector2(0,your_king.your_color))
+		new_coords.append(coord + Vector2(1,your_king.your_color))
+		new_coords.append(coord + Vector2(-1,your_king.your_color))
 		available_tiles_array = new_coords.filter(is_valid).map(matrix_representation_to_tile_name)
 		
 	
@@ -264,9 +264,9 @@ func tile_name_to_matrix_representation(tile_name: String) -> Vector2:
 	return Vector2(column_index, row_number)
 
 func matrix_representation_to_tile_name(matrix_representation: Vector2) -> String:
-	var column_letter = char('a'.unicode_at(0) + int(matrix_representation.x))
+	var column_letter = char('a'.unicode_at(0) + int(matrix_representation.y))
 	
-	var row_number = matrix_representation.y + 1
+	var row_number = matrix_representation.x + 1
 	
 	return column_letter + "_" + str(row_number)
 
