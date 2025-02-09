@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cu4jpkjs5xjn4"]
+[gd_scene load_steps=8 format=3 uid="uid://cu4jpkjs5xjn4"]
 
 [ext_resource type="Script" path="res://scripts/choose_a_piece_black.gd" id="1_iduf1"]
 [ext_resource type="Texture2D" uid="uid://ctdfhkcvky6li" path="res://sprites/chess_pieces/crni_piun.png" id="2_g8ye1"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cdhw0a2uxmfne" path="res://sprites/chess_pieces/crni_konj.png" id="4_scal5"]
 [ext_resource type="Texture2D" uid="uid://mnx7fj3wk3cg" path="res://sprites/chess_pieces/crni_top.png" id="5_myuif"]
 [ext_resource type="Texture2D" uid="uid://c3jieqixlx1wg" path="res://sprites/chess_pieces/crna_kraljica.png" id="6_j8nif"]
+[ext_resource type="Texture2D" uid="uid://dwtinug3jm774" path="res://sprites/game_scene/figures_underline.png" id="7_2mqy5"]
 
 [node name="ChooseAPieceBlack" type="Node2D"]
 script = ExtResource("1_iduf1")
@@ -38,22 +39,47 @@ icon = ExtResource("4_scal5")
 flat = true
 
 [node name="rook" type="Button" parent="."]
-offset_left = 270.0
-offset_top = 43.0
-offset_right = 678.0
-offset_bottom = 451.0
+offset_left = 271.0
+offset_top = 40.0
+offset_right = 679.0
+offset_bottom = 448.0
 scale = Vector2(0.22, 0.22)
 icon = ExtResource("5_myuif")
 flat = true
 
 [node name="queen" type="Button" parent="."]
 offset_left = 360.0
-offset_top = 42.0
+offset_top = 40.0
 offset_right = 768.0
-offset_bottom = 450.0
+offset_bottom = 448.0
 scale = Vector2(0.22, 0.22)
 icon = ExtResource("6_j8nif")
 flat = true
+
+[node name="underline1" type="Sprite2D" parent="."]
+position = Vector2(145, 125)
+scale = Vector2(0.364, 0.3)
+texture = ExtResource("7_2mqy5")
+
+[node name="underline2" type="Sprite2D" parent="."]
+position = Vector2(53.878, 125)
+scale = Vector2(0.364, 0.3)
+texture = ExtResource("7_2mqy5")
+
+[node name="underline3" type="Sprite2D" parent="."]
+position = Vector2(235.878, 125)
+scale = Vector2(0.364, 0.3)
+texture = ExtResource("7_2mqy5")
+
+[node name="underline4" type="Sprite2D" parent="."]
+position = Vector2(316.878, 125)
+scale = Vector2(0.364, 0.3)
+texture = ExtResource("7_2mqy5")
+
+[node name="underline5" type="Sprite2D" parent="."]
+position = Vector2(405.878, 125)
+scale = Vector2(0.364, 0.3)
+texture = ExtResource("7_2mqy5")
 
 [connection signal="pressed" from="pawn" to="." method="_on_pawn_pressed"]
 [connection signal="pressed" from="bishop" to="." method="_on_bishop_pressed"]
