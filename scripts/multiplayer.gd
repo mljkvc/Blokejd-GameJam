@@ -82,7 +82,7 @@ func sync_game_state(new_board, turn, player1_pos, player2_pos, player1_score, p
 @rpc("any_peer")
 func make_move(player_id, x : int, y : int, piece_data, lied):
 	turn_count += 1
-	var prev_pos = player1_pos if player_id == 1 else player2_pos
+	var prev_pos = player1_pos if player_id != 1 else player2_pos
 	var pos = Vector2(x, y)
 	
 	print(str(pos[0]) + " " + str(pos[1]))
@@ -119,7 +119,7 @@ func make_move(player_id, x : int, y : int, piece_data, lied):
 		board[x][y] = 1
 
 	if pos == treasure_pos:
-		if player_id == 1:
+		if player_id != 1:
 			player1_score += 1
 		else:
 			player2_score += 1
