@@ -42,8 +42,8 @@ func _ready() -> void:
 func _on_refresh() -> void:
 	remove_all_objects_from_the_board()
 	position_all_objects_on_the_board()
-	$whiteScore.set_score(MultiplayerManager.player1_score)
-	$BlackScore.set_score(MultiplayerManager.player2_score)
+	$whiteScore.set_score(MultiplayerManager.player2_score)
+	$BlackScore.set_score(MultiplayerManager.player1_score)
 
 func _on_started_white()-> void:
 	you_are_white = true;
