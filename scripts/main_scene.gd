@@ -39,11 +39,11 @@ func _ready() -> void:
 func _on_refresh() -> void:
 	remove_all_objects_from_the_board()
 	position_all_objects_on_the_board()
-	if (MultiplayerManager.current_turn == 1 and you_are_white) or (MultiplayerManager.current_turn == 2 and !you_are_white):
-		_on_move_finished();
+	
 
-func _on_move_finished() -> void:	
-	call_out_opponent_node.show()
+func _on_move_finished() -> void:
+	if (MultiplayerManager.current_turn == 1 and you_are_white) or (MultiplayerManager.current_turn == 2 and !you_are_white):
+		call_out_opponent_node.show()
 	
 func assign_white_pieces() -> void:
 	choose_a_piece_node.remove_child(black_pieces)
