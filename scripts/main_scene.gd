@@ -94,15 +94,12 @@ func position_all_objects_on_the_board() -> void:
 
 		your_king.this_piece = MultiplayerManager.player2_piece
 		enemy_king.this_piece = MultiplayerManager.player1_piece
-		
+				
 		your_king.update_piece("black")
 		enemy_king.update_piece("white")
-<<<<<<< Updated upstream
+	print(your_king.this_piece + " ovo je beli, a crni je: " + enemy_king.this_piece)
 
-=======
-		
-	
->>>>>>> Stashed changes
+
 func unhighlight_all_squares() -> void:
 	for tile in Board.get_children():
 		if tile is Tile:
