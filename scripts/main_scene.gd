@@ -11,6 +11,8 @@ var your_pieces = null
 @onready var enemy_king = $Black
 @onready var diamond = $Diamond
 
+var you_are_white: bool = false
+
 var your_piece: String = "king"
 
 var your_current_tile: String = "d_1" #format a_1 ->(7,0)
@@ -18,13 +20,8 @@ var enemy_current_tile: String = "e_8"
 var diamond_tile: String = "b_5"
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if false:
-		choose_a_piece_node.remove_child(white_pieces)
-		your_pieces = black_pieces
-	else:
-		choose_a_piece_node.remove_child(black_pieces)
-		your_pieces = white_pieces
-		
+
+	assign_correct_pieces()
 	show_pieces_choice()
 	diamond.position = Board.get_node(diamond_tile).global_position
 	diamond.animation.play("diamond_animation")
@@ -35,7 +32,19 @@ func _ready() -> void:
 		if tile is Tile:
 			tile.connect("piece_moved", Callable(self, "_on_piece_moved"))
 
+func assign_correct_pieces() -> void:
+	if you_are_white:
+		choose_a_piece_node.remove_child(black_pieces)
+		your_pieces = white_pieces
+		your_king = $White
+	else:
+		choose_a_piece_node.remove_child(white_pieces)
+		your_pieces = black_pieces
+		your_king = $Black
+		your_current_tile = "e_7" 
 
+		
+		
 func _on_piece_moved(new_tile_name: String) -> void:
 	print("Tile moved: " + new_tile_name)
 	your_current_tile = new_tile_name
@@ -95,9 +104,12 @@ func highlight_available_tiles() -> void:
 	var available_tiles_array: Array = []
 	var coord: Vector2 = tile_name_to_matrix_representation(your_current_tile)
 	if your_piece == "pawn":
-		your_king.piece.texture = load("res://sprites/chess_pieces/beli_piun.png")
+		if you_are_white:
+			your_king.piece.texture = load("res://sprites/chess_pieces/beli_piun.png")
+		else:
+			your_king.piece.texture = load("res://sprites/chess_pieces/crni_piun.png")
 		var new_coords = []
-		var sign = 1 if your_king.your_current_piece > 0 else -1
+		var sign = 1 if your_king.your_current_piece > 0 else -1 #ovo isto da se rasporedi po ifovima gore
 		new_coords.append(coord + Vector2(0,your_king.your_current_piece))
 		new_coords.append(coord + Vector2(1,your_king.your_current_piece))
 		new_coords.append(coord + Vector2(-1,your_king.your_current_piece))
@@ -105,7 +117,11 @@ func highlight_available_tiles() -> void:
 		
 	
 	if your_piece == "bishop":
-		your_king.piece.texture = load("res://sprites/chess_pieces/beli_lovac.png")
+		if you_are_white:
+			your_king.piece.texture = load("res://sprites/chess_pieces/beli_lovac.png")
+		else:
+			your_king.piece.texture = load("res://sprites/chess_pieces/crni_lovac.png")
+
 		var new_coords = []
 		for i in range(1,4):
 			new_coords.append(coord + Vector2(i,i))
@@ -115,7 +131,10 @@ func highlight_available_tiles() -> void:
 		available_tiles_array = new_coords.filter(is_valid).map(matrix_representation_to_tile_name)
 			
 	if your_piece == "knight":
-		your_king.piece.texture = load("res://sprites/chess_pieces/beli_konj.png")
+		if you_are_white:
+			your_king.piece.texture = load("res://sprites/chess_pieces/beli_konj.png")
+		else:
+			your_king.piece.texture = load("res://sprites/chess_pieces/crni_konj.png")
 		var new_coords = []
 		new_coords.append(coord + Vector2(1,2))
 		new_coords.append(coord + Vector2(1,-2))
@@ -129,7 +148,10 @@ func highlight_available_tiles() -> void:
 
 		
 	if your_piece == "rook":
-		your_king.piece.texture = load("res://sprites/chess_pieces/beli_top.png")
+		if you_are_white:
+			your_king.piece.texture = load("res://sprites/chess_pieces/beli_top.png")
+		else:
+			your_king.piece.texture = load("res://sprites/chess_pieces/crni_top.png")
 		var new_coords = []
 		for i in range(1,4):
 			new_coords.append(coord + Vector2(0,i))
@@ -139,7 +161,10 @@ func highlight_available_tiles() -> void:
 		available_tiles_array = new_coords.filter(is_valid).map(matrix_representation_to_tile_name)
 	
 	if your_piece == "queen":
-		your_king.piece.texture = load("res://sprites/chess_pieces/bela_kraljica.png")
+		if you_are_white:
+			your_king.piece.texture = load("res://sprites/chess_pieces/bela_kraljica.png")
+		else:
+			your_king.piece.texture = load("res://sprites/chess_pieces/crna_kraljica.png")
 		var new_coords = []
 		for i in range(1,5):
 			new_coords.append(coord + Vector2(i,i))
