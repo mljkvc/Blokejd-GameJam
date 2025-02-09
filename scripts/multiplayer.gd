@@ -37,7 +37,9 @@ var black_pos = "e_8"
 
 var player1_pos = "d_1"
 var player2_pos = "e_8"
+
 var treasure_pos = "b_5"
+var treasure_last = treasure_pos
 
 var turn_count = 0
 var player1_prev_pos = player1_pos
@@ -169,6 +171,7 @@ func make_move(player_id, pos, piece_data : String, lied):
 			player1_score += 1
 		else:
 			player2_score += 1
+		treasure_last = treasure_pos
 		treasure_pos = chess_positions[randi() % 64]
 
 	rpc("sync_game_state", current_turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last, player1_piece, player2_piece, player1_last_piece, player2_last_piece,pieces_available)
@@ -217,7 +220,7 @@ func challenge_move(player_id):
 	player_id = 1 if opponent_id == 2 else 1
 	
 	# TODO HARDCODED FIX TODO 
-	var opponent_lied = true
+	var opponent_lied = player1_lied if opponent_id == 2 else player2_lied
 	print(opponent_lied)
 	
 	if opponent_lied:
