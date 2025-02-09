@@ -58,7 +58,7 @@ func assign_white_pieces() -> void:
 	enemy_king.position = Board.get_node(enemy_current_tile).global_position
 	your_king.position = Board.get_node(your_king.your_tile_name).global_position
 	your_pieces.show()
-	your_pieces.underline("queen")
+	your_pieces.underline_this_piece("queen")
 	
 func assign_black_pieces() -> void:
 	choose_a_piece_node.remove_child(white_pieces)
@@ -71,7 +71,7 @@ func assign_black_pieces() -> void:
 	enemy_king.position = Board.get_node(enemy_current_tile).global_position
 	your_king.position = Board.get_node(your_king.your_tile_name).global_position
 	your_pieces.show()
-	your_pieces.underline("knight")
+	your_pieces.underline_this_piece("knight")
 	
 func remove_all_objects_from_the_board() -> void:
 	$White.position = Vector2(-100,-100)
