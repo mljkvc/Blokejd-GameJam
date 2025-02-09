@@ -8,6 +8,7 @@ func _ready() -> void:
 	main_menu.connect("join_lobby", Callable(self, "_on_join_lobby"))
 
 func _on_join_lobby():
+	print("desi brate2")
 	main_menu.hide()
 	main_scene.show()
 
