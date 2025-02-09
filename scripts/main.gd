@@ -4,9 +4,11 @@ extends Node2D
 @onready var main_menu = $MainMenu
 @onready var audio_player = $AudioStreamPlayer2D
 
+var you_are_white: bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	main_menu.hide()
+	main_scene.hide()
 	main_menu.connect("join_lobby", Callable(self, "_on_join_lobby"))
 	play_song("res://doodle_lobby_song.mp3")
 	
@@ -22,6 +24,7 @@ func pause_song():
 func _on_join_lobby():
 	main_menu.hide()
 	main_scene.show()
+	
 	pause_song()
 	play_song("res://doodle_song.mp3")
 

@@ -138,7 +138,8 @@ func make_move(player_id, x : int, y : int, piece_data, lied):
 
 	current_turn = 3 - current_turn
 	rpc("sync_game_state", board, current_turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last)
-
+	
+	
 @rpc("any_peer")
 func challenge_move(player_id):
 	if multiplayer.get_remote_sender_id() != player_id:

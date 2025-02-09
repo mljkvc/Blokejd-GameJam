@@ -20,7 +20,7 @@ var enemy_current_tile: String = "e_8"
 var diamond_tile: String = "b_5"
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-
+	you_are_white = get_parent().you_are_white
 	assign_correct_pieces()
 	show_pieces_choice()
 	diamond.position = Board.get_node(diamond_tile).global_position
@@ -41,7 +41,7 @@ func assign_correct_pieces() -> void:
 		choose_a_piece_node.remove_child(white_pieces)
 		your_pieces = black_pieces
 		your_king = $Black
-		your_current_tile = "e_7" 
+		your_current_tile = "e_8" 
 
 		
 		
