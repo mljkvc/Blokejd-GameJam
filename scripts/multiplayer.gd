@@ -145,6 +145,8 @@ func sync_game_state(turn, player1_pos, player2_pos, player1_score, player2_scor
 	self.player2_prev_pos = player2_prev_pos
 	self.player1_eaten_in_last = player1_eaten_in_last
 	self.player2_eaten_in_last = player2_eaten_in_last
+	self.player1_score = max(self.player1_score, 0)
+	self.player2_score = max(self.player2_score, 0)
 	refresh.emit()
 
 @rpc("any_peer")
