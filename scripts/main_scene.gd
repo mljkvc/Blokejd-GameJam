@@ -35,7 +35,6 @@ func assign_white_pieces() -> void:
 	your_king = $White
 	your_current_tile = "d_1" 
 	show_pieces_choice()
-	remove_all_objects_from_the_board()
 
 func assign_black_pieces() -> void:
 	choose_a_piece_node.remove_child(white_pieces)
@@ -60,10 +59,22 @@ func _on_piece_moved(new_tile_name: String) -> void:
 	#func make_move(player_id, x, y, piece_data, lied):
 	print("My peer ID:", multiplayer.get_unique_id())
 	MultiplayerManager.make_move(multiplayer.get_unique_id(), tile_name_to_matrix_representation(your_current_tile).x,  tile_name_to_matrix_representation(your_current_tile).y, "q", false)
-	
+	remove_all_objects_from_the_board()
+	position_all_objects_on_the_board()
 	print(MultiplayerManager.board)
 	
 	unhighlight_all_squares()
+
+func position_all_objects_on_the_board() -> void:
+	
+	var diamond_tile_name = null
+	for i in range(8):
+		for j in range (8):
+			if MultiplayerManager.board[i][j] == 7:
+				diamond_tile_name = matrix_representation_to_tile_name(Vector2(i,j))
+	
+	diamond.position = Board.get_node(diamond_tile_name).global_position
+
 
 func unhighlight_all_squares() -> void:
 	for tile in Board.get_children():
