@@ -14,6 +14,7 @@ var your_pieces = null
 var your_king = null
 var enemy_king = null
 @onready var diamond = $Diamond
+@onready var puff = $Puff
 
 var you_are_white: bool = false
 
@@ -64,9 +65,12 @@ func remove_all_objects_from_the_board() -> void:
 	$White.position = Vector2(-100,-100)
 	$Black.position = Vector2(-100,-100)
 	$Diamond.position = Vector2(-100,-100)
+	puff.position = Vector2(-100,-100)
 		
 func _on_piece_moved(new_tile_name: String) -> void:
-	
+	puff.postition = Board.get_node(MultiplayerManager.new_tile_name).global_position
+	puff.animation.play("puff_animation")
+
 	your_king.your_tile_name = new_tile_name
 	var new_tile = Board.get_node(new_tile_name)
 	your_king.position = new_tile.global_position
