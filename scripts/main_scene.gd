@@ -158,7 +158,8 @@ func _on_opponent_made_a_move() -> void:
 	
 	your_pieces.hide()
 
-	choose_a_piece_node.hide()
+	for child in choose_a_piece_node.get_children():
+		child.hide()
 	call_out_opponent_node.show()
 	
 	
