@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://drfkvmmmwnkal"]
+[gd_scene load_steps=9 format=3 uid="uid://drfkvmmmwnkal"]
 
 [ext_resource type="Script" path="res://scripts/choose_a_piece_white.gd" id="1_qp08r"]
 [ext_resource type="Texture2D" uid="uid://bpwnqhee23cxh" path="res://sprites/chess_pieces/beli_piun.png" id="2_mlqle"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://c71mnblam1gvf" path="res://sprites/chess_pieces/beli_top.png" id="5_2md0c"]
 [ext_resource type="Texture2D" uid="uid://bv4anbglj81k7" path="res://sprites/chess_pieces/bela_kraljica.png" id="6_tnnxe"]
 [ext_resource type="Texture2D" uid="uid://dwtinug3jm774" path="res://sprites/game_scene/figures_underline.png" id="7_55s5u"]
+[ext_resource type="Texture2D" uid="uid://7rot20g2yll0" path="res://sprites/game_scene/background_pieces.png" id="8_8bndr"]
 
 [node name="ChooseAPieceWhite" type="Node2D"]
 script = ExtResource("1_qp08r")
@@ -80,6 +81,11 @@ texture = ExtResource("7_55s5u")
 position = Vector2(405.878, 125)
 scale = Vector2(0.364, 0.3)
 texture = ExtResource("7_55s5u")
+
+[node name="gray_bar" type="Sprite2D" parent="."]
+position = Vector2(258, 94)
+scale = Vector2(1, 0.5)
+texture = ExtResource("8_8bndr")
 
 [connection signal="pressed" from="pawn" to="." method="_on_pawn_pressed"]
 [connection signal="pressed" from="bishop" to="." method="_on_bishop_pressed"]

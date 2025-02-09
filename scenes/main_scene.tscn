@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cvw3x2oh5sh21"]
+[gd_scene load_steps=11 format=3 uid="uid://cvw3x2oh5sh21"]
 
 [ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_8d7f1"]
 [ext_resource type="PackedScene" uid="uid://cffjfd7urab5o" path="res://scenes/board.tscn" id="1_haual"]
@@ -10,8 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://lroudw2xpr0s" path="res://scenes/puff.tscn" id="8_jjsuw"]
 [ext_resource type="PackedScene" uid="uid://cp1fg5pl0v81i" path="res://scenes/black.tscn" id="8_uso8q"]
 [ext_resource type="PackedScene" uid="uid://cu4jpkjs5xjn4" path="res://scenes/choose_a_piece_black.tscn" id="9_ljy80"]
-[ext_resource type="Texture2D" uid="uid://7rot20g2yll0" path="res://sprites/game_scene/background_pieces.png" id="11_vdapk"]
-[ext_resource type="Texture2D" uid="uid://dwtinug3jm774" path="res://sprites/game_scene/figures_underline.png" id="12_wb1mc"]
 
 [node name="MainScene" type="Node2D"]
 script = ExtResource("1_8d7f1")
@@ -47,33 +45,3 @@ position = Vector2(0, 600)
 
 [node name="ChooseAPieceWhite" parent="ChooseAPiece" instance=ExtResource("3_il03a")]
 position = Vector2(0, 600)
-
-[node name="pieces_background_strip" type="Sprite2D" parent="."]
-position = Vector2(242, 689.539)
-scale = Vector2(0.662037, 0.433398)
-texture = ExtResource("11_vdapk")
-
-[node name="underline1" type="Sprite2D" parent="."]
-position = Vector2(145, 725)
-scale = Vector2(0.364, 0.3)
-texture = ExtResource("12_wb1mc")
-
-[node name="underline2" type="Sprite2D" parent="."]
-position = Vector2(53.878, 725)
-scale = Vector2(0.364, 0.3)
-texture = ExtResource("12_wb1mc")
-
-[node name="underline3" type="Sprite2D" parent="."]
-position = Vector2(235.878, 725)
-scale = Vector2(0.364, 0.3)
-texture = ExtResource("12_wb1mc")
-
-[node name="underline4" type="Sprite2D" parent="."]
-position = Vector2(316.878, 725)
-scale = Vector2(0.364, 0.3)
-texture = ExtResource("12_wb1mc")
-
-[node name="underline5" type="Sprite2D" parent="."]
-position = Vector2(405.878, 725)
-scale = Vector2(0.364, 0.3)
-texture = ExtResource("12_wb1mc")
