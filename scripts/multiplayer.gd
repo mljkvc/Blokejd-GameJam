@@ -179,6 +179,8 @@ func make_move(player_id, pos, piece_data : String, lied):
 			if player1_pos == black_pos :
 				while(player2_pos == player1_pos):
 					player2_pos = chess_positions[randi() % 64]
+					rpc("sync_game_state", current_turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last, player1_piece, player2_piece, player1_last_piece, player2_last_piece)
+					refresh.emit()
 			else:
 				player2_pos = black_pos
 			player2_last_piece = player2_piece
@@ -189,6 +191,8 @@ func make_move(player_id, pos, piece_data : String, lied):
 			if player2_pos == white_pos :
 				while(player2_pos == player1_pos):
 					player1_pos = chess_positions[randi() % 64]
+					rpc("sync_game_state", current_turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last, player1_piece, player2_piece, player1_last_piece, player2_last_piece)
+					refresh.emit()
 			else:
 				player1_pos = white_pos
 			player1_pos = white_pos
