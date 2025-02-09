@@ -77,8 +77,8 @@ func piece_roulette():
 					pieces_available[selected_piece] -= 1
 					if is_empty_dict():
 						reload_pieces()
-					rpc("sync_game_state", current_turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last, player1_piece, player2_piece, player1_last_piece, player2_last_piece, pieces_available)
 					return selected_piece
+	rpc("sync_game_state", current_turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last, player1_piece, player2_piece, player1_last_piece, player2_last_piece, pieces_available)
 
 
 func is_empty_dict():
