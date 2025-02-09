@@ -53,7 +53,27 @@ position = Vector2(242, 689.539)
 scale = Vector2(0.662037, 0.433398)
 texture = ExtResource("11_vdapk")
 
-[node name="underline" type="Sprite2D" parent="."]
-position = Vector2(145, 726)
-scale = Vector2(0.421733, 0.348039)
+[node name="underline1" type="Sprite2D" parent="."]
+position = Vector2(145, 725)
+scale = Vector2(0.364, 0.3)
+texture = ExtResource("12_wb1mc")
+
+[node name="underline2" type="Sprite2D" parent="."]
+position = Vector2(53.878, 725)
+scale = Vector2(0.364, 0.3)
+texture = ExtResource("12_wb1mc")
+
+[node name="underline3" type="Sprite2D" parent="."]
+position = Vector2(235.878, 725)
+scale = Vector2(0.364, 0.3)
+texture = ExtResource("12_wb1mc")
+
+[node name="underline4" type="Sprite2D" parent="."]
+position = Vector2(316.878, 725)
+scale = Vector2(0.364, 0.3)
+texture = ExtResource("12_wb1mc")
+
+[node name="underline5" type="Sprite2D" parent="."]
+position = Vector2(405.878, 725)
+scale = Vector2(0.364, 0.3)
 texture = ExtResource("12_wb1mc")
