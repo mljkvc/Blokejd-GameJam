@@ -2,115 +2,43 @@ class_name Choose_a_piece_white extends Node2D
 
 signal piece_chosen(piece_name: String)
 
-@onready var underline_1 = $underline1
-@onready var underline_2 = $underline2
-@onready var underline_3 = $underline3
-@onready var underline_4 = $underline4
-@onready var underline_5 = $underline5
+@onready var underline_nodes = [
+	$underline1, $underline2, $underline3, $underline4, $underline5
+]
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	remove_underline()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 func start_roulette_animation() -> void:
-	underline_1.show()
-	await get_tree().create_timer(0.1).timeout
-	underline_1.hide()
-	underline_2.show()
-	await get_tree().create_timer(0.1).timeout
-	underline_2.hide()
-	underline_3.show()
-	await get_tree().create_timer(0.1).timeout
-	underline_3.hide()
-	underline_4.show()
-	await get_tree().create_timer(0.1).timeout
-	underline_4.hide()
-	underline_5.show()
-	await get_tree().create_timer(0.1).timeout
-	underline_5.hide()
-	underline_1.show()
-	await get_tree().create_timer(0.2).timeout
-	underline_1.hide()
-	underline_2.show()
-	await get_tree().create_timer(0.2).timeout
-	underline_2.hide()
-	underline_3.show()
-	await get_tree().create_timer(0.2).timeout
-	underline_3.hide()
-	underline_4.show()
-	await get_tree().create_timer(0.2).timeout
-	underline_4.hide()
-	underline_5.show()
-	await get_tree().create_timer(0.2).timeout
-	underline_5.hide()
-	
+	for i in range(5):
+		underline_nodes[i].show()
+		await get_tree().create_timer(0.1).timeout
+		underline_nodes[i].hide()
+	for i in range(5):
+		underline_nodes[i].show()
+		await get_tree().create_timer(0.2).timeout
+		underline_nodes[i].hide()
+
 func underline_this_piece_animation(piece_name: String):
-	start_roulette_animation()
-	if piece_name == "pawn":
-		underline_1.show()
-	if piece_name == "bishop":
-		underline_1.show()
-		await get_tree().create_timer(0.25).timeout
-		underline_1.hide()
-		underline_2.show()
-	if piece_name == "knight":
-		underline_1.show()
-		await get_tree().create_timer(0.25).timeout
-		underline_1.hide()
-		underline_2.show()
-		await get_tree().create_timer(0.3).timeout
-		underline_2.hide()
-		underline_3.show()
-	if piece_name == "rook":
-		underline_1.show()
-		await get_tree().create_timer(0.25).timeout
-		underline_1.hide()
-		underline_2.show()
-		await get_tree().create_timer(0.3).timeout
-		underline_2.hide()
-		underline_3.show()
-		await get_tree().create_timer(0.35).timeout
-		underline_3.hide()
-		underline_4.show()
-	if piece_name == "queen":
-		underline_1.show()
-		await get_tree().create_timer(0.25).timeout
-		underline_1.hide()
-		underline_2.show()
-		await get_tree().create_timer(0.3).timeout
-		underline_2.hide()
-		underline_3.show()
-		await get_tree().create_timer(0.35).timeout
-		underline_3.hide()
-		underline_4.show()
-		await get_tree().create_timer(0.4).timeout
-		underline_4.hide()
-		underline_5.show()
-		
+	await start_roulette_animation()
+	var index = ["pawn", "bishop", "knight", "rook", "queen"].find(piece_name)
+	if index != -1:
+		for i in range(index + 1):
+			underline_nodes[i].show()
+			await get_tree().create_timer(0.25 + (i * 0.05)).timeout
+			underline_nodes[i].hide()
+		underline_nodes[index].show()
+
 func underline_this_piece(piece_name: String):
-	underline_this_piece_animation(piece_name)
-	if piece_name == "pawn":
-		underline_1.show()
-	if piece_name == "bishop":
-		underline_2.show()
-	if piece_name == "knight":
-		underline_3.show()
-	if piece_name == "rook":
-		underline_4.show()
-	if piece_name == "queen":
-		underline_5.show()
+	await underline_this_piece_animation(piece_name)
+	var index = ["pawn", "bishop", "knight", "rook", "queen"].find(piece_name)
+	if index != -1:
+		underline_nodes[index].show()
 
 func remove_underline() -> void:
-	underline_1.hide()
-	underline_2.hide()
-	underline_3.hide()
-	underline_4.hide()
-	underline_5.hide()
-		
+	for node in underline_nodes:
+		node.hide()
+
 func _on_pawn_pressed() -> void:
 	emit_signal("piece_chosen", "pawn")
 
@@ -119,11 +47,9 @@ func _on_bishop_pressed() -> void:
 
 func _on_knight_pressed() -> void:
 	emit_signal("piece_chosen", "knight")
-	
 
 func _on_rook_pressed() -> void:
 	emit_signal("piece_chosen", "rook")
-
 
 func _on_queen_pressed() -> void:
 	emit_signal("piece_chosen", "queen")
