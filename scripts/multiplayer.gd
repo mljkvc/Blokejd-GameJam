@@ -45,6 +45,7 @@ var player2_prev_pos = player2_pos
 
 signal game_ready()
 signal refresh()
+signal finished()
 
 func _ready():
 	reload_pieces()
@@ -141,19 +142,23 @@ func make_move(player_id, pos, piece_data : String, lied):
 		if player_id == 1:
 			player1_score += 1
 			player2_score -= 1
-			player2_pos = "e_8"
+			player2_pos = black_pos
 			player2_last_piece = player2_piece
 			player2_piece = "king"
 		else:
 			player2_score += 1
 			player1_score -= 1
-			player1_pos = "d_1"
+			#if(player2_pos == white_pos):
+				#while(player1_pos)
+				#player1_pos = chess_positions[randi() % 64]
+			player1_pos = white_pos
 			player1_last_piece = player1_piece
 			player1_piece = "king"
 
 	current_turn = 3 - current_turn
 	rpc("sync_game_state", current_turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last, player1_piece, player2_piece, player1_last_piece, player2_last_piece)
 	refresh.emit()
+	finished.emit()
 	
 @rpc("any_peer")
 func challenge_move(player_id):
