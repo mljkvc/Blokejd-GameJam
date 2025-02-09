@@ -58,26 +58,31 @@ icon = ExtResource("6_j8nif")
 flat = true
 
 [node name="underline1" type="Sprite2D" parent="."]
-position = Vector2(145, 125)
-scale = Vector2(0.364, 0.3)
-texture = ExtResource("7_2mqy5")
-
-[node name="underline2" type="Sprite2D" parent="."]
+z_index = 10
 position = Vector2(53.878, 125)
 scale = Vector2(0.364, 0.3)
 texture = ExtResource("7_2mqy5")
 
+[node name="underline2" type="Sprite2D" parent="."]
+z_index = 10
+position = Vector2(145, 125)
+scale = Vector2(0.364, 0.3)
+texture = ExtResource("7_2mqy5")
+
 [node name="underline3" type="Sprite2D" parent="."]
+z_index = 10
 position = Vector2(235.878, 125)
 scale = Vector2(0.364, 0.3)
 texture = ExtResource("7_2mqy5")
 
 [node name="underline4" type="Sprite2D" parent="."]
+z_index = 10
 position = Vector2(316.878, 125)
 scale = Vector2(0.364, 0.3)
 texture = ExtResource("7_2mqy5")
 
 [node name="underline5" type="Sprite2D" parent="."]
+z_index = 10
 position = Vector2(405.878, 125)
 scale = Vector2(0.364, 0.3)
 texture = ExtResource("7_2mqy5")
