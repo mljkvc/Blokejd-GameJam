@@ -17,7 +17,7 @@ var player1_last_piece = player1_piece
 var player2_last_piece = player2_piece
 
 var player1_lied = false
-var player2_lied = false
+var player2_lied = true
 
 var pieces_availible = {}
 
