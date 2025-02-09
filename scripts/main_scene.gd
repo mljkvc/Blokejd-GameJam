@@ -25,9 +25,7 @@ var diamond_tile: String = "b_5"
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	call_out_opponent_node.hide()
-
 	MultiplayerManager.connect("finished", Callable(self, "_on_move_finished"))
-
 	MultiplayerManager.connect("refresh", Callable(self, "_on_refresh"))
 	diamond.position = Board.get_node(diamond_tile).global_position
 	diamond.animation.play("diamond_animation")
@@ -42,9 +40,15 @@ func _on_refresh() -> void:
 	
 
 func _on_move_finished() -> void:
-	if (MultiplayerManager.current_turn == 1 and you_are_white) or (MultiplayerManager.current_turn == 2 and !you_are_white):
+	await get_tree().create_timer(0.05).timeout
+	print("usao vamooooo")
+	if MultiplayerManager.current_turn == 1 and you_are_white: 
+		print("usao u proveeeeruuu")
 		call_out_opponent_node.show()
-	
+	elif MultiplayerManager.current_turn == 2 and !you_are_white:
+		print("usao u proveeeeruuu")
+		call_out_opponent_node.show()
+
 func assign_white_pieces() -> void:
 	choose_a_piece_node.remove_child(black_pieces)
 	your_pieces = white_pieces
