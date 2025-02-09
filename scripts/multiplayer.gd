@@ -106,7 +106,7 @@ func make_move(player_id, x : int, y : int, piece_data : String, lied):
 	var multiplier = 1
 	# Kin  pawn  Knight  Bishop  Rook Queen
 	# 1     2      3       4       5      6
-	if player_id == 0:
+	if player_id != 0:
 		multiplier *= -1
 	if piece_data.begins_with("q"):
 		board[x][y] = 6 * multiplier
