@@ -153,7 +153,7 @@ func _on_opponent_made_a_move() -> void:
 		call_out_opponent_node.show()
 		enemy_king.update_piece("white")
 		
-	await get_tree().create_timer(0.15).timeout
+	#await get_tree().create_timer(0.15).timeout
 	_on_refresh()
 	
 
