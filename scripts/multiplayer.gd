@@ -61,7 +61,7 @@ func join_server(server_ip: String, port: int):
 	print("Connected to server at: ", server_ip, ":", port)
 
 ##---------------------------- GAME LOGIC ------------------------------##
-@rpc("authority")
+@rpc("any_peer")
 func sync_game_state(new_board, turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last):
 	print("Sync game state entry")
 	board = new_board
