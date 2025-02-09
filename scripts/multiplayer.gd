@@ -77,11 +77,10 @@ func sync_game_state(new_board, turn, player1_pos, player2_pos, player1_score, p
 	self.player2_prev_pos = player2_prev_pos
 	self.player1_eaten_in_last = player1_eaten_in_last
 	self.player2_eaten_in_last = player2_eaten_in_last
+	print(board)
 
 @rpc("any_peer")
 func make_move(player_id, x : int, y : int, piece_data, lied):
-	print("Player_id je kurac", player_id)
-
 	turn_count += 1
 	var prev_pos = player1_pos if player_id == 1 else player2_pos
 	var pos = Vector2(x, y)
