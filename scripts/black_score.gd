@@ -5,7 +5,8 @@ class_name Black_score extends Node2D
 func set_score(score: int) -> void:
 	if score < 15:
 		var score_path = "res://sprites/score/score_" + str(score) + ".png"
-		score_sprite.set_texture(score_path)
+		var score_texture = load(score_path)  # Učitaj teksturu iz fajla
+		score_sprite.set_texture(score_texture)  # Postavi učitanu teksturu
 	else:
 		go_to_victory_screen()
 
