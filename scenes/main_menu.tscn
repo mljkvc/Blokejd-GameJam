@@ -1,25 +1,33 @@
-[gd_scene load_steps=2 format=3 uid="uid://cixw1s04b1llt"]
+[gd_scene load_steps=4 format=3 uid="uid://cixw1s04b1llt"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_8s4bi"]
+[ext_resource type="Texture2D" uid="uid://wbd8ja3ena30" path="res://sprites/game_scene/create_game_button.png" id="2_isdqg"]
+[ext_resource type="Texture2D" uid="uid://d2bmuyggdbd5n" path="res://sprites/game_scene/join_game_button.png" id="3_7p6gr"]
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_8s4bi")
 
 [node name="create_lobby" type="Button" parent="."]
-offset_left = 98.0
-offset_top = 251.0
-offset_right = 368.0
-offset_bottom = 378.0
-text = "Create Lobby
-"
+offset_left = 80.0
+offset_top = 500.0
+offset_right = 877.0
+offset_bottom = 728.0
+scale = Vector2(0.4, 0.4)
+icon = ExtResource("2_isdqg")
+flat = true
 
 [node name="join_lobby" type="Button" parent="."]
-offset_left = 100.0
-offset_top = 400.0
-offset_right = 370.0
-offset_bottom = 527.0
-text = "Join Lobby
-"
+offset_left = 80.0
+offset_top = 600.0
+offset_right = 877.0
+offset_bottom = 828.0
+scale = Vector2(0.4, 0.4)
+icon = ExtResource("3_7p6gr")
+flat = true
 
+[connection signal="mouse_entered" from="create_lobby" to="." method="_on_create_lobby_mouse_entered"]
+[connection signal="mouse_exited" from="create_lobby" to="." method="_on_create_lobby_mouse_exited"]
 [connection signal="pressed" from="create_lobby" to="." method="_on_create_lobby_pressed"]
+[connection signal="mouse_entered" from="join_lobby" to="." method="_on_join_lobby_mouse_entered"]
+[connection signal="mouse_exited" from="join_lobby" to="." method="_on_join_lobby_mouse_exited"]
 [connection signal="pressed" from="join_lobby" to="." method="_on_join_lobby_pressed"]
