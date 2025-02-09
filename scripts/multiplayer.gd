@@ -80,6 +80,7 @@ func sync_game_state(new_board, turn, player1_pos, player2_pos, player1_score, p
 
 @rpc("any_peer")
 func make_move(player_id, x : int, y : int, piece_data, lied):
+	print("Player_id je kurac", player_id)
 	if multiplayer.get_remote_sender_id() != player_id:
 		return
 

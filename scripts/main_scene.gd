@@ -29,8 +29,8 @@ func _on_piece_moved(new_tile_name: String) -> void:
 		
 	#func make_move(player_id, x, y, piece_data, lied):
 	print("My peer ID:", multiplayer.get_unique_id())
-
-	rpc_id(multiplayer.get_remote_sender_id(), "make_move", 1, tile_name_to_matrix_representation(your_current_tile).x,  tile_name_to_matrix_representation(your_current_tile).y, 1, false)
+	MultiplayerManager.make_move(1, tile_name_to_matrix_representation(your_current_tile).x,  tile_name_to_matrix_representation(your_current_tile).y, "q", false)
+	#rpc_id(multiplayer.get_remote_sender_id(), "make_move", 1, tile_name_to_matrix_representation(your_current_tile).x,  tile_name_to_matrix_representation(your_current_tile).y, "q", false)
 	print(MultiplayerManager.player2_pos[0], MultiplayerManager.player2_pos[1])
 	unhighlight_all_squares()
 
