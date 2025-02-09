@@ -30,23 +30,22 @@ func _on_join_lobby_pressed() -> void:
 	emit_signal("set_your_pieces_to_black")
 
 
-func _on_create_lobby_mouse_entered() -> void:
-	create_lobby_button.scale.x += 0.08
-	create_lobby_button.scale.y += 0.08
-	create_lobby_button.position.x -= 40
+func _on_button_mouse_entered() -> void:
+	$Button.scale.x += 0.1
+	$Button.scale.y += 0.1
+	$Button.position.x -= 40
 
-func _on_create_lobby_mouse_exited() -> void:
-	create_lobby_button.scale.x -= 0.08
-	create_lobby_button.scale.y -= 0.08
-	create_lobby_button.position.x += 40
+func _on_button_mouse_exited() -> void:
+	$Button.scale.x -= 0.1
+	$Button.scale.y -= 0.1
+	$Button.position.x += 40
 
+func _on_button_2_mouse_entered() -> void:
+	$Button2.scale.x += 0.1
+	$Button2.scale.y += 0.1
+	$Button2.position.x -= 40
 
-func _on_join_lobby_mouse_entered() -> void:
-	join_lobby_button.scale.x += 0.07
-	join_lobby_button.scale.y += 0.07
-	join_lobby_button.position.x -= 40
-
-func _on_join_lobby_mouse_exited() -> void:
-	join_lobby_button.scale.x -= 0.07
-	join_lobby_button.scale.y -= 0.07
-	join_lobby_button.position.x += 40
+func _on_button_2_mouse_exited() -> void:
+	$Button2.scale.x -= 0.1
+	$Button2.scale.y -= 0.1
+	$Button2.position.x += 40

@@ -7,7 +7,7 @@ func set_score(score: int) -> void:
 		var score_path = "res://sprites/score/white_score_0.png"
 		var score_texture = load(score_path)  # Učitaj teksturu iz fajla
 		score_sprite.set_texture(score_texture)  # Postavi učitanu teksturu
-	elif score < 15:
+	elif score < 5:
 		var score_path = "res://sprites/score/score_" + str(score) + ".png"
 		var score_texture = load(score_path)  # Učitaj teksturu iz fajla
 		score_sprite.set_texture(score_texture)  # Postavi učitanu teksturu
@@ -15,7 +15,8 @@ func set_score(score: int) -> void:
 		go_to_victory_screen()
 
 func go_to_victory_screen():
-	pass
+	get_parent().get_parent().show_black_winner()
+	print("BLACK WON!!!!!!!!!!!!!!!!!!!!!!!!!")
 	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

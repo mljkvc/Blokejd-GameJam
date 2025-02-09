@@ -4,6 +4,9 @@ extends Node2D
 @onready var main_menu = $MainMenu
 @onready var audio_player = $AudioStreamPlayer2D
 
+@onready var black_won = $black_won
+@onready var white_won = $white_won
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -40,3 +43,14 @@ func _on_join_lobby():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+func show_white_winner() -> void:
+	main_scene.hide()
+	main_menu.hide()
+	white_won.show()
+	
+	
+func show_black_winner() -> void:
+	main_scene.hide()
+	main_menu.hide()
+	black_won.show()

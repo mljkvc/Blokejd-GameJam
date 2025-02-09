@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://i6k3ircedx3f"]
+[gd_scene load_steps=6 format=3 uid="uid://i6k3ircedx3f"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_56lyp"]
 [ext_resource type="PackedScene" uid="uid://cixw1s04b1llt" path="res://scenes/main_menu.tscn" id="2_sup1h"]
 [ext_resource type="PackedScene" uid="uid://cvw3x2oh5sh21" path="res://scenes/main_scene.tscn" id="3_h1cgr"]
+[ext_resource type="PackedScene" uid="uid://dpk1nmeggp345" path="res://scenes/end_game_screen_black_won.tscn" id="4_wachb"]
+[ext_resource type="PackedScene" uid="uid://cntheyvenoi2h" path="res://scenes/end_game_screen_white_won.tscn" id="5_twwfw"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_56lyp")
@@ -12,3 +14,9 @@ script = ExtResource("1_56lyp")
 [node name="MainScene" parent="." instance=ExtResource("3_h1cgr")]
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
+[node name="black_won" parent="." instance=ExtResource("4_wachb")]
+visible = false
+
+[node name="white_won" parent="." instance=ExtResource("5_twwfw")]
+visible = false

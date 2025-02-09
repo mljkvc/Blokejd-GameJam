@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cvw3x2oh5sh21"]
+[gd_scene load_steps=14 format=3 uid="uid://cvw3x2oh5sh21"]
 
 [ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_8d7f1"]
 [ext_resource type="PackedScene" uid="uid://cffjfd7urab5o" path="res://scenes/board.tscn" id="1_haual"]
@@ -12,12 +12,10 @@
 [ext_resource type="PackedScene" uid="uid://cp1fg5pl0v81i" path="res://scenes/black.tscn" id="8_uso8q"]
 [ext_resource type="PackedScene" uid="uid://cu4jpkjs5xjn4" path="res://scenes/choose_a_piece_black.tscn" id="9_ljy80"]
 [ext_resource type="PackedScene" uid="uid://kgqc1qw6h8im" path="res://scenes/white_score.tscn" id="12_ets4q"]
+[ext_resource type="Texture2D" uid="uid://peae86mxcx8e" path="res://sprites/game_scene/title.png" id="13_islc7"]
 
 [node name="MainScene" type="Node2D"]
 script = ExtResource("1_8d7f1")
-
-[node name="BlackScore" parent="." instance=ExtResource("2_jyi7t")]
-position = Vector2(392, 152)
 
 [node name="Board" parent="." instance=ExtResource("1_haual")]
 position = Vector2(62, 215)
@@ -54,3 +52,11 @@ position = Vector2(0, 600)
 
 [node name="whiteScore" parent="." instance=ExtResource("12_ets4q")]
 position = Vector2(82, 151)
+
+[node name="BlackScore" parent="." instance=ExtResource("2_jyi7t")]
+position = Vector2(392, 152)
+
+[node name="Title" type="Sprite2D" parent="."]
+position = Vector2(237, 59)
+scale = Vector2(0.461111, 0.569512)
+texture = ExtResource("13_islc7")

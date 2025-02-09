@@ -51,6 +51,7 @@ func start_roulette_animation() -> void:
 	
 func underline_this_piece_animation(piece_name: String):
 	await start_roulette_animation()
+	start_roulette_animation()
 	if piece_name == "pawn":
 		underline_1.show()
 	if piece_name == "bishop":
