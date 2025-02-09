@@ -19,6 +19,9 @@ position = Vector2(62, 215)
 [node name="White" parent="." instance=ExtResource("2_s0reo")]
 position = Vector2(213, 564)
 
+[node name="Black" parent="." instance=ExtResource("8_uso8q")]
+position = Vector2(262, 220)
+
 [node name="CallOutOpponent" parent="." instance=ExtResource("5_qfv4n")]
 position = Vector2(2, 603)
 
@@ -30,9 +33,6 @@ texture = ExtResource("6_no4r6")
 
 [node name="Diamond" parent="." instance=ExtResource("7_47j3s")]
 position = Vector2(-79, 5)
-
-[node name="Black" parent="." instance=ExtResource("8_uso8q")]
-position = Vector2(262, 220)
 
 [node name="ChooseAPiece" type="Node2D" parent="."]
 

@@ -35,6 +35,7 @@ func assign_white_pieces() -> void:
 	your_king = $White
 	your_current_tile = "d_1" 
 	show_pieces_choice()
+	remove_all_objects_from_the_board()
 
 func assign_black_pieces() -> void:
 	choose_a_piece_node.remove_child(white_pieces)
@@ -43,7 +44,11 @@ func assign_black_pieces() -> void:
 	your_current_tile = "e_8" 
 	show_pieces_choice()
 	print("crno")
-		
+
+func remove_all_objects_from_the_board() -> void:
+	$White.position = Vector2(-100,-100)
+	$Black.position = Vector2(-100,-100)
+	$Diamond.position = Vector2(-100,-100)
 		
 func _on_piece_moved(new_tile_name: String) -> void:
 	print("Tile moved: " + new_tile_name)
