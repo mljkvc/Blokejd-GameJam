@@ -20,9 +20,6 @@ var enemy_current_tile: String = "e_8"
 var diamond_tile: String = "b_5"
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	you_are_white = get_parent().you_are_white
-	assign_correct_pieces()
-	show_pieces_choice()
 	diamond.position = Board.get_node(diamond_tile).global_position
 	diamond.animation.play("diamond_animation")
 	enemy_king.position = Board.get_node(enemy_current_tile).global_position
@@ -32,17 +29,20 @@ func _ready() -> void:
 		if tile is Tile:
 			tile.connect("piece_moved", Callable(self, "_on_piece_moved"))
 
-func assign_correct_pieces() -> void:
-	if you_are_white:
-		choose_a_piece_node.remove_child(black_pieces)
-		your_pieces = white_pieces
-		your_king = $White
-	else:
-		choose_a_piece_node.remove_child(white_pieces)
-		your_pieces = black_pieces
-		your_king = $Black
-		your_current_tile = "e_8" 
+func assign_white_pieces() -> void:
+	choose_a_piece_node.remove_child(black_pieces)
+	your_pieces = white_pieces
+	your_king = $White
+	your_current_tile = "d_1" 
+	show_pieces_choice()
 
+func assign_black_pieces() -> void:
+	choose_a_piece_node.remove_child(white_pieces)
+	your_pieces = black_pieces
+	your_king = $Black
+	your_current_tile = "e_8" 
+	show_pieces_choice()
+	print("crno")
 		
 		
 func _on_piece_moved(new_tile_name: String) -> void:
