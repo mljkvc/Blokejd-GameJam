@@ -77,6 +77,7 @@ func piece_roulette():
 					pieces_available[selected_piece] -= 1
 					if is_empty_dict():
 						reload_pieces()
+					rpc("sync_game_state", current_turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last, player1_piece, player2_piece, player1_last_piece, player2_last_piece, pieces_available)
 					return selected_piece
 
 
@@ -98,7 +99,7 @@ func start_server(host_ip: String):
 
 func _on_client_connected(id):
 	print("Player joined with ID: ", id)
-	rpc("sync_game_state", current_turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last, player1_piece, player2_piece, player1_last_piece, player2_last_piece)
+	rpc("sync_game_state", current_turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last, player1_piece, player2_piece, player1_last_piece, player2_last_piece, pieces_available)
 	emit_signal("game_ready")	
 
 ##-----------------------------CLIENT-JOINING----------------------------------##
@@ -112,7 +113,7 @@ func join_server(server_ip: String, port: int):
 
 ##---------------------------- GAME LOGIC ------------------------------##
 @rpc("any_peer")
-func sync_game_state(turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last,player1_piece, player2_piece, player1_last_piece, player2_last_piece):
+func sync_game_state(turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last,player1_piece, player2_piece, player1_last_piece, player2_last_piece, pieces_available):
 	print("Sync game state entry")
 	if turn != self.current_turn:
 		opponent_made_a_move.emit()
@@ -158,7 +159,7 @@ func make_move(player_id, pos, piece_data : String, lied):
 		player2_eaten_in_last = false
 		player1_lied = false
 	
-	rpc("sync_game_state", current_turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last, player1_piece, player2_piece, player1_last_piece, player2_last_piece)
+	rpc("sync_game_state", current_turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last, player1_piece, player2_piece, player1_last_piece, player2_last_piece,pieces_available)
 	refresh.emit()
 	
 	
@@ -169,7 +170,7 @@ func make_move(player_id, pos, piece_data : String, lied):
 			player2_score += 1
 		treasure_pos = chess_positions[randi() % 64]
 
-	rpc("sync_game_state", current_turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last, player1_piece, player2_piece, player1_last_piece, player2_last_piece)
+	rpc("sync_game_state", current_turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last, player1_piece, player2_piece, player1_last_piece, player2_last_piece,pieces_available)
 	refresh.emit()
 
 	if player1_pos == player2_pos:
@@ -179,7 +180,7 @@ func make_move(player_id, pos, piece_data : String, lied):
 			if player1_pos == black_pos :
 				while(player2_pos == player1_pos):
 					player2_pos = chess_positions[randi() % 64]
-				rpc("sync_game_state", current_turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last, player1_piece, player2_piece, player1_last_piece, player2_last_piece)
+				rpc("sync_game_state", current_turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last, player1_piece, player2_piece, player1_last_piece, player2_last_piece, pieces_available)
 				refresh.emit()
 			else:
 				player2_pos = black_pos
@@ -191,14 +192,14 @@ func make_move(player_id, pos, piece_data : String, lied):
 			if player2_pos == white_pos :
 				while(player2_pos == player1_pos):
 					player1_pos = chess_positions[randi() % 64]
-				rpc("sync_game_state", current_turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last, player1_piece, player2_piece, player1_last_piece, player2_last_piece)
+				rpc("sync_game_state", current_turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last, player1_piece, player2_piece, player1_last_piece, player2_last_piece, pieces_available)
 				refresh.emit()
 			else:
 				player1_pos = white_pos
 			player1_last_piece = player1_piece
 			player1_piece = "king"
 	current_turn = 3 - current_turn	
-	rpc("sync_game_state", current_turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last, player1_piece, player2_piece, player1_last_piece, player2_last_piece)
+	rpc("sync_game_state", current_turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last, player1_piece, player2_piece, player1_last_piece, player2_last_piece, pieces_available)
 
 	finished.emit()
 	refresh.emit()
@@ -245,5 +246,5 @@ func challenge_move(player_id):
 		else:
 			player2_score -= 1
 
-	rpc("sync_game_state", current_turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last, player1_piece, player2_piece, player1_last_piece, player2_last_piece)
+	rpc("sync_game_state", current_turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last, player1_piece, player2_piece, player1_last_piece, player2_last_piece, pieces_available)
 	refresh.emit()
