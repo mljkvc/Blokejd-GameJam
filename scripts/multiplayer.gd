@@ -135,6 +135,7 @@ func sync_game_state(turn, player1_pos, player2_pos, player1_score, player2_scor
 			player1_score += 1
 		elif treasure_pos == player2_pos:
 			player2_score += 1
+		treasure_pos = chess_positions[randi() % 64]
 		sync_game_state(current_turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last, player1_piece, player2_piece, player1_last_piece, player2_last_piece,pieces_available)
 	self.player1_score = player1_score
 	self.player2_score = player2_score
