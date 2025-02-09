@@ -68,7 +68,7 @@ func remove_all_objects_from_the_board() -> void:
 	puff.position = Vector2(-100,-100)
 		
 func _on_piece_moved(new_tile_name: String) -> void:
-	puff.postition = Board.get_node(MultiplayerManager.new_tile_name).global_position
+	puff.position = Board.get_node(new_tile_name).global_position
 	puff.animation.play("puff_animation")
 
 	your_king.your_tile_name = new_tile_name
