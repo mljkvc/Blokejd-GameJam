@@ -145,7 +145,7 @@ func highlight_available_tiles() -> void:
 	var available_tiles_array: Array = []
 	var coord: Vector2 = tile_name_to_matrix_representation(your_king.your_tile_name)
 	if your_piece == "pawn":
-		your_king.your_piece = "pawn"
+		your_king.this_piece = "pawn"
 		if you_are_white:
 			your_king.piece.texture = load("res://sprites/chess_pieces/beli_piun.png")
 			var sign = 1
@@ -160,7 +160,7 @@ func highlight_available_tiles() -> void:
 		
 	
 	if your_piece == "bishop":
-		your_king.your_piece = "bishop"
+		your_king.this_piece = "bishop"
 		if you_are_white:
 			your_king.piece.texture = load("res://sprites/chess_pieces/beli_lovac.png")
 		else:
@@ -174,7 +174,7 @@ func highlight_available_tiles() -> void:
 		available_tiles_array = new_coords.filter(is_valid).map(matrix_representation_to_tile_name)
 			
 	if your_piece == "knight":
-		your_king.your_piece = "knight"
+		your_king.this_piece = "knight"
 		if you_are_white:
 			your_king.piece.texture = load("res://sprites/chess_pieces/beli_konj.png")
 		else:
@@ -192,7 +192,7 @@ func highlight_available_tiles() -> void:
 
 		
 	if your_piece == "rook":
-		your_king.your_piece = "rook"
+		your_king.this_piece = "rook"
 		if you_are_white:
 			your_king.piece.texture = load("res://sprites/chess_pieces/beli_top.png")
 		else:
@@ -206,7 +206,7 @@ func highlight_available_tiles() -> void:
 		available_tiles_array = new_coords.filter(is_valid).map(matrix_representation_to_tile_name)
 	
 	if your_piece == "queen":
-		your_king.your_piece = "queen"
+		your_king.this_piece = "queen"
 		if you_are_white:
 			your_king.piece.texture = load("res://sprites/chess_pieces/bela_kraljica.png")
 		else:
