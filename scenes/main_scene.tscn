@@ -17,6 +17,7 @@
 script = ExtResource("1_8d7f1")
 
 [node name="BlackScore" parent="." instance=ExtResource("2_jyi7t")]
+position = Vector2(392, 152)
 
 [node name="Board" parent="." instance=ExtResource("1_haual")]
 position = Vector2(62, 215)
@@ -38,9 +39,10 @@ scale = Vector2(0.444907, 0.416667)
 texture = ExtResource("6_no4r6")
 
 [node name="Diamond" parent="." instance=ExtResource("7_47j3s")]
-position = Vector2(-79, 5)
+position = Vector2(-113, 20)
 
 [node name="Puff" parent="." instance=ExtResource("8_jjsuw")]
+position = Vector2(-117, 70)
 
 [node name="ChooseAPiece" type="Node2D" parent="."]
 
@@ -51,3 +53,4 @@ position = Vector2(0, 600)
 position = Vector2(0, 600)
 
 [node name="whiteScore" parent="." instance=ExtResource("12_ets4q")]
+position = Vector2(82, 151)
