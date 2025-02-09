@@ -27,5 +27,9 @@ text = "
 icon = ExtResource("3_yarso")
 flat = true
 
+[connection signal="mouse_entered" from="ok" to="." method="_on_ok_mouse_entered"]
+[connection signal="mouse_exited" from="ok" to="." method="_on_ok_mouse_exited"]
 [connection signal="pressed" from="ok" to="." method="_on_ok_pressed"]
+[connection signal="mouse_entered" from="scam" to="." method="_on_scam_mouse_entered"]
+[connection signal="mouse_exited" from="scam" to="." method="_on_scam_mouse_exited"]
 [connection signal="pressed" from="scam" to="." method="_on_scam_pressed"]
