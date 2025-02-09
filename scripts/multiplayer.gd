@@ -79,13 +79,15 @@ func sync_game_state(new_board, turn, player1_pos, player2_pos, player1_score, p
 	self.player2_eaten_in_last = player2_eaten_in_last
 
 @rpc("any_peer")
-func make_move(player_id, x, y, piece_data, lied):
+func make_move(player_id, x : int, y : int, piece_data, lied):
 	if multiplayer.get_remote_sender_id() != player_id:
 		return
 
 	turn_count += 1
 	var prev_pos = player1_pos if player_id == 1 else player2_pos
 	var pos = Vector2(x, y)
+	
+	print(pos[0] + " " + pos[1])
 
 	if player_id == 1:
 		board[player1_pos[0]][player1_pos[1]] = 0
