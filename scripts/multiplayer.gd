@@ -173,7 +173,7 @@ func make_move(player_id, pos, piece_data : String, lied):
 	refresh.emit()
 
 	if player1_pos == player2_pos:
-		if player_id == 1:
+		if player_id < 5:
 			player1_score += 1
 			player2_score -= 1
 			if player1_pos == black_pos :
