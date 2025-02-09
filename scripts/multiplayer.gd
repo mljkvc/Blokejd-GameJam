@@ -85,12 +85,12 @@ func sync_game_state(new_board, turn, player1_pos, player2_pos, player1_score, p
 @rpc("any_peer")
 func make_move(player_id, x : int, y : int, piece_data : String, lied):
 	turn_count += 1
-	var prev_pos = player1_pos if player_id != 0 else player2_pos
+	var prev_pos = player1_pos if player_id != 1 else player2_pos
 	var pos = Vector2(x, y)
 	
 	print(str(pos[0]) + " " + str(pos[1]))
 
-	if player_id != 0:
+	if player_id != 1:
 		board[player1_pos[1]][player1_pos[0]] = 0
 		player1_prev_pos = prev_pos
 		player1_pos = pos
@@ -108,7 +108,7 @@ func make_move(player_id, x : int, y : int, piece_data : String, lied):
 	var multiplier = 1
 	# Kin  pawn  Knight  Bishop  Rook Queen
 	# 1     2      3       4       5      6
-	if player_id != 0:
+	if player_id != 1:
 		multiplier *= -1
 	if piece_data.begins_with("q"):
 		board[y][x] = 6 * multiplier
@@ -124,14 +124,14 @@ func make_move(player_id, x : int, y : int, piece_data : String, lied):
 		board[y][x] = 1 * multiplier
 
 	if pos == treasure_pos:
-		if player_id != 0:
+		if player_id != 1:
 			player1_score += 1
 		else:
 			player2_score += 1
 		treasure_pos = Vector2(randi() % 8, randi() % 8)
 
 	if player1_pos == player2_pos:
-		if player_id != 0:
+		if player_id != 1:
 			player1_score += 1
 			player2_score -= 1
 			player2_pos = Vector2(7, 4)
@@ -170,7 +170,7 @@ func challenge_move(player_id):
 			player2_score -= 1
 			player2_lied = false
 	else:
-		if player_id != 0:
+		if player_id != 1:
 			player1_score -= 1
 		else:
 			player2_score -= 1
