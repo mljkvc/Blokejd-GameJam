@@ -25,7 +25,6 @@ var diamond_tile: String = "b_5"
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	call_out_opponent_node.hide()
-	MultiplayerManager.connect("move_finished", Callable(self, "_on_move_finished"))
 	MultiplayerManager.connect("refresh", Callable(self, "_on_refresh"))
 	diamond.position = Board.get_node(diamond_tile).global_position
 	diamond.animation.play("diamond_animation")
@@ -73,9 +72,10 @@ func remove_all_objects_from_the_board() -> void:
 		
 func _on_piece_moved(new_tile_name: String) -> void:
 	puff.position = Board.get_node(your_king.your_tile_name).global_position		
+	puff.animation.play("puff_animation")
+
 	your_king.your_tile_name = new_tile_name
 	var new_tile = Board.get_node(new_tile_name)
-	puff.animation.play("puff_animation")
 	
 	await get_tree().create_timer(0.6).timeout
 	
@@ -90,8 +90,7 @@ func _on_piece_moved(new_tile_name: String) -> void:
 	MultiplayerManager.make_move(multiplayer.get_unique_id(), your_king.your_tile_name, your_king.this_piece, false)
 	
 	unhighlight_all_squares()
-	
-	
+
 func position_all_objects_on_the_board() -> void:
 	
 	white_king.position = Board.get_node(MultiplayerManager.player1_pos).global_position
@@ -134,6 +133,18 @@ func show_pieces_choice() -> void:
 
 func _on_opponent_made_a_move() -> void:
 	#animiraj protivnicku figuru -> puf, nova figura, pomeraj, jedenje(mozda) i adjust score
+	puff.position = Board.get_node(enemy_king.your_tile_name).global_position
+	puff.animation.play("puff_animation")
+	await get_tree().create_timer(0.6).timeout
+	
+	if you_are_white:
+		enemy_king.update_piece("black")
+	else:
+		enemy_king.update_piece("white")
+		
+	await get_tree().create_timer(0.15).timeout
+	_on_refresh()
+
 	call_out_opponent_node.show()
 	
 func _on_ok_button_pressed() -> void:
