@@ -168,12 +168,12 @@ func make_move(player_id, pos, piece_data : String, lied):
 func challenge_move(player_id):
 	print(player_id)
 	var opponent_id = 0
-	if player_id == 1:
-		opponent_id = 2
-	else:
+	if player_id > 1 :
 		opponent_id = 1
+	else:
+		opponent_id = 2
 	
-	player_id = 1 if player_id == 1 else 2
+	player_id = 1 if opponent_id == 2 else 1
 
 	var opponent_lied = player1_lied if opponent_id == 1 else player2_lied
 	print(opponent_lied)
