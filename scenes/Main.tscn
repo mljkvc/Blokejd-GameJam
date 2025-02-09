@@ -12,5 +12,3 @@ script = ExtResource("1_56lyp")
 [node name="MainScene" parent="." instance=ExtResource("3_h1cgr")]
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-
-[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]
