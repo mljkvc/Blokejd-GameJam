@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://deydnuyehn113" path="res://scenes/call_out_opponent.tscn" id="5_qfv4n"]
 [ext_resource type="Texture2D" uid="uid://u6fhb8gu23s3" path="res://sprites/game_scene/background.png" id="6_no4r6"]
 [ext_resource type="PackedScene" uid="uid://cmsok1lo6sqj8" path="res://scenes/diamond.tscn" id="7_47j3s"]
-[ext_resource type="PackedScene" uid="uid://lroudw2xpr0s" path="res://scenes/puff.tscn" id="8_jjsuw"]
+[ext_resource type="PackedScene" path="res://scenes/puff.tscn" id="8_jjsuw"]
 [ext_resource type="PackedScene" uid="uid://cp1fg5pl0v81i" path="res://scenes/black.tscn" id="8_uso8q"]
 [ext_resource type="PackedScene" uid="uid://cu4jpkjs5xjn4" path="res://scenes/choose_a_piece_black.tscn" id="9_ljy80"]
 

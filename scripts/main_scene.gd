@@ -25,6 +25,7 @@ var diamond_tile: String = "b_5"
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	call_out_opponent_node.hide()
+	MultiplayerManager.connect("move_finished", Callable(self, "_on_move_finished"))
 	MultiplayerManager.connect("refresh", Callable(self, "_on_refresh"))
 	diamond.position = Board.get_node(diamond_tile).global_position
 	diamond.animation.play("diamond_animation")
@@ -36,6 +37,9 @@ func _ready() -> void:
 func _on_refresh() -> void:
 	remove_all_objects_from_the_board()
 	position_all_objects_on_the_board()
+
+func _on_move_finished() -> void:
+	call_out_opponent_node.show()
 	
 func assign_white_pieces() -> void:
 	choose_a_piece_node.remove_child(black_pieces)
@@ -85,7 +89,7 @@ func _on_piece_moved(new_tile_name: String) -> void:
 	MultiplayerManager.make_move(multiplayer.get_unique_id(), your_king.your_tile_name, your_king.this_piece, false)
 	
 	unhighlight_all_squares()
-
+	
 	
 func position_all_objects_on_the_board() -> void:
 	
