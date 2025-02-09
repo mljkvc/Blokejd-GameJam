@@ -87,7 +87,7 @@ func make_move(player_id, x : int, y : int, piece_data, lied):
 	
 	print(str(pos[0]) + " " + str(pos[1]))
 
-	if player_id == 1:
+	if player_id != 1:
 		board[player1_pos[0]][player1_pos[1]] = 0
 		player1_prev_pos = prev_pos
 		player1_pos = pos
