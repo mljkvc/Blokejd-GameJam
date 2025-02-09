@@ -157,7 +157,9 @@ func _on_opponent_made_a_move() -> void:
 	_on_refresh()
 	
 	your_pieces.hide()
+	choose_a_piece_node.hide()
 	call_out_opponent_node.show()
+	
 	
 	
 func _on_ok_button_pressed() -> void:
