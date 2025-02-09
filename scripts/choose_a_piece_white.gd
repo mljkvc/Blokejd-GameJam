@@ -10,11 +10,7 @@ signal piece_chosen(piece_name: String)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	underline_1.hide()
-	underline_2.hide()
-	underline_3.hide()
-	underline_4.hide()
-	underline_5.hide()
+	remove_underline()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -52,7 +48,7 @@ func start_roulette_animation() -> void:
 	await get_tree().create_timer(0.2).timeout
 	underline_5.hide()
 	
-func underline_this_piece(piece_name: String):
+func underline_this_piece_animation(piece_name: String):
 	start_roulette_animation()
 	if piece_name == "pawn":
 		underline_1.show()
@@ -95,7 +91,26 @@ func underline_this_piece(piece_name: String):
 		underline_4.hide()
 		underline_5.show()
 		
+func underline_this_piece(piece_name: String):
+	underline_this_piece_animation(piece_name)
+	if piece_name == "pawn":
+		underline_1.show()
+	if piece_name == "bishop":
+		underline_2.show()
+	if piece_name == "knight":
+		underline_3.show()
+	if piece_name == "rook":
+		underline_4.show()
+	if piece_name == "queen":
+		underline_5.show()
 
+func remove_underline() -> void:
+	underline_1.hide()
+	underline_2.hide()
+	underline_3.hide()
+	underline_4.hide()
+	underline_5.hide()
+		
 func _on_pawn_pressed() -> void:
 	emit_signal("piece_chosen", "pawn")
 
@@ -105,10 +120,8 @@ func _on_bishop_pressed() -> void:
 func _on_knight_pressed() -> void:
 	emit_signal("piece_chosen", "knight")
 	
-
 func _on_rook_pressed() -> void:
 	emit_signal("piece_chosen", "rook")
-
 
 func _on_queen_pressed() -> void:
 	emit_signal("piece_chosen", "queen")
