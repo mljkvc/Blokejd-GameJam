@@ -100,9 +100,9 @@ func _on_piece_moved(new_tile_name: String) -> void:
 	your_king.position = new_tile.global_position
 	
 	if underlined_piece_that_was_pulled_out_of_the_box == your_king.this_piece:
-		MultiplayerManager.make_move(multiplayer.get_unique_id(), your_king.your_tile_name, your_king.this_piece, true)
-	else:
 		MultiplayerManager.make_move(multiplayer.get_unique_id(), your_king.your_tile_name, your_king.this_piece, false)
+	else:
+		MultiplayerManager.make_move(multiplayer.get_unique_id(), your_king.your_tile_name, your_king.this_piece, true)
 
 	unhighlight_all_squares()
 	your_pieces.remove_underline()
