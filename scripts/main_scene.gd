@@ -261,7 +261,7 @@ func tile_name_to_matrix_representation(tile_name: String) -> Vector2:
 	
 	var column_index = column_letter.unicode_at(0) - 'a'.unicode_at(0)
 	
-	return Vector2(column_index, row_number)
+	return Vector2(row_number, column_index)
 
 func matrix_representation_to_tile_name(matrix_representation: Vector2) -> String:
 	var column_letter = char('a'.unicode_at(0) + int(matrix_representation.y))
