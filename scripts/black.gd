@@ -15,3 +15,31 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+func update_piece(color: String) -> void:
+	if color == "white":
+		if this_piece == "king":
+			self.piece.texture = load("res://sprites/chess_pieces/beli_kralj.png")
+		if this_piece == "pawn":
+			self.piece.texture = load("res://sprites/chess_pieces/beli_piun.png")
+		if this_piece == "bishop":
+			self.piece.texture = load("res://sprites/chess_pieces/beli_lovac.png")
+		if this_piece == "knight":
+			self.piece.texture = load("res://sprites/chess_pieces/beli_konj.png")
+		if this_piece == "rook":
+			self.piece.texture = load("res://sprites/chess_pieces/beli_top.png")
+		if this_piece == "queen":
+			self.piece.texture = load("res://sprites/chess_pieces/bela_kraljica.png")
+	else:
+		if this_piece == "king":
+			self.piece.texture = load("res://sprites/chess_pieces/crni_kralj.png")
+		if this_piece == "pawn":
+			self.piece.texture = load("res://sprites/chess_pieces/crni_piun.png")
+		if this_piece == "bishop":
+			self.piece.texture = load("res://sprites/chess_pieces/crni_lovac.png")
+		if this_piece == "knight":
+			self.piece.texture = load("res://sprites/chess_pieces/crni_konj.png")
+		if this_piece == "rook":
+			self.piece.texture = load("res://sprites/chess_pieces/crni_top.png")
+		if this_piece == "queen":
+			self.piece.texture = load("res://sprites/chess_pieces/crna_kraljica.png")
