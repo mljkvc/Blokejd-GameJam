@@ -67,7 +67,7 @@ func _on_piece_moved(new_tile_name: String) -> void:
 		
 	#func make_move(player_id, x, y, piece_data, lied):
 	print("My peer ID:", multiplayer.get_unique_id())
-	MultiplayerManager.make_move(multiplayer.get_unique_id(), tile_name_to_matrix_representation(your_current_tile).x,  tile_name_to_matrix_representation(your_current_tile).y, "q", false)
+	MultiplayerManager.make_move(multiplayer.get_unique_id(), your_current_tile, "q", false)
 	remove_all_objects_from_the_board()
 	position_all_objects_on_the_board()
 	print(MultiplayerManager.board)
