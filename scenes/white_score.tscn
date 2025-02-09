@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://kgqc1qw6h8im"]
 
-[ext_resource type="Script" path="res://scripts/black_score.gd" id="1_n61tg"]
+[ext_resource type="Script" path="res://scripts/white_score.gd" id="1_hvijd"]
 [ext_resource type="Texture2D" uid="uid://c6se4ihe6tm20" path="res://sprites/score/white_score_0.png" id="2_dtyrp"]
 
 [node name="whiteScore" type="Node2D"]
-script = ExtResource("1_n61tg")
+script = ExtResource("1_hvijd")
 
 [node name="score_sprite" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
