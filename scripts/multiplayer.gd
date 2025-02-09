@@ -49,8 +49,7 @@ func start_server(host_ip: String):
 func _on_client_connected(id):
 	print("Player joined with ID: ", id)
 	rpc_id(id, "sync_game_state", board, current_turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last)
-	emit_signal("game_ready")
-	
+	emit_signal("game_ready")	
 
 ##-----------------------------CLIENT-JOINING----------------------------------##
 func join_server(server_ip: String, port: int):
@@ -64,6 +63,7 @@ func join_server(server_ip: String, port: int):
 ##---------------------------- GAME LOGIC ------------------------------##
 @rpc("authority")
 func sync_game_state(new_board, turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last):
+	print("Sync game state entry")
 	board = new_board
 	current_turn = turn
 	self.player1_pos = player1_pos
