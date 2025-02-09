@@ -92,7 +92,7 @@ func underline_this_piece_animation(piece_name: String):
 		underline_5.show()
 		
 func underline_this_piece(piece_name: String):
-	#underline_this_piece_animation(piece_name)
+	underline_this_piece_animation(piece_name)
 	if piece_name == "pawn":
 		underline_1.show()
 	if piece_name == "bishop":
@@ -120,8 +120,10 @@ func _on_bishop_pressed() -> void:
 func _on_knight_pressed() -> void:
 	emit_signal("piece_chosen", "knight")
 	
+
 func _on_rook_pressed() -> void:
 	emit_signal("piece_chosen", "rook")
+
 
 func _on_queen_pressed() -> void:
 	emit_signal("piece_chosen", "queen")

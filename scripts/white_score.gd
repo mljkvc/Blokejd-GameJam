@@ -8,7 +8,7 @@ func set_score(score: int) -> void:
 		var score_texture = load(score_path)  # Učitaj teksturu iz fajla
 		score_sprite.set_texture(score_texture)  # Postavi učitanu teksturu
 	elif score < 15:
-		var score_path = "res://sprites/score/score_" + str(score) + ".png"
+		var score_path = "res://sprites/score/white_score_" + str(score) + ".png"
 		var score_texture = load(score_path)  # Učitaj teksturu iz fajla
 		score_sprite.set_texture(score_texture)  # Postavi učitanu teksturu
 	else:
