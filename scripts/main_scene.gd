@@ -68,16 +68,18 @@ func remove_all_objects_from_the_board() -> void:
 	puff.position = Vector2(-100,-100)
 		
 func _on_piece_moved(new_tile_name: String) -> void:
-		
+	puff.position = Board.get_node(your_king.your_tile_name).global_position		
 	your_king.your_tile_name = new_tile_name
 	var new_tile = Board.get_node(new_tile_name)
-	puff.position = new_tile.global_position
 	puff.animation.play("puff_animation")
 	
 	await get_tree().create_timer(0.6).timeout
 	
-	your_king.update_piece()
-	await get_tree().create_timer(0.2).timeout
+	if you_are_white:
+		your_king.update_piece("white")
+	else:
+		your_king.update_piece("black")
+	await get_tree().create_timer(0.15).timeout
 	
 	your_king.position = new_tile.global_position
 	MultiplayerManager.make_move(multiplayer.get_unique_id(), your_king.your_tile_name, your_king.this_piece, false)
