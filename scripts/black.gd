@@ -3,6 +3,7 @@ class_name Black extends Node2D
 var your_tile_name = "d_1"
 var your_position: Vector2 = Vector2(7,4)
 var your_color: int = -1 #-1 za crne 1 za bele (crnci < belci jer rasizam)[SALA MALA]
+var this_piece = "king"
 
 @onready var piece: Sprite2D = $piece
 

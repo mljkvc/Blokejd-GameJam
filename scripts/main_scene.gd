@@ -5,10 +5,14 @@ class_name Main_scene extends Node2D
 @onready var black_pieces = $ChooseAPiece/ChooseAPieceBlack
 var your_pieces = null
 
+@onready var white_king = $White
+@onready var black_king = $Black
+
 @onready var call_out_opponent_node = $CallOutOpponent
 @onready var Board = $Board
-@onready var your_king = $White
-@onready var enemy_king = $Black
+
+var your_king = null
+var enemy_king = null
 @onready var diamond = $Diamond
 
 var you_are_white: bool = false
@@ -22,9 +26,7 @@ var diamond_tile: String = "b_5"
 func _ready() -> void:
 	diamond.position = Board.get_node(diamond_tile).global_position
 	diamond.animation.play("diamond_animation")
-	enemy_king.position = Board.get_node(enemy_current_tile).global_position
-	your_king.position = Board.get_node(your_current_tile).global_position
-	
+
 	for tile in Board.get_children():
 		if tile is Tile:
 			tile.connect("piece_moved", Callable(self, "_on_piece_moved"))
@@ -32,18 +34,25 @@ func _ready() -> void:
 func assign_white_pieces() -> void:
 	choose_a_piece_node.remove_child(black_pieces)
 	your_pieces = white_pieces
-	your_king = $White
+	your_king = white_king
+	enemy_king = black_king
 	your_current_tile = "d_1" 
+	enemy_current_tile = "e_8"
 	show_pieces_choice()
-
+	enemy_king.position = Board.get_node(enemy_current_tile).global_position
+	your_king.position = Board.get_node(your_current_tile).global_position
+	
 func assign_black_pieces() -> void:
 	choose_a_piece_node.remove_child(white_pieces)
 	your_pieces = black_pieces
-	your_king = $Black
+	your_king = black_king
+	enemy_king = white_king
 	your_current_tile = "e_8" 
+	enemy_current_tile = "d_1"
 	show_pieces_choice()
-	print("crno")
-
+	enemy_king.position = Board.get_node(enemy_current_tile).global_position
+	your_king.position = Board.get_node(your_current_tile).global_position
+	
 func remove_all_objects_from_the_board() -> void:
 	$White.position = Vector2(-100,-100)
 	$Black.position = Vector2(-100,-100)
@@ -68,11 +77,52 @@ func _on_piece_moved(new_tile_name: String) -> void:
 func position_all_objects_on_the_board() -> void:
 	
 	var diamond_tile_name = null
+	var white_king_tile_name = null
+	var black_king_tile_name = null
 	for i in range(8):
 		for j in range (8):
 			if MultiplayerManager.board[i][j] == 7:
 				diamond_tile_name = matrix_representation_to_tile_name(Vector2(i,j))
+			if MultiplayerManager.board[i][j] == -1:
+				black_king.this_piece = "king"
+				black_king_tile_name = matrix_representation_to_tile_name(Vector2(i,j))
+			if MultiplayerManager.board[i][j] == -2:
+				black_king.this_piece = "pawn"
+				black_king_tile_name = matrix_representation_to_tile_name(Vector2(i,j))
+			if MultiplayerManager.board[i][j] == -3:
+				black_king.this_piece = "knight"
+				black_king_tile_name = matrix_representation_to_tile_name(Vector2(i,j))
+			if MultiplayerManager.board[i][j] == -4:
+				black_king.this_piece = "bishop"
+				black_king_tile_name = matrix_representation_to_tile_name(Vector2(i,j))
+			if MultiplayerManager.board[i][j] == -5:
+				black_king.this_piece = "rook"
+				black_king_tile_name = matrix_representation_to_tile_name(Vector2(i,j))
+			if MultiplayerManager.board[i][j] == -6:
+				black_king.this_piece = "queen"
+				black_king_tile_name = matrix_representation_to_tile_name(Vector2(i,j))
+			if MultiplayerManager.board[i][j] == 1:
+				white_king.this_piece = "king"
+				white_king_tile_name = matrix_representation_to_tile_name(Vector2(i,j))
+			if MultiplayerManager.board[i][j] == 2:
+				white_king.this_piece = "pawn"
+				white_king_tile_name = matrix_representation_to_tile_name(Vector2(i,j))
+			if MultiplayerManager.board[i][j] == 3:
+				white_king.this_piece = "knight"
+				white_king_tile_name = matrix_representation_to_tile_name(Vector2(i,j))
+			if MultiplayerManager.board[i][j] == 4:
+				white_king.this_piece = "bishop"
+				white_king_tile_name = matrix_representation_to_tile_name(Vector2(i,j))
+			if MultiplayerManager.board[i][j] == 5:
+				white_king.this_piece = "rook"
+				white_king_tile_name = matrix_representation_to_tile_name(Vector2(i,j))
+			if MultiplayerManager.board[i][j] == 6:
+				white_king.this_piece = "queen"
+				white_king_tile_name = matrix_representation_to_tile_name(Vector2(i,j))
 	
+	white_king.position = Board.get_node(white_king_tile_name).global_position
+	black_king.position = Board.get_node(black_king_tile_name).global_position
+				
 	diamond.position = Board.get_node(diamond_tile_name).global_position
 
 
@@ -122,10 +172,11 @@ func highlight_available_tiles() -> void:
 	if your_piece == "pawn":
 		if you_are_white:
 			your_king.piece.texture = load("res://sprites/chess_pieces/beli_piun.png")
+			var sign = 1
 		else:
 			your_king.piece.texture = load("res://sprites/chess_pieces/crni_piun.png")
+			var sign = -1
 		var new_coords = []
-		var sign = 1 if your_king.your_current_piece > 0 else -1 #ovo isto da se rasporedi po ifovima gore
 		new_coords.append(coord + Vector2(0,your_king.your_current_piece))
 		new_coords.append(coord + Vector2(1,your_king.your_current_piece))
 		new_coords.append(coord + Vector2(-1,your_king.your_current_piece))
