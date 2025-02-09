@@ -58,8 +58,7 @@ func assign_white_pieces() -> void:
 	enemy_king.position = Board.get_node(enemy_current_tile).global_position
 	your_king.position = Board.get_node(your_king.your_tile_name).global_position
 	your_pieces.show()
-	var piece : String = MultiplayerManager.piece_roulette();
-	your_pieces.underline_this_piece(piece)
+
 	
 func assign_black_pieces() -> void:
 	choose_a_piece_node.remove_child(white_pieces)
@@ -72,9 +71,8 @@ func assign_black_pieces() -> void:
 	enemy_king.position = Board.get_node(enemy_current_tile).global_position
 	your_king.position = Board.get_node(your_king.your_tile_name).global_position
 	your_pieces.show()
-	var piece : String = MultiplayerManager.piece_roulette();
-	your_pieces.underline_this_piece(piece)
-	
+
+
 func remove_all_objects_from_the_board() -> void:
 	$White.position = Vector2(-100,-100)
 	$Black.position = Vector2(-100,-100)
@@ -101,7 +99,7 @@ func _on_piece_moved(new_tile_name: String) -> void:
 	MultiplayerManager.make_move(multiplayer.get_unique_id(), your_king.your_tile_name, your_king.this_piece, false)
 	
 	unhighlight_all_squares()
-	your_pieces.remove_underline()
+	#your_pieces.remove_underline()
 
 func position_all_objects_on_the_board() -> void:
 	
@@ -169,14 +167,19 @@ func _on_opponent_made_a_move() -> void:
 	
 	
 func _on_ok_button_pressed() -> void:
+	var piece : String = MultiplayerManager.piece_roulette();
+	your_pieces.underline_this_piece(piece)
 	call_out_opponent_node.hide()
 	your_pieces.show()
 
 
 func _on_scam_button_pressed() -> void:
+	var piece : String = MultiplayerManager.piece_roulette();
+	your_pieces.underline_this_piece(piece)
 	MultiplayerManager.challenge_move(multiplayer.get_unique_id())
 	call_out_opponent_node.hide()
 	your_pieces.show()
+	
 	
 func _on_piece_chosen(piece_name: String) -> void:
 	if your_piece != "king":
