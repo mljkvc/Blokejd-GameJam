@@ -81,9 +81,10 @@ func highlight_available_tiles() -> void:
 	if your_piece == "pawn":
 		your_king.piece.texture = load("res://sprites/chess_pieces/beli_piun.png")
 		var new_coords = []
-		new_coords.append(coord + Vector2(0,your_king.your_color))
-		new_coords.append(coord + Vector2(1,your_king.your_color))
-		new_coords.append(coord + Vector2(-1,your_king.your_color))
+		var sign = 1 if your_king.your_current_piece > 0 else -1
+		new_coords.append(coord + Vector2(0,your_king.your_current_piece))
+		new_coords.append(coord + Vector2(1,your_king.your_current_piece))
+		new_coords.append(coord + Vector2(-1,your_king.your_current_piece))
 		available_tiles_array = new_coords.filter(is_valid).map(matrix_representation_to_tile_name)
 		
 	

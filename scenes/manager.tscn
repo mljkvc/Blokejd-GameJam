@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cw1p63d3pkp6p"]
 
 [ext_resource type="Script" path="res://scripts/manager.gd" id="1_ehl0j"]
-[ext_resource type="PackedScene" uid="uid://m17xntjxotlh" path="res://scenes/main_scene.tscn" id="2_efgj4"]
+[ext_resource type="PackedScene" uid="uid://cvw3x2oh5sh21" path="res://scenes/main_scene.tscn" id="2_efgj4"]
 
 [node name="Manager" type="Node2D"]
 script = ExtResource("1_ehl0j")
