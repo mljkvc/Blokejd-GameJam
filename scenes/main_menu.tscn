@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cixw1s04b1llt"]
+[gd_scene load_steps=5 format=3 uid="uid://cixw1s04b1llt"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_8s4bi"]
 [ext_resource type="Texture2D" uid="uid://wbd8ja3ena30" path="res://sprites/game_scene/create_game_button.png" id="2_isdqg"]
 [ext_resource type="Texture2D" uid="uid://d2bmuyggdbd5n" path="res://sprites/game_scene/join_game_button.png" id="3_7p6gr"]
+[ext_resource type="Texture2D" uid="uid://b01tukarwl2v4" path="res://sprites/game_scene/pocetna_strana.png" id="4_yyfpc"]
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_8s4bi")
@@ -27,6 +28,12 @@ scale = Vector2(0.4, 0.4)
 focus_mode = 0
 icon = ExtResource("3_7p6gr")
 flat = true
+
+[node name="PocetnaStrana" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(240, 400)
+scale = Vector2(0.444444, 0.416667)
+texture = ExtResource("4_yyfpc")
 
 [connection signal="mouse_entered" from="create_lobby" to="." method="_on_create_lobby_mouse_entered"]
 [connection signal="mouse_exited" from="create_lobby" to="." method="_on_create_lobby_mouse_exited"]
