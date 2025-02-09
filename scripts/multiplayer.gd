@@ -167,18 +167,19 @@ func make_move(player_id, pos, piece_data : String, lied):
 	
 	
 	if pos == treasure_pos:
-		if player_id != 1:
-			player1_score += 1
-		else:
+		if player_id > 1:
 			player2_score += 1
+		else:
+			player1_score += 1
 		treasure_last = treasure_pos
 		treasure_pos = chess_positions[randi() % 64]
-
+		
+	
 	rpc("sync_game_state", current_turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last, player1_piece, player2_piece, player1_last_piece, player2_last_piece,pieces_available)
 	refresh.emit()
 
 	if player1_pos == player2_pos:
-		if player_id < 5:
+		if player_id < 3:
 			player1_score += 1
 			player2_score -= 1
 			if player1_pos == black_pos :
