@@ -20,19 +20,22 @@ func _on_button_pressed() -> void:
 func _on_button_2_pressed() -> void:
 	get_tree().quit()
 
-
 func _on_button_mouse_entered() -> void:
-	$Button.scale.x += 0.2
-	$Button.scale.y += 0.2
+	$Button.scale.x += 0.1
+	$Button.scale.y += 0.1
+	$Button.position.x -= 40
 
 func _on_button_mouse_exited() -> void:
-	$Button.scale.x -= 0.2
-	$Button.scale.y -= 0.2
-	
+	$Button.scale.x -= 0.1
+	$Button.scale.y -= 0.1
+	$Button.position.x += 40
+
 func _on_button_2_mouse_entered() -> void:
-	$Button2.scale.x += 0.2
-	$Button2.scale.y += 0.2
+	$Button2.scale.x += 0.1
+	$Button2.scale.y += 0.1
+	$Button2.position.x -= 40
 
 func _on_button_2_mouse_exited() -> void:
-	$Button2.scale.x -= 0.2
-	$Button2.scale.y -= 0.2
+	$Button2.scale.x -= 0.1
+	$Button2.scale.y -= 0.1
+	$Button2.position.x += 40
