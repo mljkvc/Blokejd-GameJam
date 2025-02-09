@@ -166,11 +166,15 @@ func make_move(player_id, pos, piece_data : String, lied):
 	
 @rpc("any_peer")
 func challenge_move(player_id):
-	if multiplayer.get_remote_sender_id() != player_id:
-		return
+	
+	var opponent_id = 0
+	if player_id == 1:
+		opponent_id = 2
+	else:
+		opponent_id = 1
+		
 
-	var opponent_id = 3 - player_id
-	var opponent_lied = player1_lied if opponent_id != 1 else player2_lied
+	var opponent_lied = player1_lied if opponent_id == 1 else player2_lied
 
 	if opponent_lied:
 		if opponent_id == 1:
