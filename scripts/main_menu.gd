@@ -23,7 +23,7 @@ func _on_join_lobby():
 	emit_signal("join_lobby")
 
 func _on_join_lobby_pressed() -> void:
-	var error = MultiplayerManager.join_server("192.168.1.192", 8080)
+	var error = MultiplayerManager.join_server("192.168.1.172", 8080)
 	print("CLIENT ID : PLS PLS PLS ", multiplayer.get_unique_id())
 	emit_signal("join_lobby")
 	emit_signal("set_your_pieces_to_black")
