@@ -64,13 +64,11 @@ func _on_piece_moved(new_tile_name: String) -> void:
 	var new_tile = Board.get_node(new_tile_name)
 	your_king.position = new_tile.global_position
 	
-		
 	#func make_move(player_id, x, y, piece_data, lied):
 	print("My peer ID:", multiplayer.get_unique_id())
 	MultiplayerManager.make_move(multiplayer.get_unique_id(), your_current_tile, "q", false)
-	remove_all_objects_from_the_board()
-	position_all_objects_on_the_board()
-	print(MultiplayerManager.board)
+	#remove_all_objects_from_the_board()
+	#position_all_objects_on_the_board()
 	
 	unhighlight_all_squares()
 
@@ -79,51 +77,10 @@ func position_all_objects_on_the_board() -> void:
 	var diamond_tile_name = "a_1"
 	var white_king_tile_name = "a_2"
 	var black_king_tile_name = "a_3"
-	for i in range(8):
-		for j in range (8):
-			if MultiplayerManager.board[i][j] == 7:
-				diamond_tile_name = matrix_representation_to_tile_name(Vector2(i,j))
-			if MultiplayerManager.board[i][j] == -1:
-				black_king.this_piece = "king"
-				black_king_tile_name = matrix_representation_to_tile_name(Vector2(i,j))
-			if MultiplayerManager.board[i][j] == -2:
-				black_king.this_piece = "pawn"
-				black_king_tile_name = matrix_representation_to_tile_name(Vector2(i,j))
-			if MultiplayerManager.board[i][j] == -3:
-				black_king.this_piece = "knight"
-				black_king_tile_name = matrix_representation_to_tile_name(Vector2(i,j))
-			if MultiplayerManager.board[i][j] == -4:
-				black_king.this_piece = "bishop"
-				black_king_tile_name = matrix_representation_to_tile_name(Vector2(i,j))
-			if MultiplayerManager.board[i][j] == -5:
-				black_king.this_piece = "rook"
-				black_king_tile_name = matrix_representation_to_tile_name(Vector2(i,j))
-			if MultiplayerManager.board[i][j] == -6:
-				black_king.this_piece = "queen"
-				black_king_tile_name = matrix_representation_to_tile_name(Vector2(i,j))
-			if MultiplayerManager.board[i][j] == 1:
-				white_king.this_piece = "king"
-				white_king_tile_name = matrix_representation_to_tile_name(Vector2(i,j))
-			if MultiplayerManager.board[i][j] == 2:
-				white_king.this_piece = "pawn"
-				white_king_tile_name = matrix_representation_to_tile_name(Vector2(i,j))
-			if MultiplayerManager.board[i][j] == 3:
-				white_king.this_piece = "knight"
-				white_king_tile_name = matrix_representation_to_tile_name(Vector2(i,j))
-			if MultiplayerManager.board[i][j] == 4:
-				white_king.this_piece = "bishop"
-				white_king_tile_name = matrix_representation_to_tile_name(Vector2(i,j))
-			if MultiplayerManager.board[i][j] == 5:
-				white_king.this_piece = "rook"
-				white_king_tile_name = matrix_representation_to_tile_name(Vector2(i,j))
-			if MultiplayerManager.board[i][j] == 6:
-				white_king.this_piece = "queen"
-				white_king_tile_name = matrix_representation_to_tile_name(Vector2(i,j))
-	
 	white_king.position = Board.get_node(white_king_tile_name).global_position
 	black_king.position = Board.get_node(black_king_tile_name).global_position
-				
 	diamond.position = Board.get_node(diamond_tile_name).global_position
+
 
 
 func unhighlight_all_squares() -> void:
