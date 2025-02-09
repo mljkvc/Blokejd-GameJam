@@ -33,7 +33,6 @@ func _process(delta: float) -> void:
 func _input(event):
 	
 	if event is InputEventMouseButton && event.button_index == MOUSE_BUTTON_LEFT and event.pressed and mouse_is_inside_this_square and tile_is_available_for_movement:
-		print('uso')
 		emit_signal("piece_moved", self.name)
 
 

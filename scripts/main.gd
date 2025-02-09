@@ -11,7 +11,7 @@ func _ready() -> void:
 	main_menu.connect("join_lobby", Callable(self, "_on_join_lobby"))
 	main_menu.connect("set_your_pieces_to_white", Callable(self, "_on_set_your_pieces_to_white"))
 	main_menu.connect("set_your_pieces_to_black", Callable(self, "_on_set_your_pieces_to_black"))
-	play_song("res://doodle_song.mp3")
+	play_song("res://audio/doodle_song.mp3")
 
 func _on_set_your_pieces_to_white() -> void:
 	main_scene.you_are_white = true
@@ -34,7 +34,7 @@ func _on_join_lobby():
 	main_menu.hide()
 	main_scene.show()
 	pause_song()
-	play_song("res://doodle_lobby_song.mp3")
+	play_song("res://audio/doodle_lobby_song.mp3")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

@@ -23,6 +23,7 @@ var enemy_current_tile: String = "e_8"
 var diamond_tile: String = "b_5"
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	call_out_opponent_node.hide()
 	MultiplayerManager.connect("refresh", Callable(self, "_on_refresh"))
 	diamond.position = Board.get_node(diamond_tile).global_position
 	diamond.animation.play("diamond_animation")
@@ -45,6 +46,7 @@ func assign_white_pieces() -> void:
 	show_pieces_choice()
 	enemy_king.position = Board.get_node(enemy_current_tile).global_position
 	your_king.position = Board.get_node(your_king.your_tile_name).global_position
+	your_pieces.show()
 	
 func assign_black_pieces() -> void:
 	choose_a_piece_node.remove_child(white_pieces)
@@ -56,6 +58,7 @@ func assign_black_pieces() -> void:
 	show_pieces_choice()
 	enemy_king.position = Board.get_node(enemy_current_tile).global_position
 	your_king.position = Board.get_node(your_king.your_tile_name).global_position
+	your_pieces.show()
 	
 func remove_all_objects_from_the_board() -> void:
 	$White.position = Vector2(-100,-100)
@@ -63,17 +66,15 @@ func remove_all_objects_from_the_board() -> void:
 	$Diamond.position = Vector2(-100,-100)
 		
 func _on_piece_moved(new_tile_name: String) -> void:
-	print("Tile moved: " + new_tile_name)
+	
 	your_king.your_tile_name = new_tile_name
 	var new_tile = Board.get_node(new_tile_name)
 	your_king.position = new_tile.global_position
-	
-	#func make_move(player_id, x, y, piece_data, lied):
-	print("My peer ID:", multiplayer.get_unique_id())
 	MultiplayerManager.make_move(multiplayer.get_unique_id(), your_king.your_tile_name, your_king.this_piece, false)
 	
 	unhighlight_all_squares()
 
+	
 func position_all_objects_on_the_board() -> void:
 	
 	white_king.position = Board.get_node(MultiplayerManager.player1_pos).global_position
@@ -111,18 +112,25 @@ func unhighlight_all_squares() -> void:
 func show_pieces_choice() -> void:
 	your_pieces.hide()
 	your_pieces.connect("piece_chosen", Callable(self, "_on_piece_chosen"))
-	call_out_opponent_node = $CallOutOpponent
 	call_out_opponent_node.connect("ok_button_pressed", Callable(self, "_on_ok_button_pressed"))
 	call_out_opponent_node.connect("scam_button_pressed", Callable(self, "_on_scam_button_pressed"))
 
+func _on_opponent_made_a_move() -> void:
+	#animiraj protivnicku figuru -> puf, nova figura, pomeraj, jedenje(mozda) i adjust score
+	call_out_opponent_node.show()
+	
 func _on_ok_button_pressed() -> void:
 	print('ok')
 	call_out_opponent_node.hide()
+	#signal da se potvrdi trenutna pozicija
 	your_pieces.show()
 
 
 func _on_scam_button_pressed() -> void:
-	print('scam')
+	#if opponent lied == false:
+	#_on_ok_button_pressed()
+	#else:
+	#vrati se na prethodnu tablu, resetuj pojedene stvari i skor, oduzmi mu 1 poen
 	call_out_opponent_node.hide()
 	your_pieces.show()
 	
