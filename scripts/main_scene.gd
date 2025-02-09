@@ -158,11 +158,17 @@ func _on_opponent_made_a_move() -> void:
 	
 	your_pieces.hide()
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 	choose_a_piece_node.hide()
 	call_out_opponent_node.show()
 	
 	
 	
+=======
+	call_out_opponent_node.show()
+	
+	
+>>>>>>> Stashed changes
 =======
 	call_out_opponent_node.show()
 	
