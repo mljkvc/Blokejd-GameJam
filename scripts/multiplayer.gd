@@ -7,6 +7,8 @@ var player1_eaten_in_last = false
 var player2_eaten_in_last = false
 var player1_score = 0
 var player2_score = 0
+var player1_piece = "king"
+var player2_piece = "king"
 var player1_lied = false
 var player2_lied = false
 var pieces_availible = {}
@@ -94,12 +96,14 @@ func make_move(player_id, pos, piece_data : String, lied):
 	print(pos)
 
 	if player_id == 1:
+		player1_piece = piece_data
 		player1_prev_pos = prev_pos
 		player1_pos = pos
 		player1_lied = lied
 		player1_eaten_in_last = false
 		player2_lied = false
 	else:
+		player2_piece = piece_data
 		player2_prev_pos = prev_pos
 		player2_pos = pos
 		player2_lied = lied
@@ -109,10 +113,6 @@ func make_move(player_id, pos, piece_data : String, lied):
 	rpc("sync_game_state", current_turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last)
 	refresh.emit()
 	
-	var multiplier = 1
-	# Kin  pawn  Knight  Bishop  Rook Queen
-	# 1     2      3       4       5      6
-
 	if pos == treasure_pos:
 		if player_id != 1:
 			player1_score += 1
