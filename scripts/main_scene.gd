@@ -19,7 +19,6 @@ var you_are_white: bool = false
 
 var your_piece: String = "king"
 
-var your_current_tile: String = "d_1" #format a_1 ->(7,0)
 var enemy_current_tile: String = "e_8"
 var diamond_tile: String = "b_5"
 # Called when the node enters the scene tree for the first time.
@@ -41,22 +40,22 @@ func assign_white_pieces() -> void:
 	your_pieces = white_pieces
 	your_king = white_king
 	enemy_king = black_king
-	your_current_tile = "d_1" 
+	your_king.your_tile_name = "d_1" 
 	enemy_current_tile = "e_8"
 	show_pieces_choice()
 	enemy_king.position = Board.get_node(enemy_current_tile).global_position
-	your_king.position = Board.get_node(your_current_tile).global_position
+	your_king.position = Board.get_node(your_king.your_tile_name).global_position
 	
 func assign_black_pieces() -> void:
 	choose_a_piece_node.remove_child(white_pieces)
 	your_pieces = black_pieces
 	your_king = black_king
 	enemy_king = white_king
-	your_current_tile = "e_8" 
+	your_king.your_tile_name = "e_8" 
 	enemy_current_tile = "d_1"
 	show_pieces_choice()
 	enemy_king.position = Board.get_node(enemy_current_tile).global_position
-	your_king.position = Board.get_node(your_current_tile).global_position
+	your_king.position = Board.get_node(your_king.your_tile_name).global_position
 	
 func remove_all_objects_from_the_board() -> void:
 	$White.position = Vector2(-100,-100)
@@ -65,13 +64,13 @@ func remove_all_objects_from_the_board() -> void:
 		
 func _on_piece_moved(new_tile_name: String) -> void:
 	print("Tile moved: " + new_tile_name)
-	your_current_tile = new_tile_name
+	your_king.your_tile_name = new_tile_name
 	var new_tile = Board.get_node(new_tile_name)
 	your_king.position = new_tile.global_position
 	
 	#func make_move(player_id, x, y, piece_data, lied):
 	print("My peer ID:", multiplayer.get_unique_id())
-	MultiplayerManager.make_move(multiplayer.get_unique_id(), your_current_tile, "q", false)
+	MultiplayerManager.make_move(multiplayer.get_unique_id(), your_king.your_tile_name, "q", false)
 	
 	unhighlight_all_squares()
 
@@ -125,7 +124,7 @@ func is_valid(position: Vector2) -> bool:
 
 func highlight_available_tiles() -> void:
 	var available_tiles_array: Array = []
-	var coord: Vector2 = tile_name_to_matrix_representation(your_current_tile)
+	var coord: Vector2 = tile_name_to_matrix_representation(your_king.your_tile_name)
 	if your_piece == "pawn":
 		if you_are_white:
 			your_king.piece.texture = load("res://sprites/chess_pieces/beli_piun.png")
