@@ -86,6 +86,7 @@ func _on_piece_moved(new_tile_name: String) -> void:
 	await get_tree().create_timer(0.15).timeout
 	
 	your_king.position = new_tile.global_position
+	
 	MultiplayerManager.make_move(multiplayer.get_unique_id(), your_king.your_tile_name, your_king.this_piece, false)
 	
 	unhighlight_all_squares()

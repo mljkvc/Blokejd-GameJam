@@ -169,7 +169,7 @@ func challenge_move(player_id):
 	var opponent_lied = player1_lied if opponent_id != 1 else player2_lied
 
 	if opponent_lied:
-		if opponent_id != 1:
+		if opponent_id == 1:
 			if player2_eaten_in_last:
 				player2_score += 1
 				player2_eaten_in_last = false
@@ -190,7 +190,7 @@ func challenge_move(player_id):
 			player2_score -= 1
 			player2_lied = false
 	else:
-		if player_id != 1:
+		if player_id == 1:
 			player1_score -= 1
 		else:
 			player2_score -= 1
