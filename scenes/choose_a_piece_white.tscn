@@ -18,6 +18,7 @@ offset_top = 40.0
 offset_right = 418.0
 offset_bottom = 448.0
 scale = Vector2(0.22, 0.22)
+focus_mode = 0
 icon = ExtResource("2_mlqle")
 flat = true
 
@@ -27,6 +28,7 @@ offset_top = 40.0
 offset_right = 508.0
 offset_bottom = 448.0
 scale = Vector2(0.22, 0.22)
+focus_mode = 0
 icon = ExtResource("3_3qewb")
 flat = true
 
@@ -36,6 +38,7 @@ offset_top = 40.0
 offset_right = 598.0
 offset_bottom = 448.0
 scale = Vector2(0.22, 0.22)
+focus_mode = 0
 icon = ExtResource("4_tr1rc")
 flat = true
 
@@ -45,6 +48,7 @@ offset_top = 40.0
 offset_right = 680.0
 offset_bottom = 448.0
 scale = Vector2(0.22, 0.22)
+focus_mode = 0
 icon = ExtResource("5_2md0c")
 flat = true
 
@@ -54,6 +58,7 @@ offset_top = 40.0
 offset_right = 769.0
 offset_bottom = 449.0
 scale = Vector2(0.22, 0.22)
+focus_mode = 0
 icon = ExtResource("6_tnnxe")
 flat = true
 

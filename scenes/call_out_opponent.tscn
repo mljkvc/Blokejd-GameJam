@@ -13,15 +13,17 @@ offset_top = 37.0
 offset_right = 557.0
 offset_bottom = 361.0
 scale = Vector2(0.42, 0.42)
+focus_mode = 0
 icon = ExtResource("2_0jl8d")
 flat = true
 
 [node name="scam" type="Button" parent="."]
 offset_left = 233.0
-offset_top = 38.0
+offset_top = 37.0
 offset_right = 784.0
-offset_bottom = 362.0
+offset_bottom = 361.0
 scale = Vector2(0.42, 0.42)
+focus_mode = 0
 text = "
 "
 icon = ExtResource("3_yarso")

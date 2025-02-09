@@ -13,6 +13,8 @@ offset_top = 500.0
 offset_right = 877.0
 offset_bottom = 728.0
 scale = Vector2(0.4, 0.4)
+focus_mode = 0
+shortcut_feedback = false
 icon = ExtResource("2_isdqg")
 flat = true
 
@@ -22,6 +24,7 @@ offset_top = 600.0
 offset_right = 877.0
 offset_bottom = 828.0
 scale = Vector2(0.4, 0.4)
+focus_mode = 0
 icon = ExtResource("3_7p6gr")
 flat = true
 
