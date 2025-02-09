@@ -153,7 +153,7 @@ func _on_opponent_made_a_move() -> void:
 		call_out_opponent_node.show()
 		enemy_king.update_piece("white")
 		
-	await get_tree().create_timer(0.15).timeout
+	#await get_tree().create_timer(0.15).timeout
 	_on_refresh()
 	
 
@@ -171,6 +171,7 @@ func _on_scam_button_pressed() -> void:
 	#_on_ok_button_pressed()
 	#else:
 	#vrati se na prethodnu tablu, resetuj pojedene stvari i skor, oduzmi mu 1 poen
+	MultiplayerManager.challenge_move(multiplayer.get_unique_id())
 	call_out_opponent_node.hide()
 	your_pieces.show()
 	
