@@ -81,14 +81,12 @@ func sync_game_state(new_board, turn, player1_pos, player2_pos, player1_score, p
 @rpc("any_peer")
 func make_move(player_id, x : int, y : int, piece_data, lied):
 	print("Player_id je kurac", player_id)
-	if multiplayer.get_remote_sender_id() != player_id:
-		return
 
 	turn_count += 1
 	var prev_pos = player1_pos if player_id == 1 else player2_pos
 	var pos = Vector2(x, y)
 	
-	print(pos[0] + " " + pos[1])
+	print(str(pos[0]) + " " + str(pos[1]))
 
 	if player_id == 1:
 		board[player1_pos[0]][player1_pos[1]] = 0
