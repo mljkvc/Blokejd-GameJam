@@ -30,6 +30,7 @@ func _ready() -> void:
 	call_out_opponent_node.hide()
 	main_menu.connect("set_your_pieces_to_white", Callable(self, "_on_started_white"))
 	MultiplayerManager.connect("refresh", Callable(self, "_on_refresh"))
+	MultiplayerManager.connect("opponent_made_a_move", Callable(self, "_on_opponent_made_a_move"))
 	diamond.position = Board.get_node(diamond_tile).global_position
 	diamond.animation.play("diamond_animation")
 	
