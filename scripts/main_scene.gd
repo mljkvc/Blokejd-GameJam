@@ -156,8 +156,9 @@ func _on_opponent_made_a_move() -> void:
 	#await get_tree().create_timer(0.15).timeout
 	_on_refresh()
 	
-
+	your_pieces.hide()
 	call_out_opponent_node.show()
+	
 	
 func _on_ok_button_pressed() -> void:
 	print('ok')

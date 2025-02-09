@@ -19,7 +19,7 @@ var player2_last_piece = player2_piece
 var player1_lied = false
 var player2_lied = false
 
-var pieces_availible = {}
+var pieces_available = {}
 
 var chess_positions = [
 	"a_1", "a_2", "a_3", "a_4", "a_5", "a_6", "a_7", "a_8",
@@ -52,9 +52,39 @@ func _ready():
 	reload_pieces()
 
 func reload_pieces():
-	pieces_availible.clear()
-	pieces_availible = {"q": 1, "k": 2, "r": 2, "b": 2, "p": 8}
+	pieces_available.clear()
+	pieces_available = {"queen": 1, "knight": 2, "rook": 2, "bishop": 2, "pawn": 8}
 
+var probabilities = [
+	{"piece": "queen", "prob": 0.066},
+	{"piece": "knight", "prob": 0.13},
+	{"piece": "rook", "prob": 0.13},
+	{"piece": "bishop", "prob": 0.13},
+	{"piece": "pawn", "prob": 0.53}
+]
+
+@rpc("any_peer")
+func piece_roulette():
+	while true:
+		var rand_value = randf()
+		var cumulative_prob = 0.0
+
+		for entry in probabilities:
+			cumulative_prob += entry["prob"]
+			if rand_value <= cumulative_prob:
+				var selected_piece = entry["piece"]
+				if pieces_available[selected_piece] > 0:
+					pieces_available[selected_piece] -= 1
+					if is_empty_dict():
+						reload_pieces()
+					return selected_piece
+
+
+func is_empty_dict():
+	for value in pieces_available.values():
+		if value > 0:
+			return false
+	return true
 
 ## ----------------SERVER HOSTING---------------- ##
 func start_server(host_ip: String):
