@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=3 uid="uid://cmsok1lo6sqj8"]
+
+[ext_resource type="Script" path="res://scripts/diamond.gd" id="1_lyng5"]
+[ext_resource type="Texture2D" uid="uid://c8k7esup8o3e2" path="res://sprites/animation/dijamant/diamond_1.png" id="2_ko4ml"]
+[ext_resource type="Texture2D" uid="uid://bolylwq0835um" path="res://sprites/animation/dijamant/diamond_2.png" id="2_thbf0"]
+[ext_resource type="Texture2D" uid="uid://cg5eap0t78t86" path="res://sprites/animation/dijamant/diamond_3.png" id="3_2foi5"]
+[ext_resource type="Texture2D" uid="uid://dyi0v8sw3veny" path="res://sprites/animation/dijamant/diamond_4.png" id="4_yaare"]
+[ext_resource type="Texture2D" uid="uid://cxthojumgpequ" path="res://sprites/animation/dijamant/diamond_5.png" id="5_rtg06"]
+[ext_resource type="Texture2D" uid="uid://cyb8uw2dqo522" path="res://sprites/animation/dijamant/diamond_6.png" id="6_co2t1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4s8nf"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ko4ml")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_thbf0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_2foi5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_yaare")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_rtg06")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_co2t1")
+}],
+"loop": true,
+"name": &"diamond_animation",
+"speed": 7.0
+}]
+
+[node name="Diamond" type="Node2D"]
+script = ExtResource("1_lyng5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(4, -6)
+scale = Vector2(0.12, 0.12)
+sprite_frames = SubResource("SpriteFrames_4s8nf")
+animation = &"diamond_animation"

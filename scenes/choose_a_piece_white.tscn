@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3 uid="uid://drfkvmmmwnkal"]
+
+[ext_resource type="Script" path="res://scripts/choose_a_piece_white.gd" id="1_qp08r"]
+[ext_resource type="Texture2D" uid="uid://bpwnqhee23cxh" path="res://sprites/chess_pieces/beli_piun.png" id="2_mlqle"]
+[ext_resource type="Texture2D" uid="uid://ckr3p71q2pwas" path="res://sprites/chess_pieces/beli_lovac.png" id="3_3qewb"]
+[ext_resource type="Texture2D" uid="uid://bjqnj283oc0h2" path="res://sprites/chess_pieces/beli_konj.png" id="4_tr1rc"]
+[ext_resource type="Texture2D" uid="uid://c71mnblam1gvf" path="res://sprites/chess_pieces/beli_top.png" id="5_2md0c"]
+[ext_resource type="Texture2D" uid="uid://bv4anbglj81k7" path="res://sprites/chess_pieces/bela_kraljica.png" id="6_tnnxe"]
+
+[node name="ChooseAPieceWhite" type="Node2D"]
+script = ExtResource("1_qp08r")
+
+[node name="pawn" type="Button" parent="."]
+offset_left = 10.0
+offset_top = 40.0
+offset_right = 418.0
+offset_bottom = 448.0
+scale = Vector2(0.22, 0.22)
+icon = ExtResource("2_mlqle")
+flat = true
+
+[node name="bishop" type="Button" parent="."]
+offset_left = 100.0
+offset_top = 40.0
+offset_right = 508.0
+offset_bottom = 448.0
+scale = Vector2(0.22, 0.22)
+icon = ExtResource("3_3qewb")
+flat = true
+
+[node name="knight" type="Button" parent="."]
+offset_left = 190.0
+offset_top = 40.0
+offset_right = 598.0
+offset_bottom = 448.0
+scale = Vector2(0.22, 0.22)
+icon = ExtResource("4_tr1rc")
+flat = true
+
+[node name="rook" type="Button" parent="."]
+offset_left = 270.0
+offset_top = 43.0
+offset_right = 678.0
+offset_bottom = 451.0
+scale = Vector2(0.22, 0.22)
+icon = ExtResource("5_2md0c")
+flat = true
+
+[node name="queen" type="Button" parent="."]
+offset_left = 360.0
+offset_top = 42.0
+offset_right = 768.0
+offset_bottom = 450.0
+scale = Vector2(0.22, 0.22)
+icon = ExtResource("6_tnnxe")
+flat = true
+
+[connection signal="pressed" from="pawn" to="." method="_on_pawn_pressed"]
+[connection signal="pressed" from="bishop" to="." method="_on_bishop_pressed"]
+[connection signal="pressed" from="knight" to="." method="_on_knight_pressed"]
+[connection signal="pressed" from="rook" to="." method="_on_rook_pressed"]
+[connection signal="pressed" from="queen" to="." method="_on_queen_pressed"]

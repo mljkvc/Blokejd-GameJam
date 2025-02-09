@@ -1,4 +1,4 @@
-class_name Choose_a_piece extends Node2D
+class_name Choose_a_piece_white extends Node2D
 
 signal piece_chosen(piece_name: String)
 

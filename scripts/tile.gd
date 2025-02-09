@@ -18,10 +18,10 @@ func unhighlight_this_square() -> void:
 func highlight_this_square_for_movement() -> void:
 	# Postavljamo boju na prozirno zelenu
 	# Ovde je zelena boja sa 50% prozirnosti (alpha = 0.5)
-	square.color = Color(0, 1, 0, 0.3)
+	square.color = Color(0, 1, 0, 0.2)
 	
 func highlight_this_square_for_attack() ->void:
-	square.color = Color(1,0,0,0.3)
+	square.color = Color(1,0,0,0.2)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

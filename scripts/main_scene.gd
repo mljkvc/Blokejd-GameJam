@@ -1,18 +1,34 @@
 class_name Main_scene extends Node2D
 
-@onready var choose_a_piece_node = $ChooseAPiece 
+@onready var choose_a_piece_node = $ChooseAPiece
+@onready var white_pieces = $ChooseAPiece/ChooseAPieceWhite
+@onready var black_pieces = $ChooseAPiece/ChooseAPieceBlack
+var your_pieces = null
+
 @onready var call_out_opponent_node = $CallOutOpponent
 @onready var Board = $Board
-@onready var your_king = $You
+@onready var your_king = $White
+@onready var enemy_king = $Black
+@onready var diamond = $Diamond
 
 var your_piece: String = "king"
 
 var your_current_tile: String = "d_1" #format a_1 ->(7,0)
-
+var enemy_current_tile: String = "e_8"
+var diamond_tile: String = "b_5"
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if false:
+		choose_a_piece_node.remove_child(white_pieces)
+		your_pieces = black_pieces
+	else:
+		choose_a_piece_node.remove_child(black_pieces)
+		your_pieces = white_pieces
+		
 	show_pieces_choice()
-	
+	diamond.position = Board.get_node(diamond_tile).global_position
+	diamond.animation.play("diamond_animation")
+	enemy_king.position = Board.get_node(enemy_current_tile).global_position
 	your_king.position = Board.get_node(your_current_tile).global_position
 	
 	for tile in Board.get_children():
@@ -43,9 +59,9 @@ func unhighlight_all_squares() -> void:
 
 	
 func show_pieces_choice() -> void:
-	choose_a_piece_node.hide()
-	choose_a_piece_node = $ChooseAPiece  # Zameni putanju ako je drugačija
-	choose_a_piece_node.connect("piece_chosen", Callable(self, "_on_piece_chosen"))
+	your_pieces.hide()
+	#choose_a_piece_node = $ChooseAPiece
+	your_pieces.connect("piece_chosen", Callable(self, "_on_piece_chosen"))
 	call_out_opponent_node = $CallOutOpponent
 	call_out_opponent_node.connect("ok_button_pressed", Callable(self, "_on_ok_button_pressed"))
 	call_out_opponent_node.connect("scam_button_pressed", Callable(self, "_on_scam_button_pressed"))
@@ -53,13 +69,13 @@ func show_pieces_choice() -> void:
 func _on_ok_button_pressed() -> void:
 	print('ok')
 	call_out_opponent_node.hide()
-	choose_a_piece_node.show()
+	your_pieces.show()
 
 
 func _on_scam_button_pressed() -> void:
 	print('scam')
 	call_out_opponent_node.hide()
-	choose_a_piece_node.show()
+	your_pieces.show()
 	
 func _on_piece_chosen(piece_name: String) -> void:
 	if your_piece != "king":

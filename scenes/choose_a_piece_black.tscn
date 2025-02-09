@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3 uid="uid://cu4jpkjs5xjn4"]
+
+[ext_resource type="Script" path="res://scripts/choose_a_piece_black.gd" id="1_iduf1"]
+[ext_resource type="Texture2D" uid="uid://ctdfhkcvky6li" path="res://sprites/chess_pieces/crni_piun.png" id="2_g8ye1"]
+[ext_resource type="Texture2D" uid="uid://c82rb1xwkn7wr" path="res://sprites/chess_pieces/crni_lovac.png" id="3_bbcsa"]
+[ext_resource type="Texture2D" uid="uid://cdhw0a2uxmfne" path="res://sprites/chess_pieces/crni_konj.png" id="4_scal5"]
+[ext_resource type="Texture2D" uid="uid://mnx7fj3wk3cg" path="res://sprites/chess_pieces/crni_top.png" id="5_myuif"]
+[ext_resource type="Texture2D" uid="uid://c3jieqixlx1wg" path="res://sprites/chess_pieces/crna_kraljica.png" id="6_j8nif"]
+
+[node name="ChooseAPieceBlack" type="Node2D"]
+script = ExtResource("1_iduf1")
+
+[node name="pawn" type="Button" parent="."]
+offset_left = 10.0
+offset_top = 40.0
+offset_right = 418.0
+offset_bottom = 448.0
+scale = Vector2(0.22, 0.22)
+icon = ExtResource("2_g8ye1")
+flat = true
+
+[node name="bishop" type="Button" parent="."]
+offset_left = 100.0
+offset_top = 40.0
+offset_right = 508.0
+offset_bottom = 448.0
+scale = Vector2(0.22, 0.22)
+icon = ExtResource("3_bbcsa")
+flat = true
+
+[node name="knight" type="Button" parent="."]
+offset_left = 190.0
+offset_top = 40.0
+offset_right = 598.0
+offset_bottom = 448.0
+scale = Vector2(0.22, 0.22)
+icon = ExtResource("4_scal5")
+flat = true
+
+[node name="rook" type="Button" parent="."]
+offset_left = 270.0
+offset_top = 43.0
+offset_right = 678.0
+offset_bottom = 451.0
+scale = Vector2(0.22, 0.22)
+icon = ExtResource("5_myuif")
+flat = true
+
+[node name="queen" type="Button" parent="."]
+offset_left = 360.0
+offset_top = 42.0
+offset_right = 768.0
+offset_bottom = 450.0
+scale = Vector2(0.22, 0.22)
+icon = ExtResource("6_j8nif")
+flat = true
+
+[connection signal="pressed" from="pawn" to="." method="_on_pawn_pressed"]
+[connection signal="pressed" from="bishop" to="." method="_on_bishop_pressed"]
+[connection signal="pressed" from="knight" to="." method="_on_knight_pressed"]
+[connection signal="pressed" from="rook" to="." method="_on_rook_pressed"]
+[connection signal="pressed" from="queen" to="." method="_on_queen_pressed"]
