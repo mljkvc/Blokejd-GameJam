@@ -79,7 +79,12 @@ func position_all_objects_on_the_board() -> void:
 	white_king.position = Board.get_node(MultiplayerManager.player1_pos).global_position
 	black_king.position = Board.get_node(MultiplayerManager.player2_pos).global_position
 	diamond.position = Board.get_node(MultiplayerManager.treasure_pos).global_position
-
+	if you_are_white:
+		your_king.your_tile_name = MultiplayerManager.player1_pos
+		enemy_king.your_tile_name = MultiplayerManager.player2_pos
+	else:
+		your_king.your_tile_name = MultiplayerManager.player2_pos
+		enemy_king.your_tile_name = MultiplayerManager.player1_pos
 
 
 func unhighlight_all_squares() -> void:
