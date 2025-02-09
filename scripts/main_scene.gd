@@ -96,7 +96,7 @@ func position_all_objects_on_the_board() -> void:
 		enemy_king.this_piece = MultiplayerManager.player1_piece
 				
 		your_king.update_piece("black")
-		enemy_king.update_piece("white")		
+		enemy_king.update_piece("white")
 	
 	print(your_king.this_piece + " ovo je beli, a crni je: " + enemy_king.this_piece)
 
@@ -110,7 +110,6 @@ func unhighlight_all_squares() -> void:
 	
 func show_pieces_choice() -> void:
 	your_pieces.hide()
-	#choose_a_piece_node = $ChooseAPiece
 	your_pieces.connect("piece_chosen", Callable(self, "_on_piece_chosen"))
 	call_out_opponent_node = $CallOutOpponent
 	call_out_opponent_node.connect("ok_button_pressed", Callable(self, "_on_ok_button_pressed"))

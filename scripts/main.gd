@@ -33,9 +33,8 @@ func pause_song():
 func _on_join_lobby():
 	main_menu.hide()
 	main_scene.show()
-	
 	pause_song()
-	play_song("res://doodle_song.mp3")
+	play_song("res://doodle_lobby_song.mp3")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
