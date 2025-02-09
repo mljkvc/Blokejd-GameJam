@@ -166,16 +166,18 @@ func make_move(player_id, pos, piece_data : String, lied):
 	
 @rpc("any_peer")
 func challenge_move(player_id):
-	
+	print(player_id)
 	var opponent_id = 0
 	if player_id == 1:
 		opponent_id = 2
 	else:
 		opponent_id = 1
-		
+	
+	player_id = 1 if player_id == 1 else 2
 
 	var opponent_lied = player1_lied if opponent_id == 1 else player2_lied
-
+	print(opponent_lied)
+	
 	if opponent_lied:
 		if opponent_id == 1:
 			if player2_eaten_in_last:
@@ -204,3 +206,4 @@ func challenge_move(player_id):
 			player2_score -= 1
 
 	rpc("sync_game_state", current_turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last, player1_piece, player2_piece, player1_last_piece, player2_last_piece)
+	refresh.emit()
