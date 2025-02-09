@@ -210,6 +210,7 @@ func make_move(player_id, pos, piece_data : String, lied):
 	
 @rpc("any_peer")
 func challenge_move(player_id):
+	
 	print(player_id)
 	var opponent_id = 0
 	if player_id > 1 :
