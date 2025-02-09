@@ -58,7 +58,7 @@ func start_server(host_ip: String):
 
 func _on_client_connected(id):
 	print("Player joined with ID: ", id)
-	rpc("sync_game_state", current_turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last)
+	rpc("sync_game_state", current_turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last, player1_piece, player2_piece)
 	emit_signal("game_ready")	
 
 ##-----------------------------CLIENT-JOINING----------------------------------##
@@ -72,7 +72,7 @@ func join_server(server_ip: String, port: int):
 
 ##---------------------------- GAME LOGIC ------------------------------##
 @rpc("any_peer")
-func sync_game_state(turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last):
+func sync_game_state(turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last,player1_piece, player2_piece):
 	print("Sync game state entry")
 	current_turn = turn
 	self.player1_pos = player1_pos
@@ -110,7 +110,7 @@ func make_move(player_id, pos, piece_data : String, lied):
 		player2_eaten_in_last = false
 		player1_lied = false
 	
-	rpc("sync_game_state", current_turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last)
+	rpc("sync_game_state", current_turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last, player1_piece, player2_piece)
 	refresh.emit()
 	
 	if pos == treasure_pos:
@@ -120,7 +120,7 @@ func make_move(player_id, pos, piece_data : String, lied):
 			player2_score += 1
 		treasure_pos = chess_positions[randi() % 64]
 
-	rpc("sync_game_state", current_turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last)
+	rpc("sync_game_state", current_turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last, player1_piece, player2_piece)
 	refresh.emit()
 
 	if player1_pos == player2_pos:
@@ -134,7 +134,7 @@ func make_move(player_id, pos, piece_data : String, lied):
 			player1_pos = "d_1"
 
 	current_turn = 3 - current_turn
-	rpc("sync_game_state", current_turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last)
+	rpc("sync_game_state", current_turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last,player1_piece, player2_piece)
 	refresh.emit()
 	
 @rpc("any_peer")
@@ -168,4 +168,4 @@ func challenge_move(player_id):
 		else:
 			player2_score -= 1
 
-	rpc("sync_game_state", current_turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last)
+	rpc("sync_game_state", current_turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last, player1_piece, player2_piece)

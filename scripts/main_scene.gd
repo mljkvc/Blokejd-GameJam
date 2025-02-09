@@ -94,8 +94,6 @@ func position_all_objects_on_the_board() -> void:
 		your_king.update_piece("black")
 		enemy_king.update_piece("white")
 
-	your_king.update_piece()
-	enemy_king.update_piece()
 func unhighlight_all_squares() -> void:
 	for tile in Board.get_children():
 		if tile is Tile:
