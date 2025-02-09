@@ -12,7 +12,7 @@ func _process(delta: float) -> void:
 
 
 func _on_create_lobby_pressed() -> void:
-	MultiplayerManager.start_server()
+	MultiplayerManager.start_server("192.168.1.4")
 
 func _on_join_lobby_pressed() -> void:
-	MultiplayerManager.start_discovery()
+	MultiplayerManager.join_server("192.168.1.4", 8080)
