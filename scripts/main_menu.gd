@@ -1,7 +1,8 @@
 class_name Main_menu extends Node2D
 
-signal create_lobby_pressed()
-signal join_lobby_pressed()
+signal create_lobby()
+signal join_lobby()
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -15,4 +16,6 @@ func _on_create_lobby_pressed() -> void:
 	MultiplayerManager.start_server("192.168.1.4")
 
 func _on_join_lobby_pressed() -> void:
-	MultiplayerManager.join_server("192.168.1.4", 8080)
+	var error = MultiplayerManager.join_server("192.168.1.4", 8080)
+	if error == OK:
+		emit_signal("join_lobby")
