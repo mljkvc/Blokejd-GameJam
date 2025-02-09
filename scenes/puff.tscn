@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://lroudw2xpr0s"]
+[gd_scene load_steps=12 format=3 uid="uid://lroudw2xpr0s"]
 
 [ext_resource type="Texture2D" uid="uid://cda7xlkbf13uc" path="res://sprites/animation/puff_animation/puff1.png" id="1_lh7qp"]
 [ext_resource type="Script" path="res://scripts/puff.gd" id="1_lia77"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://b5eahqshl6hrr" path="res://sprites/animation/puff_animation/puff6.png" id="6_svl8m"]
 [ext_resource type="Texture2D" uid="uid://lb5iu240i15d" path="res://sprites/animation/puff_animation/puff7.png" id="7_ciwoo"]
 [ext_resource type="Texture2D" uid="uid://cjfvvtdo8lrqi" path="res://sprites/animation/puff_animation/puff8.png" id="8_72pvg"]
+[ext_resource type="Texture2D" uid="uid://6n08ohcnpin7" path="res://sprites/animation/puff_animation/empty_png.png" id="10_jjuuu"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5sjku"]
 animations = [{
@@ -41,6 +42,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("8_72pvg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_jjuuu")
 }],
 "loop": false,
 "name": &"puff_animation",
@@ -51,6 +55,6 @@ animations = [{
 script = ExtResource("1_lia77")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.12, 0.12)
+scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_5sjku")
 animation = &"puff_animation"

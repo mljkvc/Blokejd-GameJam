@@ -68,11 +68,17 @@ func remove_all_objects_from_the_board() -> void:
 	puff.position = Vector2(-100,-100)
 		
 func _on_piece_moved(new_tile_name: String) -> void:
-	puff.position = Board.get_node(new_tile_name).global_position
-	puff.animation.play("puff_animation")
-
+		
 	your_king.your_tile_name = new_tile_name
 	var new_tile = Board.get_node(new_tile_name)
+	puff.position = new_tile.global_position
+	puff.animation.play("puff_animation")
+	
+	await get_tree().create_timer(0.6).timeout
+	
+	your_king.update_piece()
+	await get_tree().create_timer(0.2).timeout
+	
 	your_king.position = new_tile.global_position
 	MultiplayerManager.make_move(multiplayer.get_unique_id(), your_king.your_tile_name, your_king.this_piece, false)
 	
@@ -158,10 +164,8 @@ func highlight_available_tiles() -> void:
 	if your_piece == "pawn":
 		your_king.this_piece = "pawn"
 		if you_are_white:
-			your_king.piece.texture = load("res://sprites/chess_pieces/beli_piun.png")
 			var sign = 1
 		else:
-			your_king.piece.texture = load("res://sprites/chess_pieces/crni_piun.png")
 			var sign = -1
 		var new_coords = []
 		new_coords.append(coord + Vector2(your_king.your_color, 0))
@@ -172,10 +176,7 @@ func highlight_available_tiles() -> void:
 	
 	if your_piece == "bishop":
 		your_king.this_piece = "bishop"
-		if you_are_white:
-			your_king.piece.texture = load("res://sprites/chess_pieces/beli_lovac.png")
-		else:
-			your_king.piece.texture = load("res://sprites/chess_pieces/crni_lovac.png")
+
 		var new_coords = []
 		for i in range(1,4):
 			new_coords.append(coord + Vector2(i,i))
@@ -186,10 +187,6 @@ func highlight_available_tiles() -> void:
 			
 	if your_piece == "knight":
 		your_king.this_piece = "knight"
-		if you_are_white:
-			your_king.piece.texture = load("res://sprites/chess_pieces/beli_konj.png")
-		else:
-			your_king.piece.texture = load("res://sprites/chess_pieces/crni_konj.png")
 		var new_coords = []
 		new_coords.append(coord + Vector2(1,2))
 		new_coords.append(coord + Vector2(1,-2))
@@ -204,10 +201,6 @@ func highlight_available_tiles() -> void:
 		
 	if your_piece == "rook":
 		your_king.this_piece = "rook"
-		if you_are_white:
-			your_king.piece.texture = load("res://sprites/chess_pieces/beli_top.png")
-		else:
-			your_king.piece.texture = load("res://sprites/chess_pieces/crni_top.png")
 		var new_coords = []
 		for i in range(1,4):
 			new_coords.append(coord + Vector2(0,i))
@@ -218,10 +211,6 @@ func highlight_available_tiles() -> void:
 	
 	if your_piece == "queen":
 		your_king.this_piece = "queen"
-		if you_are_white:
-			your_king.piece.texture = load("res://sprites/chess_pieces/bela_kraljica.png")
-		else:
-			your_king.piece.texture = load("res://sprites/chess_pieces/crna_kraljica.png")
 		var new_coords = []
 		for i in range(1,5):
 			new_coords.append(coord + Vector2(i,i))

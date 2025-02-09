@@ -7,6 +7,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	#main_menu.hide()
 	main_scene.hide()
 	main_menu.connect("join_lobby", Callable(self, "_on_join_lobby"))
 	main_menu.connect("set_your_pieces_to_white", Callable(self, "_on_set_your_pieces_to_white"))
