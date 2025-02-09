@@ -96,13 +96,8 @@ func position_all_objects_on_the_board() -> void:
 		enemy_king.this_piece = MultiplayerManager.player1_piece
 		
 		your_king.update_piece("black")
-		enemy_king.update_piece("white")
-<<<<<<< Updated upstream
-
-=======
-		
+		enemy_king.update_piece("white")		
 	
->>>>>>> Stashed changes
 func unhighlight_all_squares() -> void:
 	for tile in Board.get_children():
 		if tile is Tile:
