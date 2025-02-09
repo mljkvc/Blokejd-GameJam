@@ -24,13 +24,18 @@ var enemy_current_tile: String = "e_8"
 var diamond_tile: String = "b_5"
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	MultiplayerManager.connect("refresh", Callable(self, "_on_refresh"))
 	diamond.position = Board.get_node(diamond_tile).global_position
 	diamond.animation.play("diamond_animation")
-
+	
 	for tile in Board.get_children():
 		if tile is Tile:
 			tile.connect("piece_moved", Callable(self, "_on_piece_moved"))
 
+func _on_refresh() -> void:
+	remove_all_objects_from_the_board()
+	position_all_objects_on_the_board()
+	
 func assign_white_pieces() -> void:
 	choose_a_piece_node.remove_child(black_pieces)
 	your_pieces = white_pieces
@@ -67,19 +72,14 @@ func _on_piece_moved(new_tile_name: String) -> void:
 	#func make_move(player_id, x, y, piece_data, lied):
 	print("My peer ID:", multiplayer.get_unique_id())
 	MultiplayerManager.make_move(multiplayer.get_unique_id(), your_current_tile, "q", false)
-	#remove_all_objects_from_the_board()
-	#position_all_objects_on_the_board()
 	
 	unhighlight_all_squares()
 
 func position_all_objects_on_the_board() -> void:
 	
-	var diamond_tile_name = "a_1"
-	var white_king_tile_name = "a_2"
-	var black_king_tile_name = "a_3"
-	white_king.position = Board.get_node(white_king_tile_name).global_position
-	black_king.position = Board.get_node(black_king_tile_name).global_position
-	diamond.position = Board.get_node(diamond_tile_name).global_position
+	white_king.position = Board.get_node(MultiplayerManager.player1_pos).global_position
+	black_king.position = Board.get_node(MultiplayerManager.player2.pos).global_position
+	diamond.position = Board.get_node(MultiplayerManager.treasure_pos).global_position
 
 
 
