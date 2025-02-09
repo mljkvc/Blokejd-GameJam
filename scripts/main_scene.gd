@@ -76,9 +76,9 @@ func _on_piece_moved(new_tile_name: String) -> void:
 
 func position_all_objects_on_the_board() -> void:
 	
-	var diamond_tile_name = null
-	var white_king_tile_name = null
-	var black_king_tile_name = null
+	var diamond_tile_name = "a_1"
+	var white_king_tile_name = "a_2"
+	var black_king_tile_name = "a_3"
 	for i in range(8):
 		for j in range (8):
 			if MultiplayerManager.board[i][j] == 7:
