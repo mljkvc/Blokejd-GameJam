@@ -23,21 +23,21 @@ func _on_scam_pressed() -> void:
 
 
 func _on_ok_mouse_entered() -> void:
-	ok_button.scale.x += 0.03
-	ok_button.scale.y += 0.03
-	ok_button.position.x -= 20
+	ok_button.scale.x += 0.02
+	ok_button.scale.y += 0.02
+	ok_button.position.x -= 15
 
 func _on_ok_mouse_exited() -> void:
-	ok_button.scale.x -= 0.03
-	ok_button.scale.y -= 0.03
-	ok_button.position.x += 20
+	ok_button.scale.x -= 0.02
+	ok_button.scale.y -= 0.02
+	ok_button.position.x += 15
 
 func _on_scam_mouse_entered() -> void:
-	not_ok_button.scale.x += 0.03
-	not_ok_button.scale.y += 0.03
-	not_ok_button.position.x -= 20
+	not_ok_button.scale.x += 0.02
+	not_ok_button.scale.y += 0.02
+	not_ok_button.position.x -= 15
 
 func _on_scam_mouse_exited() -> void:
-	not_ok_button.scale.x -= 0.03
-	not_ok_button.scale.y -= 0.03
-	not_ok_button.position.x += 20
+	not_ok_button.scale.x -= 0.02
+	not_ok_button.scale.y -= 0.02
+	not_ok_button.position.x += 15
