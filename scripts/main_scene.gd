@@ -11,6 +11,9 @@ var your_pieces = null
 @onready var call_out_opponent_node = $CallOutOpponent
 @onready var Board = $Board
 
+@onready var main_menu: Main_menu = $"../MainMenu"
+
+
 var your_king = null
 var enemy_king = null
 @onready var diamond = $Diamond
@@ -25,6 +28,7 @@ var diamond_tile: String = "b_5"
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	call_out_opponent_node.hide()
+	main_menu.connect("set_your_pieces_to_white", Callable(self, "_on_started_white"))
 	MultiplayerManager.connect("finished", Callable(self, "_on_move_finished"))
 	MultiplayerManager.connect("refresh", Callable(self, "_on_refresh"))
 	diamond.position = Board.get_node(diamond_tile).global_position
@@ -37,7 +41,10 @@ func _ready() -> void:
 func _on_refresh() -> void:
 	remove_all_objects_from_the_board()
 	position_all_objects_on_the_board()
-	
+
+func _on_started_white()-> void:
+	you_are_white = true;
+		
 
 func _on_move_finished() -> void:
 	await get_tree().create_timer(0.05).timeout
