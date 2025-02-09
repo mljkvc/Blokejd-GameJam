@@ -14,6 +14,7 @@ func _process(delta: float) -> void:
 
 func _on_create_lobby_pressed() -> void:
 	MultiplayerManager.start_server("192.168.1.4")
+	MultiplayerManager.connect("game_ready", Callable(self, "_on_join_lobby"))
 
 func _on_join_lobby_pressed() -> void:
 	var error = MultiplayerManager.join_server("192.168.1.4", 8080)

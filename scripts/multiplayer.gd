@@ -17,6 +17,8 @@ var player2_lied = false
 var treasure_pos = Vector2(randi() % 8, randi() % 8)
 var pieces_availible = {}
 
+signal game_ready()
+
 func _ready():
 	_initialize_board()
 	reload_pieces()
@@ -47,6 +49,8 @@ func start_server(host_ip: String):
 func _on_client_connected(id):
 	print("Player joined with ID: ", id)
 	rpc_id(id, "sync_game_state", board, current_turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last)
+	emit_signal("game_ready")
+	
 
 ##-----------------------------CLIENT-JOINING----------------------------------##
 func join_server(server_ip: String, port: int):
@@ -56,7 +60,7 @@ func join_server(server_ip: String, port: int):
 		return
 	multiplayer.multiplayer_peer = peer
 	print("Connected to server at: ", server_ip, ":", port)
-	return error
+
 ##---------------------------- GAME LOGIC ------------------------------##
 @rpc("authority")
 func sync_game_state(new_board, turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last):
