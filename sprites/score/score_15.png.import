@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://q1mfd4mpepcq"
-path="res://.godot/imported/red_button.png-d50e48c5147d3ae4984a0a1d2257fdfb.ctex"
+uid="uid://by1e2ic7bx38s"
+path="res://.godot/imported/score_15.png-1c0c7ef155858015c4a7525bb6cb3081.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/game_scene/red_button.png"
-dest_files=["res://.godot/imported/red_button.png-d50e48c5147d3ae4984a0a1d2257fdfb.ctex"]
+source_file="res://sprites/score/score_15.png"
+dest_files=["res://.godot/imported/score_15.png-1c0c7ef155858015c4a7525bb6cb3081.ctex"]
 
 [params]
 
