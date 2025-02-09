@@ -176,15 +176,21 @@ func make_move(player_id, pos, piece_data : String, lied):
 		if player_id == 1:
 			player1_score += 1
 			player2_score -= 1
-			player2_pos = black_pos
+			if player1_pos == black_pos :
+				while(player2_pos == player1_pos):
+					player2_pos = chess_positions[randi() % 64]
+			else:
+				player2_pos = black_pos
 			player2_last_piece = player2_piece
 			player2_piece = "king"
 		else:
 			player2_score += 1
 			player1_score -= 1
-			#if(player2_pos == white_pos):
-				#while(player1_pos)
-				#player1_pos = chess_positions[randi() % 64]
+			if player2_pos == white_pos :
+				while(player2_pos == player1_pos):
+					player1_pos = chess_positions[randi() % 64]
+			else:
+				player1_pos = white_pos
 			player1_pos = white_pos
 			player1_last_piece = player1_piece
 			player1_piece = "king"
