@@ -18,6 +18,7 @@ var treasure_pos = Vector2(randi() % 8, randi() % 8)
 var pieces_availible = {}
 
 signal game_ready()
+signal refresh()
 
 func _ready():
 	_initialize_board()
@@ -79,6 +80,7 @@ func sync_game_state(new_board, turn, player1_pos, player2_pos, player1_score, p
 	self.player1_eaten_in_last = player1_eaten_in_last
 	self.player2_eaten_in_last = player2_eaten_in_last
 	print(board)
+	refresh.emit()
 
 @rpc("any_peer")
 func make_move(player_id, x : int, y : int, piece_data : String, lied):
