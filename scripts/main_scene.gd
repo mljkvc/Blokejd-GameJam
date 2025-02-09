@@ -29,7 +29,6 @@ var diamond_tile: String = "b_5"
 func _ready() -> void:
 	call_out_opponent_node.hide()
 	main_menu.connect("set_your_pieces_to_white", Callable(self, "_on_started_white"))
-	MultiplayerManager.connect("finished", Callable(self, "_on_move_finished"))
 	MultiplayerManager.connect("refresh", Callable(self, "_on_refresh"))
 	diamond.position = Board.get_node(diamond_tile).global_position
 	diamond.animation.play("diamond_animation")
@@ -46,15 +45,6 @@ func _on_started_white()-> void:
 	you_are_white = true;
 		
 
-func _on_move_finished() -> void:
-	await get_tree().create_timer(0.05).timeout
-	print("usao vamooooo")
-	if MultiplayerManager.current_turn == 1 and you_are_white: 
-		print("usao u proveeeeruuu")
-		call_out_opponent_node.show()
-	elif MultiplayerManager.current_turn == 2 and !you_are_white:
-		print("usao u proveeeeruuu")
-		call_out_opponent_node.show()
 
 func assign_white_pieces() -> void:
 	choose_a_piece_node.remove_child(black_pieces)
@@ -154,12 +144,17 @@ func _on_opponent_made_a_move() -> void:
 	await get_tree().create_timer(0.6).timeout
 	
 	if you_are_white:
+		print("beo sam")
+		call_out_opponent_node.show()
 		enemy_king.update_piece("black")
 	else:
+		print("crrrrrrrrrsrrrn sam")
+		call_out_opponent_node.show()
 		enemy_king.update_piece("white")
 		
 	await get_tree().create_timer(0.15).timeout
 	_on_refresh()
+	
 
 	call_out_opponent_node.show()
 	
