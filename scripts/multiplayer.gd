@@ -56,7 +56,7 @@ func start_server(host_ip: String):
 
 func _on_client_connected(id):
 	print("Player joined with ID: ", id)
-	rpc_id(0, "sync_game_state", current_turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last)
+	rpc("sync_game_state", current_turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last)
 	emit_signal("game_ready")	
 
 ##-----------------------------CLIENT-JOINING----------------------------------##
@@ -89,11 +89,11 @@ func sync_game_state(turn, player1_pos, player2_pos, player1_score, player2_scor
 @rpc("any_peer")
 func make_move(player_id, pos, piece_data : String, lied):
 	turn_count += 1
-	var prev_pos = player1_pos if player_id != 1 else player2_pos
+	var prev_pos = player1_pos if player_id == 1 else player2_pos
 	
-	print(str(pos[0]) + " " + str(pos[1]))
+	print(pos)
 
-	if player_id != 1:
+	if player_id == 1:
 		player1_prev_pos = prev_pos
 		player1_pos = pos
 		player1_lied = lied
@@ -118,7 +118,7 @@ func make_move(player_id, pos, piece_data : String, lied):
 		treasure_pos = chess_positions[randi() % 64]
 
 	if player1_pos == player2_pos:
-		if player_id != 1:
+		if player_id == 1:
 			player1_score += 1
 			player2_score -= 1
 			player2_pos = "e_8"

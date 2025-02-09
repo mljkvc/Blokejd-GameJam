@@ -78,7 +78,7 @@ func _on_piece_moved(new_tile_name: String) -> void:
 func position_all_objects_on_the_board() -> void:
 	
 	white_king.position = Board.get_node(MultiplayerManager.player1_pos).global_position
-	black_king.position = Board.get_node(MultiplayerManager.player2.pos).global_position
+	black_king.position = Board.get_node(MultiplayerManager.player2_pos).global_position
 	diamond.position = Board.get_node(MultiplayerManager.treasure_pos).global_position
 
 
