@@ -70,7 +70,7 @@ func _on_piece_moved(new_tile_name: String) -> void:
 	
 	#func make_move(player_id, x, y, piece_data, lied):
 	print("My peer ID:", multiplayer.get_unique_id())
-	MultiplayerManager.make_move(multiplayer.get_unique_id(), your_king.your_tile_name, "q", false)
+	MultiplayerManager.make_move(multiplayer.get_unique_id(), your_king.your_tile_name, your_king.this_piece, false)
 	
 	unhighlight_all_squares()
 
