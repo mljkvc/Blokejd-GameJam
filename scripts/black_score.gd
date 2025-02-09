@@ -15,8 +15,8 @@ func set_score(score: int) -> void:
 		go_to_victory_screen()
 
 func go_to_victory_screen():
-	get_parent().get_parent().show_black_winner()
-	print("BLACK WON!!!!!!!!!!!!!!!!!!!!!!!!!")
+	get_parent().get_parent().show_white_winner()
+	print("WHITE WON!!!!!!!!!!!!!!!!!!!!!!!!!")
 	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
