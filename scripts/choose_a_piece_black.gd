@@ -92,7 +92,7 @@ func underline_this_piece_animation(piece_name: String):
 		underline_5.show()
 		
 func underline_this_piece(piece_name: String):
-	underline_this_piece_animation(piece_name)
+	#underline_this_piece_animation(piece_name)
 	if piece_name == "pawn":
 		underline_1.show()
 	if piece_name == "bishop":
