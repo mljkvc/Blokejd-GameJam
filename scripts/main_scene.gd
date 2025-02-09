@@ -58,6 +58,7 @@ func assign_white_pieces() -> void:
 	enemy_king.position = Board.get_node(enemy_current_tile).global_position
 	your_king.position = Board.get_node(your_king.your_tile_name).global_position
 	your_pieces.show()
+	your_pieces.underline("queen")
 	
 func assign_black_pieces() -> void:
 	choose_a_piece_node.remove_child(white_pieces)
@@ -70,6 +71,7 @@ func assign_black_pieces() -> void:
 	enemy_king.position = Board.get_node(enemy_current_tile).global_position
 	your_king.position = Board.get_node(your_king.your_tile_name).global_position
 	your_pieces.show()
+	your_pieces.underline("knight")
 	
 func remove_all_objects_from_the_board() -> void:
 	$White.position = Vector2(-100,-100)
@@ -164,7 +166,6 @@ func _on_opponent_made_a_move() -> void:
 	
 	
 func _on_ok_button_pressed() -> void:
-	print('ok')
 	call_out_opponent_node.hide()
 	#signal da se potvrdi trenutna pozicija
 	your_pieces.show()
