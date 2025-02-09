@@ -58,7 +58,8 @@ func assign_white_pieces() -> void:
 	enemy_king.position = Board.get_node(enemy_current_tile).global_position
 	your_king.position = Board.get_node(your_king.your_tile_name).global_position
 	your_pieces.show()
-	your_pieces.underline_this_piece("queen")
+	var piece : String = MultiplayerManager.piece_roulette();
+	your_pieces.underline_this_piece(piece)
 	
 func assign_black_pieces() -> void:
 	choose_a_piece_node.remove_child(white_pieces)
@@ -168,15 +169,10 @@ func _on_opponent_made_a_move() -> void:
 	
 func _on_ok_button_pressed() -> void:
 	call_out_opponent_node.hide()
-	#signal da se potvrdi trenutna pozicija
 	your_pieces.show()
 
 
 func _on_scam_button_pressed() -> void:
-	#if opponent lied == false:
-	#_on_ok_button_pressed()
-	#else:
-	#vrati se na prethodnu tablu, resetuj pojedene stvari i skor, oduzmi mu 1 poen
 	MultiplayerManager.challenge_move(multiplayer.get_unique_id())
 	call_out_opponent_node.hide()
 	your_pieces.show()
@@ -192,7 +188,8 @@ func is_valid(position: Vector2) -> bool:
 	if position.x < 0 or position.y < 0:
 		return false
 	if position.x > 7 or position.y > 7:
-		return false
+		return false	#signal da se potvrdi trenutna pozicija
+
 	return true
 
 func highlight_available_tiles() -> void:
