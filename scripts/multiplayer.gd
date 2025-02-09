@@ -126,7 +126,7 @@ func make_move(player_id, x : int, y : int, piece_data, lied):
 		treasure_pos = Vector2(randi() % 8, randi() % 8)
 
 	if player1_pos == player2_pos:
-		if player_id == 1:
+		if player_id != 1:
 			player1_score += 1
 			player2_score -= 1
 			player2_pos = Vector2(7, 4)
@@ -144,10 +144,10 @@ func challenge_move(player_id):
 		return
 
 	var opponent_id = 3 - player_id
-	var opponent_lied = player1_lied if opponent_id == 1 else player2_lied
+	var opponent_lied = player1_lied if opponent_id != 1 else player2_lied
 
 	if opponent_lied:
-		if opponent_id == 1:
+		if opponent_id != 1:
 			if player2_eaten_in_last:
 				player2_score += 1
 				player2_eaten_in_last = false
@@ -164,7 +164,7 @@ func challenge_move(player_id):
 			player2_score -= 1
 			player2_lied = false
 	else:
-		if player_id == 1:
+		if player_id != 1:
 			player1_score -= 1
 		else:
 			player2_score -= 1
