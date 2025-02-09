@@ -104,8 +104,22 @@ func make_move(player_id, x : int, y : int, piece_data, lied):
 		player2_lied = lied
 		player2_eaten_in_last = false
 		player1_lied = false
-
-	board[x][y] = piece_data
+	
+	# Kin  pawn  Knight  Bishop  Rook Queen
+	# 1     2      3       4       5      6
+	
+	if piece_data == "q":
+		board[x][y] = 6
+	elif piece_data == "p":
+		board[x][y] = 2
+	elif piece_data == "k":
+		board[x][y] = 3
+	elif piece_data == "b":
+		board[x][y] = 4
+	elif piece_data == "r":
+		board[x][y] = 5
+	else:
+		board[x][y] = 1
 
 	if pos == treasure_pos:
 		if player_id == 1:

@@ -18,7 +18,6 @@ func _on_create_lobby_pressed() -> void:
 
 func _on_join_lobby():
 	emit_signal("join_lobby")
-	print("desi brate")
 
 func _on_join_lobby_pressed() -> void:
 	var error = MultiplayerManager.join_server("192.168.1.172", 8080)
