@@ -106,20 +106,20 @@ func make_move(player_id, x : int, y : int, piece_data : String, lied):
 	var multiplier = 1
 	# Kin  pawn  Knight  Bishop  Rook Queen
 	# 1     2      3       4       5      6
-	if player_id == 1:
+	if player_id == 0:
 		multiplier *= -1
 	if piece_data.begins_with("q"):
-		board[x][y] = 6
+		board[x][y] = 6 * multiplier
 	elif piece_data.begins_with("p"):
-		board[x][y] = 2
+		board[x][y] = 2 * multiplier
 	elif piece_data.begins_with("kn"):
-		board[x][y] = 3
+		board[x][y] = 3 * multiplier
 	elif piece_data.begins_with("b"):
-		board[x][y] = 4
+		board[x][y] = 4 * multiplier
 	elif piece_data.begins_with("r"):
-		board[x][y] = 5
+		board[x][y] = 5 * multiplier
 	else:
-		board[x][y] = 1
+		board[x][y] = 1 * multiplier
 
 	if pos == treasure_pos:
 		if player_id != 1:
