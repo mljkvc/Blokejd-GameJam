@@ -73,9 +73,10 @@ func remove_all_objects_from_the_board() -> void:
 		
 func _on_piece_moved(new_tile_name: String) -> void:
 	puff.position = Board.get_node(your_king.your_tile_name).global_position		
+	puff.animation.play("puff_animation")
+
 	your_king.your_tile_name = new_tile_name
 	var new_tile = Board.get_node(new_tile_name)
-	puff.animation.play("puff_animation")
 	
 	await get_tree().create_timer(0.6).timeout
 	
@@ -133,6 +134,17 @@ func show_pieces_choice() -> void:
 
 func _on_opponent_made_a_move() -> void:
 	#animiraj protivnicku figuru -> puf, nova figura, pomeraj, jedenje(mozda) i adjust score
+	puff.position = Board.get_node(enemy_king.your_tile_name).global_position
+	puff.animation.play("puff_animation")
+	await get_tree().create_timer(0.6).timeout
+	
+	if you_are_white:
+		enemy_king.update_piece("black")
+	else:
+		enemy_king.update_piece("white")
+		
+	await get_tree().create_timer(0.15).timeout
+	_on_refresh()
 	call_out_opponent_node.show()
 	
 func _on_ok_button_pressed() -> void:
