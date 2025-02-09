@@ -59,9 +59,13 @@ func assign_white_pieces() -> void:
 	enemy_king.position = Board.get_node(enemy_current_tile).global_position
 	your_king.position = Board.get_node(your_king.your_tile_name).global_position
 	your_pieces.show()
+<<<<<<< Updated upstream
 	var piece : String = MultiplayerManager.piece_roulette();
 	your_pieces.underline_this_piece(piece)
 	underlined_piece_that_was_pulled_out_of_the_box = piece
+=======
+
+>>>>>>> Stashed changes
 	
 func assign_black_pieces() -> void:
 	choose_a_piece_node.remove_child(white_pieces)
@@ -105,7 +109,7 @@ func _on_piece_moved(new_tile_name: String) -> void:
 		MultiplayerManager.make_move(multiplayer.get_unique_id(), your_king.your_tile_name, your_king.this_piece, true)
 
 	unhighlight_all_squares()
-	your_pieces.remove_underline()
+	#your_pieces.remove_underline()
 
 func position_all_objects_on_the_board() -> void:
 	
@@ -175,7 +179,10 @@ func _on_opponent_made_a_move() -> void:
 func _on_ok_button_pressed() -> void:
 	var piece : String = MultiplayerManager.piece_roulette();
 	your_pieces.underline_this_piece(piece)
+<<<<<<< Updated upstream
 	underlined_piece_that_was_pulled_out_of_the_box = piece
+=======
+>>>>>>> Stashed changes
 	call_out_opponent_node.hide()
 	your_pieces.show()
 
@@ -183,7 +190,10 @@ func _on_ok_button_pressed() -> void:
 func _on_scam_button_pressed() -> void:
 	var piece : String = MultiplayerManager.piece_roulette();
 	your_pieces.underline_this_piece(piece)
+<<<<<<< Updated upstream
 	underlined_piece_that_was_pulled_out_of_the_box = piece
+=======
+>>>>>>> Stashed changes
 	MultiplayerManager.challenge_move(multiplayer.get_unique_id())
 	call_out_opponent_node.hide()
 	your_pieces.show()
