@@ -10,7 +10,8 @@ signal piece_chosen(piece_name: String)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	remove_underline()
+	pass
+	#remove_underline()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -92,7 +93,7 @@ func underline_this_piece_animation(piece_name: String):
 		underline_5.show()
 		
 func underline_this_piece(piece_name: String):
-	#underline_this_piece_animation(piece_name)
+	underline_this_piece_animation(piece_name)
 	if piece_name == "pawn":
 		underline_1.show()
 	if piece_name == "bishop":
