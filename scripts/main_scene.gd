@@ -99,6 +99,7 @@ func _on_piece_moved(new_tile_name: String) -> void:
 	MultiplayerManager.make_move(multiplayer.get_unique_id(), your_king.your_tile_name, your_king.this_piece, false)
 	
 	unhighlight_all_squares()
+	your_pieces.remove_underline()
 
 func position_all_objects_on_the_board() -> void:
 	
