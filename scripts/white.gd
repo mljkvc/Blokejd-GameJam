@@ -1,6 +1,6 @@
 class_name White extends Node2D
 #crni kralj = +1 beli krelj = -1
-var your_tile_name = "d_1"
+var your_current_tile = "d_1"
 var your_position: Vector2 = Vector2(7,4)
 
 var this_piece = "king"
