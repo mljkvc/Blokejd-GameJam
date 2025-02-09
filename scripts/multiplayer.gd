@@ -226,7 +226,7 @@ func challenge_move(player_id):
 	print(":LAAAAAAAAAAAAAAZEEEE")
 	
 	# TODO HARDCODED FIX TODO 
-	var opponent_lied = player1_lied if opponent_id == 2 else player2_lied
+	var opponent_lied = player1_lied if opponent_id == 1 else player2_lied
 	print(opponent_lied)
 	
 	if opponent_lied:
