@@ -75,6 +75,8 @@ func join_server(server_ip: String, port: int):
 func sync_game_state(turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last,player1_piece, player2_piece):
 	print("Sync game state entry")
 	current_turn = turn
+	self.player1_piece = player1_piece
+	self.player2_piece = player2_piece
 	self.player1_pos = player1_pos
 	self.player2_pos = player2_pos
 	self.player1_score = player1_score
@@ -134,7 +136,7 @@ func make_move(player_id, pos, piece_data : String, lied):
 			player1_pos = "d_1"
 
 	current_turn = 3 - current_turn
-	rpc("sync_game_state", current_turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last,player1_piece, player2_piece)
+	rpc("sync_game_state", current_turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last, player1_piece, player2_piece)
 	refresh.emit()
 	
 @rpc("any_peer")
