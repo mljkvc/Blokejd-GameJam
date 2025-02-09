@@ -1,0 +1,68 @@
+[gd_scene load_steps=9 format=3 uid="uid://cntheyvenoi2h"]
+
+[ext_resource type="Script" path="res://scripts/end_game_screen_white_won.gd" id="1_311h8"]
+[ext_resource type="Texture2D" uid="uid://bykaavenmcqjg" path="res://sprites/end_game_scene/main_menu_button.png" id="2_qrl3m"]
+[ext_resource type="Texture2D" uid="uid://dk7mxy5wnqscq" path="res://sprites/end_game_scene/exit_button.png" id="3_v8ggs"]
+[ext_resource type="Texture2D" uid="uid://bnbvxgawqbmcx" path="res://sprites/end_game_scene/background.png" id="4_d6toi"]
+[ext_resource type="Texture2D" uid="uid://k1p5osh8enm4" path="res://sprites/end_game_scene/white_won.png" id="5_q1tpe"]
+[ext_resource type="Texture2D" uid="uid://da4bj152p530g" path="res://sprites/end_game_scene/you lost.png" id="6_jsgxv"]
+[ext_resource type="Texture2D" uid="uid://cx8wwl7q6hhe1" path="res://sprites/end_game_scene/you won.png" id="7_kih77"]
+[ext_resource type="Texture2D" uid="uid://y3j1030usw4j" path="res://sprites/end_game_scene/white_won_title.png" id="8_gvtx7"]
+
+[node name="EndGameScreenWinner" type="Node2D"]
+script = ExtResource("1_311h8")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 51.0
+offset_top = 510.0
+offset_right = 945.0
+offset_bottom = 835.0
+scale = Vector2(0.4, 0.4)
+focus_mode = 0
+icon = ExtResource("2_qrl3m")
+flat = true
+
+[node name="Button2" type="Button" parent="."]
+offset_left = 42.0
+offset_top = 612.0
+offset_right = 936.0
+offset_bottom = 937.0
+scale = Vector2(0.4, 0.4)
+focus_mode = 0
+icon = ExtResource("3_v8ggs")
+flat = true
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(240.438, 399.75)
+scale = Vector2(0.445486, 0.415885)
+texture = ExtResource("4_d6toi")
+
+[node name="WhiteWon" type="Sprite2D" parent="."]
+position = Vector2(255, 171)
+scale = Vector2(0.367347, 0.339116)
+texture = ExtResource("5_q1tpe")
+
+[node name="YouLost" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(241, 400)
+scale = Vector2(0.474742, 0.563725)
+texture = ExtResource("6_jsgxv")
+
+[node name="YouWon" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(238, 398)
+scale = Vector2(0.493398, 0.546569)
+texture = ExtResource("7_kih77")
+
+[node name="WhiteWonTitle" type="Sprite2D" parent="."]
+position = Vector2(229, 375)
+scale = Vector2(0.398778, 0.453608)
+texture = ExtResource("8_gvtx7")
+
+[connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Button" to="." method="_on_button_mouse_exited"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="mouse_entered" from="Button2" to="." method="_on_button_2_mouse_entered"]
+[connection signal="mouse_exited" from="Button2" to="." method="_on_button_2_mouse_exited"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
