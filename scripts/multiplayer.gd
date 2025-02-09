@@ -16,8 +16,8 @@ var player2_piece = "king"
 var player1_last_piece = player1_piece
 var player2_last_piece = player2_piece
 
-var player1_lied = true
-var player2_lied = true
+var player1_lied = false
+var player2_lied = false
 
 var pieces_availible = {}
 
@@ -118,7 +118,7 @@ func make_move(player_id, pos, piece_data : String, lied):
 		player1_pos = pos
 		player1_lied = lied
 		player1_eaten_in_last = false
-		player2_lied = true
+		player2_lied = false
 	else:
 		player2_last_piece = player2_piece
 		player2_piece = piece_data
@@ -126,7 +126,7 @@ func make_move(player_id, pos, piece_data : String, lied):
 		player2_pos = pos
 		player2_lied = lied
 		player2_eaten_in_last = false
-		player1_lied = true
+		player1_lied = false
 	
 	rpc("sync_game_state", current_turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last, player1_piece, player2_piece, player1_last_piece, player2_last_piece)
 	refresh.emit()
@@ -174,8 +174,9 @@ func challenge_move(player_id):
 		opponent_id = 2
 	
 	player_id = 1 if opponent_id == 2 else 1
-
-	var opponent_lied = player1_lied if opponent_id == 1 else player2_lied
+	
+	# TODO HARDCODED FIX TODO 
+	var opponent_lied = true
 	print(opponent_lied)
 	
 	if opponent_lied:
@@ -188,7 +189,7 @@ func challenge_move(player_id):
 			player1_pos = player1_prev_pos
 			player1_piece = player1_last_piece
 			player1_score -= 1
-			player1_lied = true
+			player1_lied = false
 		else:
 			if player1_eaten_in_last:
 				player1_score += 1
@@ -198,7 +199,7 @@ func challenge_move(player_id):
 			player2_pos = player2_prev_pos
 			player2_piece = player2_last_piece
 			player2_score -= 1
-			player2_lied = true
+			player2_lied = false
 	else:
 		if player_id == 1:
 			player1_score -= 1
