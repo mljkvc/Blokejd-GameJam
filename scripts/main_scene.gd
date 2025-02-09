@@ -26,6 +26,10 @@ func _on_piece_moved(new_tile_name: String) -> void:
 	var new_tile = Board.get_node(new_tile_name)
 	your_king.position = new_tile.global_position
 	
+		
+	#func make_move(player_id, x, y, piece_data, lied):
+	rpc_id(1, "make_move", 1, tile_name_to_matrix_representation(your_king.position).x,  tile_name_to_matrix_representation(your_king.position).y, 1, false)
+	
 	unhighlight_all_squares()
 
 func unhighlight_all_squares() -> void:
@@ -133,7 +137,6 @@ func highlight_available_tiles() -> void:
 			if tile is Tile:
 				tile.highlight_this_square_for_movement()
 				tile.tile_is_available_for_movement = true
-	
 				
 func tile_name_to_matrix_representation(tile_name: String) -> Vector2:
 	var parts = tile_name.split("_")
