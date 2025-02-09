@@ -81,7 +81,7 @@ func sync_game_state(new_board, turn, player1_pos, player2_pos, player1_score, p
 	print(board)
 
 @rpc("any_peer")
-func make_move(player_id, x : int, y : int, piece_data, lied):
+func make_move(player_id, x : int, y : int, piece_data : String, lied):
 	turn_count += 1
 	var prev_pos = player1_pos if player_id != 1 else player2_pos
 	var pos = Vector2(x, y)
@@ -106,15 +106,15 @@ func make_move(player_id, x : int, y : int, piece_data, lied):
 	# Kin  pawn  Knight  Bishop  Rook Queen
 	# 1     2      3       4       5      6
 	
-	if piece_data == "q":
+	if piece_data.begins_with("q"):
 		board[x][y] = 6
-	elif piece_data == "p":
+	elif piece_data.begins_with("p"):
 		board[x][y] = 2
-	elif piece_data == "k":
+	elif piece_data.begins_with("kn"):
 		board[x][y] = 3
-	elif piece_data == "b":
+	elif piece_data.begins_with("b"):
 		board[x][y] = 4
-	elif piece_data == "r":
+	elif piece_data.begins_with("r"):
 		board[x][y] = 5
 	else:
 		board[x][y] = 1
