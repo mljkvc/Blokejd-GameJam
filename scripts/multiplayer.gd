@@ -34,8 +34,8 @@ func _initialize_board():
 		board.append([])
 		for j in range(8):
 			board[i].append(0)
-	board[player1_pos[0]][player1_pos[1]] = -1
-	board[player2_pos[0]][player2_pos[1]] = 1
+	board[player1_pos[1]][player1_pos[0]] = -1
+	board[player2_pos[1]][player2_pos[0]] = 1
 
 ## ----------------SERVER HOSTING---------------- ##
 func start_server(host_ip: String):
@@ -66,7 +66,7 @@ func join_server(server_ip: String, port: int):
 func sync_game_state(new_board, turn, player1_pos, player2_pos, player1_score, player2_score, treasure_pos, player1_lied, player2_lied, player1_prev_pos, player2_prev_pos, player1_eaten_in_last, player2_eaten_in_last):
 	print("Sync game state entry")
 	board = new_board
-	board[treasure_pos.x][treasure_pos.y] = 7
+	board[treasure_pos.y][treasure_pos.x] = 7
 	current_turn = turn
 	self.player1_pos = player1_pos
 	self.player2_pos = player2_pos
@@ -91,14 +91,14 @@ func make_move(player_id, x : int, y : int, piece_data : String, lied):
 	print(str(pos[0]) + " " + str(pos[1]))
 
 	if player_id != 0:
-		board[player1_pos[0]][player1_pos[1]] = 0
+		board[player1_pos[1]][player1_pos[0]] = 0
 		player1_prev_pos = prev_pos
 		player1_pos = pos
 		player1_lied = lied
 		player1_eaten_in_last = false
 		player2_lied = false
 	else:
-		board[player2_pos[0]][player2_pos[1]] = 0
+		board[player2_pos[1]][player2_pos[0]] = 0
 		player2_prev_pos = prev_pos
 		player2_pos = pos
 		player2_lied = lied
@@ -111,17 +111,17 @@ func make_move(player_id, x : int, y : int, piece_data : String, lied):
 	if player_id != 0:
 		multiplier *= -1
 	if piece_data.begins_with("q"):
-		board[x][y] = 6 * multiplier
+		board[y][x] = 6 * multiplier
 	elif piece_data.begins_with("p"):
-		board[x][y] = 2 * multiplier
+		board[y][x] = 2 * multiplier
 	elif piece_data.begins_with("kn"):
-		board[x][y] = 3 * multiplier
+		board[y][x] = 3 * multiplier
 	elif piece_data.begins_with("b"):
-		board[x][y] = 4 * multiplier
+		board[y][x] = 4 * multiplier
 	elif piece_data.begins_with("r"):
-		board[x][y] = 5 * multiplier
+		board[y][x] = 5 * multiplier
 	else:
-		board[x][y] = 1 * multiplier
+		board[y][x] = 1 * multiplier
 
 	if pos == treasure_pos:
 		if player_id != 0:
