@@ -157,23 +157,12 @@ func _on_opponent_made_a_move() -> void:
 	_on_refresh()
 	
 	your_pieces.hide()
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
 	choose_a_piece_node.hide()
 	call_out_opponent_node.show()
 	
 	
 	
-=======
-	call_out_opponent_node.show()
-	
-	
->>>>>>> Stashed changes
-=======
-	call_out_opponent_node.show()
-	
-	
->>>>>>> Stashed changes
 func _on_ok_button_pressed() -> void:
 	print('ok')
 	call_out_opponent_node.hide()
