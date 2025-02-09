@@ -13,6 +13,7 @@ var your_pieces = null
 
 @onready var main_menu: Main_menu = $"../MainMenu"
 
+var underlined_piece_that_was_pulled_out_of_the_box: String = "king"
 
 var your_king = null
 var enemy_king = null
@@ -60,6 +61,7 @@ func assign_white_pieces() -> void:
 	your_pieces.show()
 	var piece : String = MultiplayerManager.piece_roulette();
 	your_pieces.underline_this_piece(piece)
+	underlined_piece_that_was_pulled_out_of_the_box = piece
 	
 func assign_black_pieces() -> void:
 	choose_a_piece_node.remove_child(white_pieces)
@@ -97,8 +99,11 @@ func _on_piece_moved(new_tile_name: String) -> void:
 	
 	your_king.position = new_tile.global_position
 	
-	MultiplayerManager.make_move(multiplayer.get_unique_id(), your_king.your_tile_name, your_king.this_piece, false)
-	
+	if underlined_piece_that_was_pulled_out_of_the_box == your_king.this_piece:
+		MultiplayerManager.make_move(multiplayer.get_unique_id(), your_king.your_tile_name, your_king.this_piece, true)
+	else:
+		MultiplayerManager.make_move(multiplayer.get_unique_id(), your_king.your_tile_name, your_king.this_piece, false)
+
 	unhighlight_all_squares()
 	your_pieces.remove_underline()
 
@@ -170,6 +175,7 @@ func _on_opponent_made_a_move() -> void:
 func _on_ok_button_pressed() -> void:
 	var piece : String = MultiplayerManager.piece_roulette();
 	your_pieces.underline_this_piece(piece)
+	underlined_piece_that_was_pulled_out_of_the_box = piece
 	call_out_opponent_node.hide()
 	your_pieces.show()
 
@@ -177,6 +183,7 @@ func _on_ok_button_pressed() -> void:
 func _on_scam_button_pressed() -> void:
 	var piece : String = MultiplayerManager.piece_roulette();
 	your_pieces.underline_this_piece(piece)
+	underlined_piece_that_was_pulled_out_of_the_box = piece
 	MultiplayerManager.challenge_move(multiplayer.get_unique_id())
 	call_out_opponent_node.hide()
 	your_pieces.show()
